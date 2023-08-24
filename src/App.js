@@ -1,11 +1,10 @@
 import './styles/style.scss';
-import HeaderUnlogged from './components/HeaderUnlogged/HeaderUnlogged';
+import LandingPage from './pages/LandingPage/LandingPage';
 
 function App() {
   return (
     <div className="container">
-      dasdasds
-      <HeaderUnlogged />
+      <LandingPage />
     </div>
   );
 }

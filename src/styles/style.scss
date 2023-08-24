@@ -3,18 +3,382 @@
 @import "./nullstyle";
 @import "./variable";
 
-#root{
+#root {
   display: flex;
   justify-content: center;
 }
-.container{
+
+body {
+  overflow-x: hidden;
+  background-color: #FAFBFC;
+}
+
+.container {
   width: 1440px;
   padding: 30px 30px 0 30px;
   display: flex;
   justify-content: center;
-  background-color: red;
+  position: relative;
+  flex-direction: column;
+
+  @media screen and (max-width:767px) {
+    padding: 24px 24px 0 24px;
+  }
+
+  @media screen and (max-width:450px) {
+    padding: 12px 12px 0 12px;
+  }
 }
 
-.header{
+//HEADER
+
+.header {
   width: 100%;
-} 
+  position: relative;
+  
+  &-background {
+    position: absolute;
+    z-index: -2;
+    width: 100%;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 600px;
+      border-radius: 24px;
+    }
+  }
+  
+  &__nav {
+    width: 100%;
+    // position: absolute;
+    // top: 24px;
+    // left: 32px;
+    padding: 24px 32px 0 32px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-left-side {
+    list-style: none;
+    display: flex;
+  }
+
+  &-find-flights {
+    display: flex;
+    align-items: center;
+    margin-right: 32px;
+    font-family: $font-family;
+    font-weight: 600;
+    @include adaptive-font(14, 12);
+    color: white;
+    transition: all ease 0.4s;
+
+    li:first-child {
+      margin-right: 4px;
+    }
+  }
+
+  &-find-stays {
+    display: flex;
+    align-items: center;
+    font-family: $font-family;
+    font-weight: 600;
+    @include adaptive-font(14, 12);
+    color: white;
+    transition: all ease 0.4s;
+
+    li:first-child {
+      margin-right: 4px;
+    }
+  }
+
+  &-logo__wrapper {
+    transition: all ease 0.4s;
+  }
+
+  &-right-side {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-login {
+    color: white;
+    @include adaptive-font(14, 12);
+    font-family: $font-family;
+    font-weight: 600;
+    transition: all ease 0.4s;
+  }
+
+  &-signUp__wrapper {
+    padding: 10px 24px;
+    background-color: white;
+    border-radius: 8px;
+    margin-left: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all ease 0.4s;
+  }
+
+  &-signUp {
+    color: black;
+    @include adaptive-font(14, 12);
+    font-family: $font-family;
+    font-weight: 600;
+    transition: all ease 0.4s;
+  }
+
+  &-burger{
+    display: none;
+  }
+  &-burger-menu{
+    display: none;
+    
+  }
+
+  &__title-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 84px;
+
+    h2 {
+      @include adaptive-font(45, 33);
+      color: white;
+      font-family: $font-family2;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 80px;
+      text-align: center;
+      color: white;
+      font-family: $font-family2;
+      margin-top: 4px;
+    }
+
+    h3 {
+      @include adaptive-font(20, 17);
+      text-align: center;
+      font-family: $font-family;
+      font-weight: 600;
+      color: white;
+      margin-top: 16px;
+    }
+
+    
+  }
+
+  @media screen and (max-width:767px) {
+    .container {
+      padding: 24px 24px 0 24px;
+    }
+
+    &__nav {
+      padding: 24px 24px 0 24px;
+    }
+
+    &-find-flights {
+      font-size: 12px;
+      margin-right: 24px;
+
+      svg {
+        width: 20px;
+      }
+
+    }
+
+    &-find-stays {
+      font-size: 12px;
+
+      svg {
+        width: 20px;
+      }
+    }
+
+    &-logo__wrapper {
+      img {
+        width: 100px;
+        height: 28px;
+      }
+
+    }
+
+    &-login {
+      font-size: 12px;
+    }
+
+    &-signUp__wrapper {
+      margin-left: 24px;
+    }
+
+    &-signUp {
+      font-size: 12px;
+    }
+
+    &__title-wrapper {
+      margin-top: 70px;
+    }
+  }
+
+  @media screen and (max-width:648px) {
+    h1 {
+      font-size: 75px;
+    }
+  }
+
+  @media screen and (max-width:648px) {
+    &-left-side {
+      display: none;
+    }
+    &-right-side{
+      display: none;
+    }
+
+    &-logo__wrapper {
+      img {
+        width: 111px;
+        height: 36px;
+      }
+    }
+    &-burger-menu{
+      display: block;
+      padding: 24px;
+      opacity: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 600px;
+      position: absolute;
+      transform: scaleY(0);
+      transform-origin: 0, 0;
+      // transform-duration: 1s;
+      border-radius: 24px;
+      transition: all ease 0.4s;
+      // transform: translate(50%,50%);
+      background-color: rgb(141, 212, 189);
+      &_active{
+        transform: scaleY(1);
+        // transform-origin: 0, 0;
+        // transform-duration: 1s
+        opacity: 1;
+      }
+      .header-find-flights{
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
+      .header-find-stays{
+        margin-bottom: 16px;
+      }
+      .header-signUp__wrapper{
+        margin-left: 0;
+        margin-top: 16px;
+        width: 100%;
+      }
+      
+    }
+
+    &-burger{
+      display: block;
+      width: 28px;
+      height: 24px;
+      position: relative;
+      // background-color: red;
+      display: flex;
+            align-items: center;
+      span {
+        @include transition(0.4s);
+        width: 100%;
+        height: 2px;
+        background-color: white;
+        display: block;
+        @include transition(0.4s);
+        &::before,
+        &::after {
+            @include transition(0.4s);
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: white;
+        }
+
+        &::before {
+            top: 0px;
+
+        }
+
+        &::after {
+            bottom: 0px;
+        }
+      }
+      &_active{
+        span{
+        background-color: transparent;
+        transform: rotate(180deg);
+          &::before{
+            transform:  rotate(45deg);
+          }
+          &::after{
+            transform:  rotate(-45deg);
+          }
+        }
+        
+      }
+    }
+
+    // &-login {
+    //   font-size: 14px;
+    // }
+
+    // &-signUp {
+    //   font-size: 14px;
+    // }
+  }
+
+  // @media screen and (max-width:450px) {
+  //   &__nav {
+  //     padding: 18px 18px 0 18px;
+  //   }
+
+  //   &-logo__wrapper {
+  //     img {
+  //       width: 100px;
+  //       height: 28px;
+  //     }
+  //   }
+  //   &-signUp__wrapper {
+  //     margin-left: 18px;
+  //     padding: 7px 10px;
+  //   }
+  //   &-login{
+  //     font-size: 12px;
+  //   }
+  //   &-signUp{
+  //     font-size: 12px;
+  //   }
+  // }
+
+  @media screen and (max-width:320px) {}
+
+}
+
+.main {
+  width: 100%;
+  margin-top: 150px;
+  padding-left: 74px;
+  padding-right: 74px;
+  display: none;
+
+  &-flights-stays {
+    background-color: white;
+    width: 100%;
+  }
+
+}
