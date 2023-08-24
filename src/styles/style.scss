@@ -1,0 +1,20 @@
+@import "./fonts";
+@import "./mixins";
+@import "./nullstyle";
+@import "./variable";
+
+#root{
+  display: flex;
+  justify-content: center;
+}
+.container{
+  width: 1440px;
+  padding: 30px 30px 0 30px;
+  display: flex;
+  justify-content: center;
+  background-color: red;
+}
+
+.header{
+  width: 100%;
+} 
