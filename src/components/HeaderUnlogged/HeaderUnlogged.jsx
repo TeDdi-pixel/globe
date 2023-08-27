@@ -1,12 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-function HeaderUnlogged() {
-    const [active, setActive] = useState(false);
-    const handleBurgerClick = () => {
-        setActive((prev) => !prev)
-    }
+function HeaderUnlogged({active,handleBurgerClick}) {
+
     return (
         <header className="header">
             <div className="header-background">
@@ -57,15 +53,15 @@ function HeaderUnlogged() {
                         <li>Find Stays</li>
                     </Link>
                 </div>
-                <div className="header-logo__wrapper">
+                <Link to='/' className="header-logo__wrapper">
                     <img src="./img/Group.svg" alt="" />
-                </div>
+                </Link>
                 <div className="header-right-side">
-                    <div>
+                    <div className="header-right-side-login__wrapper">
                         <Link to='/login' className="header-login">Login</Link>
                     </div>
                     <div className="header-signUp__wrapper">
-                        <Link to='/login' className="header-signUp">Sign up</Link>
+                        <Link to='/sign_up' className="header-signUp">Sign up</Link>
                     </div>
 
                 </div>
