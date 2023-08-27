@@ -10,12 +10,12 @@ function LandingPageMain({active}) {
     const staysBnt = 'main-chose-stays';
 
     const changeActivetedBtn = (e)=>{
-        if (e.target.classList.contains('flights-btn') || e.target.classList.contains(flightsBnt) && !flights) {
+        if (e.target.classList.contains('flights-btn') || (e.target.classList.contains(flightsBnt) && !flights)) {
             setFlights(true);
             setStays(false);
             
         } 
-        if (e.target.classList.contains('stays-btn') || e.target.classList.contains(staysBnt) && !stays) {
+        if (e.target.classList.contains('stays-btn') || (e.target.classList.contains(staysBnt) && !stays)) {
             setFlights(false);
             setStays(true);
         }
@@ -52,7 +52,7 @@ function LandingPageMain({active}) {
                     </button>
 
                 </div>
-                
+
                 {flights ? <Flights />: <Stays />}
 
             </div>

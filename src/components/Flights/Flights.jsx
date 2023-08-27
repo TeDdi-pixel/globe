@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, InputLabel, MenuItem, Select, OutlinedInput, } from '@material-ui/core';
+import { FormControl, InputLabel, MenuItem, Select, OutlinedInput, } from '@mui/material';
 import { DateRangePicker, LocalizationProvider, MobileDateRangePicker, SingleInputDateRangeField } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
@@ -16,7 +16,6 @@ function Flights() {
                     labelId="main-flights__select-tlabel"
                     id="demo-simple-select"
                     label="From - To"
-                    renderValue={'./img/ion_swap-horizontal.jpg'}
                 >
                     <MenuItem value='Lahore - Karachi'>Lahore - Karachi</MenuItem>
                     <MenuItem value='Lahore - Karachi'>Lahore - Karachi</MenuItem>
