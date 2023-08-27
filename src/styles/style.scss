@@ -75,10 +75,12 @@ body {
     color: white;
     transition: all ease 0.4s;
     border-radius: 8px;
+
     li:first-child {
       margin-right: 4px;
     }
-    &:hover{
+
+    &:hover {
       padding-left: 26px;
       padding-right: 26px;
       background-color: #8DD3BB;
@@ -94,10 +96,12 @@ body {
     color: white;
     transition: all ease 0.4s;
     border-radius: 8px;
+
     li:first-child {
       margin-right: 4px;
     }
-    &:hover{
+
+    &:hover {
       padding-left: 26px;
       padding-right: 26px;
       background-color: #8DD3BB;
@@ -107,8 +111,9 @@ body {
   &-logo__wrapper {
     border-radius: 8px;
     transition: all ease 0.4s;
-    cursor: pointer;    
-    &:hover{
+    cursor: pointer;
+
+    &:hover {
       padding: 26px 40px;
       background-color: #346b5a;
     }
@@ -119,12 +124,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    &-login__wrapper{
+
+    &-login__wrapper {
       transition: all ease 0.4s;
       border-radius: 4px;
       padding: 10px 0;
       cursor: pointer;
-      &:hover{
+
+      &:hover {
         padding-left: 26px;
         padding-right: 26px;
         background-color: #8DD3BB;
@@ -137,6 +144,8 @@ body {
     @include adaptive-font(14, 12);
     font-family: $font-family;
     font-weight: 600;
+    transition: all ease 0.4s;
+
   }
 
   &-signUp__wrapper {
@@ -149,16 +158,20 @@ body {
     align-items: center;
     justify-content: center;
     transition: all ease 0.4s;
-    &:hover{
+
+    &:hover {
       background-color: #8DD3BB;
     }
   }
 
   &-signUp {
-    &:hover{
+    border-radius: 8px;
+
+    &:hover {
       color: white;
       background-color: #8DD3BB;
     }
+
     color: black;
     @include adaptive-font(14, 12);
     font-family: $font-family;
@@ -301,6 +314,7 @@ body {
       transition: all ease 0.4s;
       background-color: rgb(141, 212, 189);
       mix-blend-mode: luminosity;
+
       &_active {
         transform: scaleY(1);
         opacity: 1;
@@ -316,7 +330,7 @@ body {
           transition: all ease 0.4s;
         }
 
-        &:active {
+        &:focus {
           background-color: white;
           padding: 24px 15% 24px 15%;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -340,7 +354,7 @@ body {
           transition: all ease 0.4s;
         }
 
-        &:active {
+        &:focus {
           background-color: white;
           padding: 24px 15% 24px 15%;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -366,7 +380,7 @@ body {
           color: white;
         }
 
-        &:active {
+        &:focus {
           background-color: white;
           padding: 24px 15% 24px 15%;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -382,18 +396,26 @@ body {
         font-size: 23px;
         border-radius: 8px;
 
-        &:active {
+        &:focus {
           background-color: white;
           padding: 24px 100px 24px 100px;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
           width: auto;
           color: darkgrey;
         }
+
       }
 
       .header-signUp {
         font-size: 23px;
 
+        &:focus {
+          background-color: white;
+          padding: 24px 100px 24px 100px;
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+          width: auto;
+          color: darkgrey;
+        }
       }
 
     }
@@ -466,24 +488,92 @@ body {
   padding-left: 74px;
   padding-right: 74px;
   transition: all ease 0.4s;
-  
-  &_active{
+  height: 200vh;
+
+  &_active {
     @media screen and (max-width:648px) {
       margin-top: 365px;
     }
+
     @media screen and (max-width:595px) {
       margin-top: 288px;
     }
   }
+
   &-flights-stays {
     background-color: white;
     width: 100%;
     border-radius: 16px;
     padding: 16px 32px 32px 32px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.11);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .11);
+
+    &-options {
+      margin-top: 32px;
+      display: flex;
+      gap: 24px;
+      justify-content: flex-end;
+    }
+
+    &-promocode {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 16.5px;
+      border-radius: 4px;
+      background-color: transparent;
+      transition: all ease 0.4s;
+
+      &:hover {
+        background: var(--mint-green, #8DD3BB);
+      }
+
+      &-text {
+        font-family: $font-family;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
+    &-add-promo {
+      opacity: 0;
+      transition: all ease 0.4s;
+
+      &_active {
+        opacity: 1;
+      }
+    }
+
+
+    &-show {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 16.5px;
+      transition: all ease 0.4s;
+      border-radius: 4px;
+      background-color: transparent;
+
+      &:hover {
+        background: var(--mint-green, #8DD3BB);
+      }
+
+      &-text {
+        color: #000;
+        font-family: $font-family;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+
     @media screen and (max-width:741px) {
       padding: 16px 20px 20px 20px;
+
+      &-options {
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
     }
+
     @media screen and (max-width:320px) {
       padding: 12px 14px 14px 14px;
     }
@@ -506,8 +596,8 @@ body {
     font-weight: 700;
     color: #121;
     position: relative;
-    
-    &-underscore{
+
+    &-underscore {
       content: '';
       opacity: 0;
       position: absolute;
@@ -518,12 +608,13 @@ body {
       left: 0;
       transition: all ease 0.2s;
       scale: 0.1;
-      &_active{
+
+      &_active {
         opacity: 1;
         scale: 1;
       }
     }
-    
+
     svg {
       margin-top: 6px;
 
@@ -538,7 +629,7 @@ body {
   }
 
   &-chose-stays {
-    
+
     display: flex;
     align-items: center;
     padding-top: 14px;
@@ -550,7 +641,8 @@ body {
     color: #121;
     font-family: $font-family;
     position: relative;
-    &::before{
+
+    &::before {
       content: '';
       width: 1px;
       height: 100%;
@@ -558,7 +650,8 @@ body {
       background-color: #D7E2EE;
       left: -32px;
     }
-    &-underscore{
+
+    &-underscore {
       opacity: 0;
       content: '';
       position: absolute;
@@ -568,14 +661,15 @@ body {
       bottom: -15px;
       right: 0;
       scale: 0.1;
-      
+
       transition: all ease 0.2s;
-      &_active{
+
+      &_active {
         scale: 1;
         opacity: 1;
       }
     }
-    
+
     li:first-child {
       margin-right: 8px;
     }
@@ -690,14 +784,157 @@ body {
       }
     }
   }
-  
 
   @media screen and (max-width:600px) {
     padding-right: 30px;
     padding-left: 30px;
   }
+
   @media screen and (max-width:339px) {
     padding-right: 12px;
     padding-left: 12px;
   }
+
+  &-plan-trip {
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-left-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      h2 {
+        font-family: $font-family;
+        @include adaptive-font(32, 20);
+        font-weight: 600;
+        color: #121;
+        width: 100%;
+      }
+
+      h3 {
+        width: 100%;
+        color: #121;
+        font-family: $font-family;
+        font-size: 16px;
+        font-weight: 400;
+        opacity: 0.75;
+      }
+    }
+
+    &-right-side {
+      border-radius: 4px;
+      border: 1px solid #8DD3BB;
+      padding: 11.5px 16px;
+      font-family: $font-family;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all ease 0.2s;
+      cursor: pointer;
+      text-align: center;
+
+      &:hover {
+        color: white;
+        background-color: #8DD3BB;
+      }
+    }
+
+    &-places {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      // flex-direction: column;
+      justify-content: space-evenly;
+      gap: 32px;
+      width: 100%;
+    }
+
+    &-place {
+      width: 357px;
+      background-color: white;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 16px;
+      box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
+
+      li:first-child {
+        font-family: $font-family;
+        font-size: 16px;
+        color: #121;
+        font-weight: 600;
+      }
+
+      li:last-child {
+        font-family: $font-family;
+        font-size: 14px;
+        color: #121;
+        font-weight: 500;
+        margin-top: 8px;
+      }
+    }
+
+    @media screen and (max-width:953px) {
+      &-places {
+        gap: 24px;
+      }
+
+      &-place {
+        width: 100%;
+      }
+    }
+
+    @media screen and (max-width:648px) {
+      flex-wrap: wrap;
+      margin-top: 50px;
+
+      &-right-side {
+        margin-top: 24px;
+        width: 100%;
+      }
+    }
+  }
+
+  &-flights-hotels {
+    display: flex;
+    gap: 24px;
+  }
+
+  &-flights-additional {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 559px;
+    max-width: 604px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 20px;
+    
+    &-img{
+      position: relative;
+    }
+    img {
+      width: 604px;
+      height: 559px;
+      position: absolute;
+      object-fit:cover;
+      object-position: center;     
+      z-index: -1;
+    }
+
+    h2{
+      
+      text-align: center;
+      color: white;
+      font-family:$font-family2;
+      font-weight: 700;
+      font-size: 40px;
+    }
+  }
+
 }
