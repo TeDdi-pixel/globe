@@ -2,11 +2,12 @@ import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select, OutlinedInput, } from '@mui/material';
 import { DateRangePicker, LocalizationProvider, SingleInputDateRangeField } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { display } from '@mui/system';
 
-function Flights() {
+function Flights({ promocode }) {
     return (
         <form className="main-flights" onSubmit={''}>
-            
+
             <FormControl
                 variant="outlined"
                 className='main-flights__form-control main-flights__form-control-road'>
@@ -23,7 +24,7 @@ function Flights() {
                     <MenuItem value='Lahore - Karachi'>Lahore - Karachi</MenuItem>
                     <MenuItem value='Lahore - Karachi'>Lahore - Karachi</MenuItem>
                 </Select>
-                
+
             </FormControl>
 
             <FormControl
@@ -64,7 +65,21 @@ function Flights() {
                     label="Passenger - Class"
                 />
             </FormControl>
-        </form>
+
+            <FormControl
+                sx={{
+                    display: promocode ? 'block' : 'none',
+                }}
+                //   className={promocode ? 'main-flights-stays-add-promo main-flights-stays-add-promo_active' : 'main-flights-stays-add-promo'}
+                variant="outlined"
+            >
+                <InputLabel id="add-promo-label">Add promo code</InputLabel>
+                <OutlinedInput
+                    labelId="add-promo-label"
+                    label="Add promo code"
+                />
+            </FormControl>
+        </form >
     );
 }
 

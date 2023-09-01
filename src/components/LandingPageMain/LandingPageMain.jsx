@@ -1,10 +1,112 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Flights from "../Flights/Flights";
 import Stays from "../Stays/Stays";
+
+// import 'swiper/css/scrollbar';
 import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
 import { Link } from "react-router-dom";
+import Slider from "../Slider/Slider";
+// import { DataContext } from "/App";
+const data = {
+    places: [
+        {
+            id: 0,
+            title: 'Istanbul, Turkey',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 3.jpg'
+        },
+        {
+            id: 1,
+            title: 'Sydney, Australia',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 3 (1).jpg'
+        },
+        {
+            id: 2,
+            title: 'Baku, Azerbaijan',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 4.jpg'
+        },
+        {
+            id: 3,
+            title: 'Malé, Maldives',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 4 (1).jpg'
+        },
+        {
+            id: 4,
+            title: 'Paris, France',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 3 (2).jpg'
+        },
+        {
+            id: 5,
+            title: 'New York, US',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 4 (2).jpg'
+        },
+        {
+            id: 6,
+            title: 'London, UK',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 3 (3).jpg'
+        },
+        {
+            id: 7,
+            title: 'Tokyo, Japan',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 3 (4).jpg'
+        },
+        {
+            id: 8,
+            title: 'Dubai, UAE',
+            entertainment: 'Flights • Hotels • Resorts',
+            img: './img/Rectangle 4 (3).jpg'
+        },
+    ],
+    slider: [
+        {
+            id: 0,
+            img: './img/2d9afcfc8f6b2105b415f4d1a3703551.jpg'
+        },
+        {
+            id: 1,
+            img: './img/2bc9380fe02cf65bd8e281ed4d43885a.jpg'
+        },
+        {
+            id: 2,
+            img: './img/7f44409c34363230b50babb01b3efc89.jpg'
+        },
+        {
+            id: 3,
+            img: './img/2d9afcfc8f6b2105b415f4d1a3703551.jpg'
+        },
+        {
+            id: 4,
+            img: './img/2bc9380fe02cf65bd8e281ed4d43885a.jpg'
+        },
+        {
+            id: 5,
+            img: './img/7f44409c34363230b50babb01b3efc89.jpg'
+        },
+        {
+            id: 6,
+            img: './img/2d9afcfc8f6b2105b415f4d1a3703551.jpg'
+        },
+        {
+            id: 7,
+            img: './img/2bc9380fe02cf65bd8e281ed4d43885a.jpg'
+        },
+        {
+            id: 8,
+            img: './img/7f44409c34363230b50babb01b3efc89.jpg'
+        }
+
+    ]
+}
 
 function LandingPageMain({ active }) {
+    // const data = useContext(DataContext);
     const [flights, setFlights] = useState(true);
     const [stays, setStays] = useState(false);
     const [promocode, setPromocode] = useState(false);
@@ -27,6 +129,18 @@ function LandingPageMain({ active }) {
             setStays(true);
         }
     }
+
+    const places = data.places.map(item => {
+        return (
+            <Link key={item.id} to='/place' className="main-plan-trip-place">
+                <img src={item.img} alt="" />
+                <div className="main-plan-trip-place-options">
+                    <li>{item.title}</li>
+                    <li>{item.entertainment}</li>
+                </div>
+            </Link>
+        )
+    })
 
     return (
         <>
@@ -61,20 +175,11 @@ function LandingPageMain({ active }) {
 
                     </div>
 
-                    {flights ? <Flights /> : <Stays />}
+                    {flights ? <Flights promocode={promocode}/> : <Stays promocode={promocode}/>}
 
 
                     <div className="main-flights-stays-options">
-                        <FormControl
-                            className={promocode ? 'main-flights-stays-add-promo main-flights-stays-add-promo_active' : 'main-flights-stays-add-promo'}
-                            variant="outlined"
-                        >
-                            <InputLabel id='add-promo-label'>Add promo code</InputLabel>
-                            <OutlinedInput
-                                labelId="add-promo-label"
-                                label="Add promo code"
-                            />
-                        </FormControl>
+                        
                         <button
                             className="main-flights-stays-promocode"
                             onClick={handlePromocode}
@@ -108,79 +213,19 @@ function LandingPageMain({ active }) {
 
                 </div>
                 <div className="main-plan-trip-places">
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 3.jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>Istanbul, Turkey</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 3 (1).jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>Sydney, Australia</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 4.jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>Baku, Azerbaijan</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 4 (1).jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>Malé, Maldives</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 3 (2).jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>Paris, France</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 4 (2).jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>New York, US</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 3 (3).jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>London, UK</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 3 (4).jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>Tokyo, Japan</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
-                    <Link to='/place' className="main-plan-trip-place">
-                        <img src="./img/Rectangle 4 (3).jpg" alt="" />
-                        <div className="main-plan-trip-place-options">
-                            <li>Dubai, UAE</li>
-                            <li>Flights • Hotels • Resorts</li>
-                        </div>
-                    </Link>
+                    {
+                        places
+                    }
                 </div>
 
-                {/* <div className="main-flights-hotels">
+                <div className="main-flights-hotels">
                     <div className="main-flights-additional">
                         <div className="main-flights-additional-img">
                             <img src="./img/Rectangle 40.jpg" alt="" />
                         </div>
                         <h2>Flights</h2>
                         <h3>Search Flights & Places Hire to our most popular destinations</h3>
-                        <Link>
+                        <Link className="main-flights-additional-show" to='/flights'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
                                 <path d="M9.96858 14.9999H9.99983C10.1543 15.0008 10.3054 14.9552 10.4336 14.869C10.5618 14.7829 10.6611 14.6601 10.7186 14.5168L10.6967 14.5085L10.6967 14.5083C10.641 14.6472 10.5447 14.7661 10.4205 14.8496C10.2962 14.9331 10.1497 14.9773 9.99996 14.9765H9.99983H9.9691M9.96858 14.9999L9.96963 14.9765C9.96945 14.9765 9.96928 14.9765 9.9691 14.9765M9.96858 14.9999V14.9765H9.9691M9.96858 14.9999L9.9691 14.9765M9.9691 14.9765C9.67379 14.963 9.42874 14.7657 9.33168 14.4844L9.33151 14.484C9.32949 14.4785 9.32777 14.4734 9.32603 14.4675L9.32617 14.4675L9.32513 14.4651L7.49283 10.1731C7.46895 10.0937 7.4662 10.0095 7.48487 9.92865C7.50363 9.84744 7.54336 9.77257 7.6001 9.71152L9.9691 14.9765ZM15.2645 1.23676C15.3636 1.33623 15.4317 1.46227 15.4607 1.59965C15.4896 1.73703 15.4781 1.87985 15.4276 2.01085L15.4276 2.01099L10.6968 14.5081L7.60012 9.71149L14.0164 2.82898C14.0165 2.82888 14.0166 2.82879 14.0167 2.82869C14.0393 2.80605 14.0572 2.77921 14.0694 2.74969C14.0817 2.72004 14.088 2.68825 14.088 2.65616C14.088 2.62406 14.0817 2.59228 14.0694 2.56263C14.0571 2.53297 14.0391 2.50603 14.0164 2.48334C13.9937 2.46064 13.9668 2.44264 13.9371 2.43035C13.9075 2.41807 13.8757 2.41175 13.8436 2.41175C13.8115 2.41175 13.7797 2.41807 13.75 2.43035C13.7205 2.44258 13.6937 2.46048 13.6711 2.48304C13.671 2.48314 13.6709 2.48324 13.6708 2.48334L6.78512 8.8993C6.72406 8.95605 6.64918 8.99579 6.56797 9.01455C6.48716 9.03322 6.40288 9.03048 6.32347 9.0066L2.03403 7.17492L2.03408 7.17481L2.03191 7.17413L2.01945 7.17018C2.01939 7.17016 2.01933 7.17014 2.01927 7.17012C1.87747 7.12263 1.75378 7.03255 1.66507 6.91216C1.57633 6.79172 1.52693 6.64682 1.52362 6.49725C1.5203 6.34768 1.56324 6.20074 1.64657 6.07649C1.72872 5.954 1.84617 5.85945 1.98327 5.80534V5.80622L1.99156 5.80308L14.4925 1.07152L14.4925 1.0715C14.6235 1.02171 14.766 1.01083 14.9029 1.04015C15.0399 1.06947 15.1654 1.13775 15.2645 1.23676ZM15.2645 1.23676C15.2645 1.23677 15.2645 1.23678 15.2645 1.2368L15.2811 1.22022L15.2645 1.23676Z" fill="black" stroke="#112211" stroke-width="0.046875" />
                             </svg>
@@ -188,32 +233,26 @@ function LandingPageMain({ active }) {
                         </Link>
                     </div>
 
-                    <div className="main-flights-additional">
-                        <div className="main-flights-additional-img">
-                            <img src="./img/Rectangle 40.jpg" alt="" />
+                    <div className="main-hotels-additional">
+                        <div className="main-hotels-additional-img">
+                            <img src="./img/Rectangle 41.jpg" alt="" />
                         </div>
-                        <h2>Flights</h2>
-                        <h3>Search Flights & Places Hire to our most popular destinations</h3>
-                        <Link>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
-                                <path d="M9.96858 14.9999H9.99983C10.1543 15.0008 10.3054 14.9552 10.4336 14.869C10.5618 14.7829 10.6611 14.6601 10.7186 14.5168L10.6967 14.5085L10.6967 14.5083C10.641 14.6472 10.5447 14.7661 10.4205 14.8496C10.2962 14.9331 10.1497 14.9773 9.99996 14.9765H9.99983H9.9691M9.96858 14.9999L9.96963 14.9765C9.96945 14.9765 9.96928 14.9765 9.9691 14.9765M9.96858 14.9999V14.9765H9.9691M9.96858 14.9999L9.9691 14.9765M9.9691 14.9765C9.67379 14.963 9.42874 14.7657 9.33168 14.4844L9.33151 14.484C9.32949 14.4785 9.32777 14.4734 9.32603 14.4675L9.32617 14.4675L9.32513 14.4651L7.49283 10.1731C7.46895 10.0937 7.4662 10.0095 7.48487 9.92865C7.50363 9.84744 7.54336 9.77257 7.6001 9.71152L9.9691 14.9765ZM15.2645 1.23676C15.3636 1.33623 15.4317 1.46227 15.4607 1.59965C15.4896 1.73703 15.4781 1.87985 15.4276 2.01085L15.4276 2.01099L10.6968 14.5081L7.60012 9.71149L14.0164 2.82898C14.0165 2.82888 14.0166 2.82879 14.0167 2.82869C14.0393 2.80605 14.0572 2.77921 14.0694 2.74969C14.0817 2.72004 14.088 2.68825 14.088 2.65616C14.088 2.62406 14.0817 2.59228 14.0694 2.56263C14.0571 2.53297 14.0391 2.50603 14.0164 2.48334C13.9937 2.46064 13.9668 2.44264 13.9371 2.43035C13.9075 2.41807 13.8757 2.41175 13.8436 2.41175C13.8115 2.41175 13.7797 2.41807 13.75 2.43035C13.7205 2.44258 13.6937 2.46048 13.6711 2.48304C13.671 2.48314 13.6709 2.48324 13.6708 2.48334L6.78512 8.8993C6.72406 8.95605 6.64918 8.99579 6.56797 9.01455C6.48716 9.03322 6.40288 9.03048 6.32347 9.0066L2.03403 7.17492L2.03408 7.17481L2.03191 7.17413L2.01945 7.17018C2.01939 7.17016 2.01933 7.17014 2.01927 7.17012C1.87747 7.12263 1.75378 7.03255 1.66507 6.91216C1.57633 6.79172 1.52693 6.64682 1.52362 6.49725C1.5203 6.34768 1.56324 6.20074 1.64657 6.07649C1.72872 5.954 1.84617 5.85945 1.98327 5.80534V5.80622L1.99156 5.80308L14.4925 1.07152L14.4925 1.0715C14.6235 1.02171 14.766 1.01083 14.9029 1.04015C15.0399 1.06947 15.1654 1.13775 15.2645 1.23676ZM15.2645 1.23676C15.2645 1.23677 15.2645 1.23678 15.2645 1.2368L15.2811 1.22022L15.2645 1.23676Z" fill="black" stroke="#112211" stroke-width="0.046875" />
-                            </svg>
-                            <span>Show Filghts</span>
-                        </Link>
-                    </div> */}
-
-                    {/* <div className="main-hotels">
-                    <img src="./img/Rectangle 41.jpg" alt="" />
                         <h2>Hotels</h2>
-                        <h3>Search hotels & Places Hire to our most popular destinations</h3>
-                        <Link>
+                        <h3>Search Flights & Places Hire to our most popular destinations</h3>
+                        <Link className="main-hotels-additional-show" to='hotels'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
                                 <path d="M9.96858 14.9999H9.99983C10.1543 15.0008 10.3054 14.9552 10.4336 14.869C10.5618 14.7829 10.6611 14.6601 10.7186 14.5168L10.6967 14.5085L10.6967 14.5083C10.641 14.6472 10.5447 14.7661 10.4205 14.8496C10.2962 14.9331 10.1497 14.9773 9.99996 14.9765H9.99983H9.9691M9.96858 14.9999L9.96963 14.9765C9.96945 14.9765 9.96928 14.9765 9.9691 14.9765M9.96858 14.9999V14.9765H9.9691M9.96858 14.9999L9.9691 14.9765M9.9691 14.9765C9.67379 14.963 9.42874 14.7657 9.33168 14.4844L9.33151 14.484C9.32949 14.4785 9.32777 14.4734 9.32603 14.4675L9.32617 14.4675L9.32513 14.4651L7.49283 10.1731C7.46895 10.0937 7.4662 10.0095 7.48487 9.92865C7.50363 9.84744 7.54336 9.77257 7.6001 9.71152L9.9691 14.9765ZM15.2645 1.23676C15.3636 1.33623 15.4317 1.46227 15.4607 1.59965C15.4896 1.73703 15.4781 1.87985 15.4276 2.01085L15.4276 2.01099L10.6968 14.5081L7.60012 9.71149L14.0164 2.82898C14.0165 2.82888 14.0166 2.82879 14.0167 2.82869C14.0393 2.80605 14.0572 2.77921 14.0694 2.74969C14.0817 2.72004 14.088 2.68825 14.088 2.65616C14.088 2.62406 14.0817 2.59228 14.0694 2.56263C14.0571 2.53297 14.0391 2.50603 14.0164 2.48334C13.9937 2.46064 13.9668 2.44264 13.9371 2.43035C13.9075 2.41807 13.8757 2.41175 13.8436 2.41175C13.8115 2.41175 13.7797 2.41807 13.75 2.43035C13.7205 2.44258 13.6937 2.46048 13.6711 2.48304C13.671 2.48314 13.6709 2.48324 13.6708 2.48334L6.78512 8.8993C6.72406 8.95605 6.64918 8.99579 6.56797 9.01455C6.48716 9.03322 6.40288 9.03048 6.32347 9.0066L2.03403 7.17492L2.03408 7.17481L2.03191 7.17413L2.01945 7.17018C2.01939 7.17016 2.01933 7.17014 2.01927 7.17012C1.87747 7.12263 1.75378 7.03255 1.66507 6.91216C1.57633 6.79172 1.52693 6.64682 1.52362 6.49725C1.5203 6.34768 1.56324 6.20074 1.64657 6.07649C1.72872 5.954 1.84617 5.85945 1.98327 5.80534V5.80622L1.99156 5.80308L14.4925 1.07152L14.4925 1.0715C14.6235 1.02171 14.766 1.01083 14.9029 1.04015C15.0399 1.06947 15.1654 1.13775 15.2645 1.23676ZM15.2645 1.23676C15.2645 1.23677 15.2645 1.23678 15.2645 1.2368L15.2811 1.22022L15.2645 1.23676Z" fill="black" stroke="#112211" stroke-width="0.046875" />
                             </svg>
                             <span>Show Hotels</span>
                         </Link>
-                    </div> */}
-                {/* </div> */}
+                    </div>
+
+                </div>
+                <h2 className="main-reviews">Reviews</h2>
+                <h3 className="main-reviews-sub">What people says about Golobe facilities</h3>
+                {/* <div className="main-swiper__wrapper">
+                    <Slider slides={data} className='slider' />
+                </div> */}
             </main>
         </>
 

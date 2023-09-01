@@ -1,9 +1,9 @@
 import React from 'react';
-import { FormControl, InputLabel, MenuItem, Select,} from '@mui/material';
+import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, } from '@mui/material';
 import { DateRangePicker, LocalizationProvider, SingleInputDateRangeField } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-function Stays() {
+function Stays({ promocode }) {
     return (
         <div className="main-stays">
 
@@ -79,10 +79,24 @@ function Stays() {
                     id="demo-simple-select"
                     label="Room class"
                 >
-                    <MenuItem value='Lahore - Karachi'>Lux</MenuItem> 
+                    <MenuItem value='Lahore - Karachi'>Lux</MenuItem>
                     <MenuItem value='Lahore - Karachi'>Business</MenuItem>
-                    <MenuItem value='Lahore - Karachi'>Something else</MenuItem> 
+                    <MenuItem value='Lahore - Karachi'>Something else</MenuItem>
                 </Select>
+            </FormControl>
+
+            <FormControl
+                sx={{
+                    display: promocode ? 'block' : 'none',
+                }}
+                //   className={promocode ? 'main-flights-stays-add-promo main-flights-stays-add-promo_active' : 'main-flights-stays-add-promo'}
+                variant="outlined"
+            >
+                <InputLabel id="add-promo-label">Add promo code</InputLabel>
+                <OutlinedInput
+                    labelId="add-promo-label"
+                    label="Add promo code"
+                />
             </FormControl>
         </div>
     );
