@@ -1071,17 +1071,43 @@ body {
     }
   }
 
-  // .swiper{
-  //   width: 100%;
-  // }
-  &-swiper {
-    &__wrapper {
-      // margin-bottom: 200px;
-      // height: 700px;
-      margin-top: 16px;
+  &-not-slider {
+    max-width: 1439px;
+    width: 100%;
+    height: 584px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #8DD3BB;
+    border-radius: 20px;
+    display: none;
+    padding-top: 268px;
+
+    text-align: center;
+    h2 {
+      transition: all ease 0.4s;
+      font-family: $font-family;
+      font-size: 32px;
     }
 
+    &:hover {
+      h2 {
+
+        scale: 0.8;
+      }
+    }
+    @media screen and (max-width:1439px) {
+        display: block;
+    }
+  }
+
+  &-swiper {
+    width: 100%;
+    max-width: 1440px;
+    margin-top: 16px;
+
     &-slide {
+      display: flex;
       // position: relative; /* Установите позицию relative */
       // z-index: 999;
       // width: 425px;
@@ -1113,9 +1139,11 @@ body {
         font-size: 14px;
         font-weight: 500;
         opacity: 0.5;
-        margin-bottom: 145.5px;
+        margin-bottom: 12px;
       }
     }
+
+
 
     &-img__wrapper {
       border-radius: 8px;
@@ -1135,6 +1163,56 @@ body {
     //   border-radius: 20px;
     //   mix-blend-mode: color;
     // }
+
+    &-view-more {
+      display: block;
+      margin-left: 76%;
+      color: #121;
+      font-family: $font-family;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      background-color: transparent;
+      padding: 0;
+    }
+
+    &-name {
+      margin-top: 20px;
+      font-family: $font-family;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    &-job-place {
+      font-family: $font-family;
+      font-weight: 500;
+      opacity: 0.5;
+      margin-bottom: 12px;
+    }
+
+    &-google {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      li:first-child {
+        margin-right: 8px;
+      }
+
+      li:last-child {
+        opacity: 0.4;
+        font-family: $font-family2;
+        font-size: 12px;
+        color: #121;
+      }
+    }
+
+    @media screen and (max-width:1439px) {
+      .swiper-wrapper {
+        display: none;
+      }
+    }
   }
 
   .swiper-pagination-bullet-active {
@@ -1143,6 +1221,7 @@ body {
 
   .swiper-wrapper {
     padding: 38px;
+
   }
 
 
@@ -1151,13 +1230,12 @@ body {
 
     img {
 
-      max-width: 377px;
+      // max-width: 425px;
       width: 100%;
-      height: 100%;
+      // height: 100%;
       // position: absolute;
       object-fit: cover;
       border-radius: 8px;
-
 
     }
   }
@@ -1240,4 +1318,12 @@ body {
     padding-right: 12px;
     padding-left: 12px;
   }
+}
+
+
+.card {
+  background-color: #346b5a;
+  width: 425px;
+  height: 570px;
+  padding-right: 20px;
 }

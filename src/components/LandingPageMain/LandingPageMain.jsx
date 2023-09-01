@@ -1,11 +1,12 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Flights from "../Flights/Flights";
 import Stays from "../Stays/Stays";
 
 // import 'swiper/css/scrollbar';
-import { FormControl, InputLabel, OutlinedInput } from "@mui/material";
 import { Link } from "react-router-dom";
 import Slider from "../Slider/Slider";
+import Swiper from "../Slider/Slider";
+import SlickSlider from "../SlickSlider/SlickSlider";
 // import { DataContext } from "/App";
 const data = {
     places: [
@@ -38,7 +39,8 @@ const data = {
             title: 'Paris, France',
             entertainment: 'Flights • Hotels • Resorts',
             img: './img/Rectangle 3 (2).jpg'
-        },
+        }
+        ,
         {
             id: 5,
             title: 'New York, US',
@@ -250,9 +252,11 @@ function LandingPageMain({ active }) {
                 </div>
                 <h2 className="main-reviews">Reviews</h2>
                 <h3 className="main-reviews-sub">What people says about Golobe facilities</h3>
-                {/* <div className="main-swiper__wrapper">
-                    <Slider slides={data} className='slider' />
-                </div> */}
+                
+                <Slider slides={data} />
+                <div className="main-not-slider">
+                    <h2>Here could be slider</h2>
+                </div>
             </main>
         </>
 

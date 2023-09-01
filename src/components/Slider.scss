@@ -1,0 +1,18 @@
+.mainSlider {
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .mainSliderSlide {
+    flex: 0 0 auto;
+    transition: transform 0.3s ease;
+    width: 100%;
+  }
+  
+  .active {
+    transform: translateX(0);
+  }
+  
+  img {
+    max-width: 100%;
+  }
