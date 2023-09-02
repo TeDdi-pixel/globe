@@ -72,6 +72,10 @@
             }
 
             &-button {
+                transition: scale ease 0.4s;
+                &:hover{
+                    scale: 0.8;
+                }
                 border-radius: 4px;
                 display: flex;
                 padding: 8px 16px;
@@ -116,12 +120,27 @@
         justify-content: space-between;
 
         li {
+            transition: all ease 0.4s;
+            &:hover{
+                scale: 0.9;
+            }
             display: flex;
             justify-content: space-between;
+            a{
+                svg{
+                    transition: all ease 0.2s;
+                    &:hover{
+                        scale: 0.8;
+                    }
+                }
+            }
         }
 
         li:last-child {
             margin-top: 24px;
+            &:hover{
+                scale: 1;
+            }
         }
     }
 
@@ -137,11 +156,18 @@
             font-size: 14px;
             font-weight: 500;
             opacity: 0.7;
+            transition: scale ease 0.2s;
+            &:hover{
+                scale: 0.9;
+            }
             a{
                 color: var(--Blackish-Green, #121);
                 cursor: pointer;
             }
             &:first-child {
+                &:hover{
+                    scale: 1;
+                }
                 margin-bottom: 16px;
                 font-size: 16px;
                 font-weight: 600;
