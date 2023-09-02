@@ -4,7 +4,7 @@
     justify-content: center;
     width: 100%;
     background-color: var(--Mint-Green, #8DD3BB);
-    height: 422px;
+    height: auto;
 
     &__wrapper {
         max-width: 1232px;
@@ -97,10 +97,74 @@
         }
     }
 
+    &__nav {
+        transform: translate(0, -73px);
+    }
+
+    &__nav__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    &-logo__wrapper{
+        margin-right: 140px;
+    }
+    &__logo {
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        li:last-child {
+            margin-top: 24px;
+        }
+    }
+
+    &-links {
+        margin-right: 24px;
+
+        &__wrapper {
+            width: 140px;
+        }
+
+        &-link {
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.7;
+            a{
+                color: var(--Blackish-Green, #121);
+                cursor: pointer;
+            }
+            &:first-child {
+                margin-bottom: 16px;
+                font-size: 16px;
+                font-weight: 600;
+                font-family: $font-family;
+                opacity: 1;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
     @media screen and (max-width:1187px) {
 
         &-subscribe {
             height: 289px;
+        }
+    }
+
+    @media screen and (max-width:1063px) {
+        &__nav__wrapper {
+            justify-content: center;
         }
     }
 
@@ -114,7 +178,15 @@
             display: block;
         }
     }
-
+    @media screen and (max-width:900px) {
+        &-logo__wrapper{
+            margin-right: 46px;
+            // width: 166px;
+            // margin-right: 0;
+        }
+        
+        
+    }
     @media screen and (max-width:600px) {
         &__wrapper {
             padding-left: 30px;
@@ -131,6 +203,16 @@
 
     }
 
+    @media screen and (max-width:483px) {
+        // &__logo {
+        //     margin-right: 46px;
+        // }
+
+        &__nav__wrapper {
+            justify-content: center;
+        }
+    }
+
     @media screen and (max-width:471px) {
 
         &-subscribe {
@@ -144,7 +226,8 @@
                 font-size: 14px;
                 font-weight: 600;
                 height: 100%;
-                span{
+
+                span {
                     transform: translate(0, -50%);
                 }
             }
@@ -153,16 +236,67 @@
 
     }
 
-    @media screen and (max-width:400px) {
+    @media screen and (max-width:450px) {
         &__wrapper {
             padding-left: 12px;
             padding-right: 12px;
         }
-    }
-    @media screen and (max-width:400px) {
         &-subscribe {
             padding-left: 14px;
             padding-right: 14px;
+        }
+    }
+
+    @media screen and (max-width:351px) {
+        &-links {
+        margin-right: 24px;
+
+        &__wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 140px;
+        }
+        &__logo{
+            align-items: center;
+            justify-content: center;
+            // margin: 0 auto;
+            img{
+                // margin: 0 auto;
+            }
+        }
+        &-logo__wrapper{
+            margin-right: 0;
+            // margin: 0 auto;
+            width: 120px;
+           
+        }
+        &-link {
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.7;
+
+            &:first-child {
+                margin-top: 15px;
+                color: var(--Blackish-Green, #121);
+                margin-bottom: 16px;
+                font-size: 16px;
+                font-weight: 600;
+                font-family: $font-family;
+                opacity: 1;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+    }
+    @media screen and (max-width:307px){
+        &-logo__wrapper{
+            
         }
     }
 }
