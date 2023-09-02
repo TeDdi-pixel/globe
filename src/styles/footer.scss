@@ -242,6 +242,10 @@
     @media screen and (max-width:471px) {
 
         &-subscribe {
+            transition: scale ease 0.4s;
+                &:hover{
+                    scale: 0.8;
+                }
             &-button {
                 border-radius: 4px;
                 padding-top: 25px;
