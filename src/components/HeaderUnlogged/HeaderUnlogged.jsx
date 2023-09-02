@@ -28,7 +28,7 @@ function HeaderUnlogged({ active, handleBurgerClick }) {
                 </Link>
                 <Link to='/login' className="header-login">Login</Link>
                 <div className="header-signUp__wrapper">
-                    <Link to='/login' className="header-signUp">Sign up</Link>
+                    <Link to='/signup' className="header-signUp">Sign up</Link>
                 </div>
             </div>
             <nav className="header__nav">
@@ -59,7 +59,7 @@ function HeaderUnlogged({ active, handleBurgerClick }) {
                         <Link to='/login' className="header-login">Login</Link>
                     </div>
                     <div className="header-signUp__wrapper">
-                        <Link to='/sign_up' className="header-signUp">Sign up</Link>
+                        <Link to='/signup' className="header-signUp">Sign up</Link>
                     </div>
 
                 </div>

@@ -1,5 +1,5 @@
 import './styles/style.scss';
-import LandingPage from './pages/LandingPage/LandingPage';
+import AppRouter from './AppRouter/AppRouter';
 // import { createContext, useState } from 'react';
 // import { data } from './fakeData';
 
@@ -9,9 +9,9 @@ function App() {
 
   return (
     // <DataContext.Provider value={newData}>
-      // <div className="container">
-        <LandingPage />
-      // </div>
+    // <div className="container">
+    <AppRouter />
+    // </div>
     // </DataContext.Provider>
   );
 }
