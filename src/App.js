@@ -9,9 +9,9 @@ function App() {
 
   return (
     // <DataContext.Provider value={newData}>
-      <div className="container">
+      // <div className="container">
         <LandingPage />
-      </div>
+      // </div>
     // </DataContext.Provider>
   );
 }

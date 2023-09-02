@@ -2,11 +2,8 @@ import { useState } from "react";
 import Flights from "../Flights/Flights";
 import Stays from "../Stays/Stays";
 
-// import 'swiper/css/scrollbar';
 import { Link } from "react-router-dom";
 import Slider from "../Slider/Slider";
-import Swiper from "../Slider/Slider";
-import SlickSlider from "../SlickSlider/SlickSlider";
 // import { DataContext } from "/App";
 const data = {
     places: [
@@ -255,7 +252,7 @@ function LandingPageMain({ active }) {
                 
                 <Slider slides={data} />
                 <div className="main-not-slider">
-                    <h2>Here could be slider</h2>
+                    <h2>Here could be a slider</h2>
                 </div>
             </main>
         </>

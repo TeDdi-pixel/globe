@@ -2,10 +2,13 @@
 @import "./mixins";
 @import "./nullstyle";
 @import "./variable";
+@import './footer.scss';
 
 #root {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
+  flex-direction: column;
+  // align-items: center;
 }
 
 body {
@@ -15,12 +18,14 @@ body {
 }
 
 .container {
-  width: 1440px;
+  max-width: 1440px;
+  width: 100%;
   padding: 30px 30px 0 30px;
   display: flex;
   justify-content: center;
-  position: relative;
+  // position: relative;
   flex-direction: column;
+  margin: 0 auto;
 
   @media screen and (max-width:767px) {
     padding: 24px 24px 0 24px;
@@ -34,6 +39,8 @@ body {
 //HEADER
 
 .header {
+ 
+  max-width: 1380px;
   width: 100%;
   position: relative;
 
@@ -483,12 +490,13 @@ body {
 //MAIN
 
 .main {
+  max-width: 1232px;
   width: 100%;
-  margin-top: 150px;
+  margin: 150px auto 0 auto;
   padding-left: 74px;
   padding-right: 74px;
   transition: all ease 0.4s;
-  height: 200vh;
+  height: auto;
 
   &_active {
     @media screen and (max-width:648px) {
@@ -1061,7 +1069,7 @@ body {
     font-family: $font-family;
     text-align: left;
     font-weight: 600;
-    font-size: 32px;
+    @include adaptive-font(32, 20);
 
     &-sub {
       margin-top: 16px;
@@ -1298,8 +1306,7 @@ body {
   }
 
   @media screen and (max-width:500px) {
-    padding-right: 12px;
-    padding-left: 12px;
+    
 
     &-flights-additional {
       h2 {
@@ -1313,17 +1320,10 @@ body {
       }
     }
   }
-
-  @media screen and (max-width:339px) {
-    padding-right: 12px;
-    padding-left: 12px;
+  @media screen and (max-width:450px) {
+    padding-right: 24px;
+    padding-left: 24px;
   }
+
 }
 
-
-.card {
-  background-color: #346b5a;
-  width: 425px;
-  height: 570px;
-  padding-right: 20px;
-}

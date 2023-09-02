@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HeaderUnlogged from "../../components/HeaderUnlogged/HeaderUnlogged";
 import LandingPageMain from "../../components/LandingPageMain/LandingPageMain";
+import Footer from "../../components/Footer/Footer";
 
 function LandingPage() {
     const [active, setActive] = useState(false);
@@ -10,8 +11,12 @@ function LandingPage() {
     };
     return (
         <>
-            <HeaderUnlogged active={active} handleBurgerClick={handleBurgerClick} />
-            <LandingPageMain active={active}/>
+            <div className="container">
+                <HeaderUnlogged active={active} handleBurgerClick={handleBurgerClick} />
+            </div>
+            <LandingPageMain active={active} />
+
+            <Footer />
         </>
     );
 }

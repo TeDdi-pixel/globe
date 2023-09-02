@@ -70,6 +70,7 @@ function Flights({ promocode }) {
                 sx={{
                     display: promocode ? 'block' : 'none',
                 }}
+                // className='main-flights__form-control main-flights__form-control-class'
                 //   className={promocode ? 'main-flights-stays-add-promo main-flights-stays-add-promo_active' : 'main-flights-stays-add-promo'}
                 variant="outlined"
             >
