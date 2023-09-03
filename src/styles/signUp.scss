@@ -5,13 +5,7 @@ h1 {
     margin-bottom: 16px;
 }
 
-h3 {
-    font-family: $font-family;
-    font-size: 16px;
-    font-weight: 400;
-    opacity: 0.75;
-    margin-bottom: 48px;
-}
+h3 {}
 
 .signUp {
     &__container {
@@ -40,7 +34,15 @@ h3 {
     }
 
     &-right {
-        width: 100%;
+        // width: 100%;
+    }
+
+    &-description {
+        font-family: $font-family;
+        font-size: 16px;
+        font-weight: 400;
+        opacity: 0.75;
+        margin-bottom: 48px;
     }
 
     &-logo {
@@ -97,27 +99,137 @@ h3 {
             padding: 16px;
             background-color: #8DD3BB;
             border-radius: 4px;
+            transition: all ease 0.2s;
+            margin-bottom: 16px;
+
+            &:hover {
+                background-color: #8ff0ce;
+                scale: 0.9;
+                color: white;
+            }
         }
     }
+
+    &-new-account {
+        display: flex;
+        justify-content: center;
+        color: var(--Blackish-Green, #121);
+        font-family: $font-family;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 40px;
+    }
+
+    &-altentative {
+        &-text {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        &-span {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+
+            &:first-child {
+                margin-right: 16px;
+            }
+
+            &:last-child {
+                margin-left: 16px;
+            }
+
+            &-text {
+                min-width: 110px;
+                font-family: $font-family;
+                font-size: 14px;
+                font-weight: 400;
+                opacity: 0.5;
+            }
+
+            &::before {
+                content: '';
+                width: 100%;
+                height: 1px;
+                background-color: #121;
+                margin-right: 16px;
+                opacity: 0.5;
+                position: absolute;
+
+            }
+        }
+
+        &-apps {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            &-icons {
+                &:nth-child(2) {
+                    margin-right: 16px;
+                    margin-left: 16px;
+                }
+
+                // width: auto;
+                border-radius: 4px;
+                border: 1px solid var(--Mint-Green, #8DD3BB);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                // gap: 16px;
+                padding: 16px 24px;
+                max-width: 202px;
+                width: 100%;
+                cursor: pointer;
+                transition: all ease 0.2s;
+
+                &:hover {
+                    scale: 1.1;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:1251px) {
+        &__container {
+            gap: 50px;
+            padding: 74px 74px 67px 74px;
+        }
+    }
+
     @media screen and (max-width:784px) {
         &__container {
             gap: 50px;
             padding: 30px 30px 30px 30px;
         }
     }
+
     @media screen and (max-width:784px) {
         &__container {
             gap: 25px;
             padding: 12px 12px 12px 12px;
         }
     }
+
     @media screen and (max-width:550px) {
         &__container {
             gap: 50px;
-            padding: 30px 30px 30px 30px;
+            padding-bottom: 30px;
         }
+
         &-left {
             display: none;
         }
+
+        &-description {
+            margin-bottom: 30px;
+        }
+
+        &-logo {
+            margin-bottom: 30px;
+        }
     }
+
 }
