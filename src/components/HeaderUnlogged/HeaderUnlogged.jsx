@@ -27,9 +27,9 @@ function HeaderUnlogged({ active, handleBurgerClick }) {
                     <li>Find Stays</li>
                 </Link>
                 <Link to='/login' className="header-login">Login</Link>
-                <div className="header-signUp__wrapper">
-                    <Link to='/signup' className="header-signUp">Sign up</Link>
-                </div>
+                <Link to='/signup' className="header-signUp__wrapper">
+                    <span className="header-signUp">Sign up</span>
+                </Link>
             </div>
             <nav className="header__nav">
                 <div className="header-left-side">
@@ -58,9 +58,9 @@ function HeaderUnlogged({ active, handleBurgerClick }) {
                     <div className="header-right-side-login__wrapper">
                         <Link to='/login' className="header-login">Login</Link>
                     </div>
-                    <div className="header-signUp__wrapper">
-                        <Link to='/signup' className="header-signUp">Sign up</Link>
-                    </div>
+                    <Link to='/signup' className="header-signUp__wrapper">
+                        <span className="header-signUp">Sign up</span>
+                    </Link>
 
                 </div>
                 <div className={(active ? 'header-burger header-burger_active' : 'header-burger')}

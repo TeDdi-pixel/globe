@@ -3,15 +3,13 @@ import { useEffect, useState } from "react";
 import PasswordConfirm from "../UI/PasswordConfirm";
 import Password from "../UI/Password";
 import { Link } from "react-router-dom";
-
+import { useForm } from 'react-hook-form';
 function SignUp() {
     const [email, setEmail] = useState('');
     const [isFullWidth, setIsFullWidth] = useState(window.innerWidth >= 1149);
 
-    const handleClick = (e) => {
-        e.preventDefault();
-    }
-
+    const { register, handleSubmit } = useForm()
+    const onSubmit = data => console.log(data);
 
     useEffect(() => {
         const handleResize = () => {
@@ -25,6 +23,7 @@ function SignUp() {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
     return (
         <>
             <div className="signUp" >
@@ -48,70 +47,88 @@ function SignUp() {
                         </div>
                         <h1>Sign up</h1>
                         <h3 className="signUp-description">Let’s get you all st up so you can access your personal account.</h3>
-                        <form className="signUp-form">
+                        <form className="signUp-form" onSubmit={handleSubmit(onSubmit)}>
+                            {/* First name */}
                             {isFullWidth ? (
                                 <TextField
+                                    {...register('firstname')}
+                                    // required
                                     label="First Name"
                                     className="signUp-form-input-short"
-                                    onChange={(e) => setEmail(e.target.value)}
                                     type="text"
                                 />
+
                             ) : (
                                 <TextField
+                                    {...register('firstname')}
+                                    // required
                                     fullWidth
                                     label="First Name"
-                                    onChange={(e) => setEmail(e.target.value)}
                                     type="text"
                                 />
                             )}
+                            {/* Last name */}
                             {isFullWidth ? (
                                 <TextField
+                                    {...register('lastname')}
+                                    // required
                                     label="Last Name"
                                     className="signUp-form-input-short"
-                                    onChange={(e) => setEmail(e.target.value)}
                                     type="text"
                                 />
                             ) : (
                                 <TextField
+                                    {...register('lastname')}
+                                    // required
                                     fullWidth
-                                    label="First Name"
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    label="Last Name"
                                     type="text"
                                 />
                             )}
+                            {/* Email */}
                             {isFullWidth ? (
                                 <TextField
+                                    {...register('email')}
+                                    required
                                     label="Email"
                                     className="signUp-form-input-short"
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => {
+                                        setEmail(e.target.value)
+                                        console.log(email);
+                                    }}
                                     type="email"
                                 />
                             ) : (
                                 <TextField
+                                    {...register('email')}
+                                    required
                                     fullWidth
                                     label="Email"
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    onChange={(e) => { setEmail(e.target.value) }}
                                     type="email"
                                 />
                             )}
+                            {/* Phone */}
                             {isFullWidth ? (
                                 <TextField
+                                    {...register('phone')}
+                                    // required
                                     label="Phone Number"
                                     className="signUp-form-input-short"
-                                    onChange={(e) => setEmail(e.target.value)}
                                     type="tel"
                                 />
                             ) : (
                                 <TextField
+                                    {...register('phone')}
+                                    // required
                                     fullWidth
                                     label="Phone Number"
-                                    onChange={(e) => setEmail(e.target.value)}
                                     type="tel"
                                 />
                             )}
 
-                            <Password />
-                            <PasswordConfirm />
+                            <Password {...register('password')} />
+                            <PasswordConfirm {...register('passwordConfirm')} />
 
                             <div className="signUp-form-agrement">
                                 <input type="checkbox" />
@@ -121,7 +138,6 @@ function SignUp() {
                             <button
                                 type="submit"
                                 className="signUp-form-submit"
-                                onClick={handleClick}
                             >Create accout</button>
                         </form>
 
@@ -157,10 +173,10 @@ function SignUp() {
                         </div>
                     </div>
                 </div>
-
             </div>
         </>
     );
 }
 
 export default SignUp;
+

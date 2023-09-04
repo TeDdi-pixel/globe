@@ -10,9 +10,10 @@ function PasswordConfirm() {
     };
     return (
         <FormControl fullWidth variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+            <InputLabel htmlFor="outlined-adornment-password-confirm">Confirm Password</InputLabel>
             <OutlinedInput
-                id="outlined-adornment-password"
+                required
+                id="outlined-adornment-password-confirm"
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
                     <InputAdornment position="end">
