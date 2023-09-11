@@ -1,15 +1,56 @@
-import { TextField } from "@mui/material";
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import PasswordConfirm from "../UI/PasswordConfirm";
-import Password from "../UI/Password";
+// import PasswordConfirm from "../UI/PasswordConfirm";
+// import Password from "../UI/Password";
 import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { getAuth, createUserWithEmailAndPassword, updateProfile  } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { setUser } from "../../store/slices/userSlice";
+// import {useNavigate} from 'react-router-dom';
+
 function SignUp() {
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConfirm, setPasswordConfirm] = useState('');
+    const [phone, setPhone] = useState('');
+    const dispatch = useDispatch();
     const [isFullWidth, setIsFullWidth] = useState(window.innerWidth >= 1149);
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    // const navigate = useNavigate();
+    // const goHome = navigate('/');
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
 
     const { register, handleSubmit } = useForm()
-    const onSubmit = data => console.log(data);
+    const onSubmit = async (data) => {
+        console.log(data.phone);
+        console.log(data);
+        if (password !== passwordConfirm) {
+          console.log('Your passwords do not match');
+        } else {
+          try {
+            const auth = getAuth();
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            
+            await updateProfile(user, {
+              displayName: `${data.firstname} ${data.lastname}`,
+              phoneNumber: data.phone,
+            });
+            dispatch(setUser({
+                email : user.email,
+                id : user.uid,
+                token : user.accessToken,
+            }))
+          } catch (error) {
+            console.error('Registration error:', error);
+          }
+        }
+      };
 
     useEffect(() => {
         const handleResize = () => {
@@ -94,7 +135,7 @@ function SignUp() {
                                     className="signUp-form-input-short"
                                     onChange={(e) => {
                                         setEmail(e.target.value)
-                                        console.log(email);
+                                        // console.log(email);
                                     }}
                                     type="email"
                                 />
@@ -112,25 +153,74 @@ function SignUp() {
                             {isFullWidth ? (
                                 <TextField
                                     {...register('phone')}
-                                    // required
+                                    required
                                     label="Phone Number"
                                     className="signUp-form-input-short"
+                                    onChange={(e) => setPhone(e.target.value)}
                                     type="tel"
                                 />
                             ) : (
                                 <TextField
                                     {...register('phone')}
-                                    // required
+                                    required
                                     fullWidth
-                                    label="Phone Number"
+                                    onChange={(e) => setPhone(e.target.value)}
                                     type="tel"
                                 />
                             )}
 
-                            <Password {...register('password')} />
-                            <PasswordConfirm {...register('passwordConfirm')} />
+                            <FormControl fullWidth variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                <OutlinedInput
+                                    {...register('password')}
+                                    required
+                                    id="outlined-adornment-password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    onChange={(e) => { setPassword(e.target.value) }}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                // onChange={(e) => {setPassword(e.target.value);}}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    label="Password"
+                                />
+                            </FormControl>
+                            {/* <Password  /> */}
 
-                            <div className="signUp-form-agrement">
+                            <FormControl fullWidth variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-password-confirm">Confirm Password</InputLabel>
+                                <OutlinedInput
+                                    {...register('passwordConfirm')}
+                                    required
+                                    id="outlined-adornment-password-confirm"
+                                    type={showPassword ? 'text' : 'password'}
+                                    onChange={(e) => setPasswordConfirm(e.target.value)}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    label="Confirm Password"
+                                />
+                            </FormControl>
+                            {/* <PasswordConfirm { /> */}
+
+                            <div div className="signUp-form-agrement">
                                 <input type="checkbox" />
                                 <p>I agree to all the <span className="signUp-form-agrement-color">Terms</span> and <span className="signUp-form-agrement-color">Privacy Policies</span></p>
                             </div>
