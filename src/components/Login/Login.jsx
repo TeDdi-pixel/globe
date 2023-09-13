@@ -5,10 +5,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import {app} from '../../firebase';
-import {db}  from '../../firebase';
-import { collection, getDocs } from 'firebase/firestore/lite';
-import {auth} from '../../firebase';
+import app from '../../firebase';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
 const Login = () => {
     
     const [email, setEmail] = useState('');
@@ -18,33 +17,38 @@ const Login = () => {
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
-    
+    const [isFullWidth, setIsFullWidth] = useState(window.innerWidth >= 1149);
     const onSubmit = (data) => {
+        const auth = getAuth(app);
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
-                console.log(geеUsers());
+
                 const user = userCredential.user;
                 const USER = {
                     userName: user.displayName,
                     email: user.email,
                 }
-                
                 Cookies.set('user', JSON.stringify(USER));
                 navigate('/flights');
-                async function geеUsers() {
-                    const usersCol = collection(db, 'user');
-                    const userSnapshot = await getDocs(usersCol);
-                    const userList = userSnapshot.docs.map(doc => doc.data());
-                    return userList;
-                }
+
             })
             .catch((error) => {
                 console.log(error.code);
                 console.log(error.message);
             });
-            
     }
-    
+    useEffect(() => {
+        const handleResize = () => {
+            setIsFullWidth(window.innerWidth >= 1149);
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return (
         <>
             <div className="login" >
