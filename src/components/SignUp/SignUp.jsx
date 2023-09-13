@@ -6,6 +6,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import app from '../../firebase';
 
 function SignUp() {
 
@@ -24,7 +25,7 @@ function SignUp() {
             console.log('Your passwords do not match');
         } else {
             try {
-                const auth = getAuth();
+                const auth = getAuth(app);
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 

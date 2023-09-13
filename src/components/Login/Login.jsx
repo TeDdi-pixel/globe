@@ -5,9 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import app from '../../firebase';
 
 
 const Login = () => {
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +19,7 @@ const Login = () => {
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
     const [isFullWidth, setIsFullWidth] = useState(window.innerWidth >= 1149);
     const onSubmit = (data) => {
-        const auth = getAuth();
+        const auth = getAuth(app);
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
 
