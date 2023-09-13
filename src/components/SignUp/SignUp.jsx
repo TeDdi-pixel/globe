@@ -6,7 +6,9 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import {app} from '../../firebase';
+import {db}  from '../../firebase';
+import { collection, getDocs } from 'firebase/firestore/lite';
+import {auth} from '../../firebase';
 
 function SignUp() {
 
@@ -25,7 +27,6 @@ function SignUp() {
             console.log('Your passwords do not match');
         } else {
             try {
-                const auth = getAuth(app);
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 
@@ -34,12 +35,19 @@ function SignUp() {
                     phoneNumber: data.phone,
                 });
                 console.log(user);
+                console.log(geеUsers());
                 const USER = {
                     userName: user.displayName,
                     email: user.email,
                 }
                 Cookies.set('user', JSON.stringify(USER));
                 console.log('user successfully added');
+                async function geеUsers() {
+                    const usersCol = collection(db, 'user');
+                    const userSnapshot = await getDocs(usersCol);
+                    const userList = userSnapshot.docs.map(doc => doc.data());
+                    return userList;
+                }
                 navigate('/flights');
             } catch (error) {
                 console.error('Registration error:', error);
