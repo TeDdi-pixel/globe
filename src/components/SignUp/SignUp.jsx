@@ -6,7 +6,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import app from '../../firebase';
+import {app} from '../../firebase';
 
 function SignUp() {
 

@@ -27,6 +27,7 @@
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.9",
     "firebase": "^10.3.1",
+    "firebase-admin": "^11.10.1",
     "html-webpack-plugin": "^5.5.3",
     "js-cookie": "^3.0.5",
     "json-server": "^0.17.3",
