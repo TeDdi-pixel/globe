@@ -1,82 +1,59 @@
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from 'react-hook-form';
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-function SignUp() {
 
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [passwordConfirm, setPasswordConfirm] = useState('');
-    const [phone, setPhone] = useState('');
-    const [isFullWidth, setIsFullWidth] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
-    const { register, handleSubmit } = useForm()
-    const onSubmit = async (data) => {
-        if (password !== passwordConfirm) {
-            console.log('Your passwords do not match');
-        } else {
-            try {
-                const auth = getAuth();
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
+    const [isFullWidth, setIsFullWidth] = useState(window.innerWidth >= 1149);
+    const onSubmit = (data) => {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, data.email, data.password)
+            .then((userCredential) => {
 
-                await updateProfile(user, {
-                    displayName: `${data.firstname} ${data.lastname}`,
-                    phoneNumber: data.phone,
-                });
-                console.log(user);
+                const user = userCredential.user;
                 const USER = {
                     userName: user.displayName,
                     email: user.email,
                 }
                 Cookies.set('user', JSON.stringify(USER));
-                console.log('user successfully added');
                 navigate('/flights');
-            } catch (error) {
-                console.error('Registration error:', error);
-            }
-        }
-    };
 
+            })
+            .catch((error) => {
+                console.log(error.code);
+                console.log(error.message);
+            });
+    }
     useEffect(() => {
-        // if (window.innerWidth <= 784) {
-        //     setIsFullWidth(false);
-        // } else {
-        // }
+        const handleResize = () => {
+            setIsFullWidth(window.innerWidth >= 1149);
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, []);
-    // useEffect(() => {
-    // const handleResize = () => {
-    //     setIsFullWidth(window.innerWidth >= 1438);
-    // };
-    // const handleResize2 = () => {
-    //     setIsFullWidth(window.innerWidth >= 1149);
-    // };
-
-    // window.addEventListener('resize', handleResize);
-    // handleResize();
-
-    // return () => {
-    //     window.removeEventListener('resize', handleResize);
-    // };
-    // }, []);
-
     return (
         <>
-            <div className="signUp" >
-                <div className="signUp__container">
-                    <div className="signUp-left">
-                        <img src="./img/502aa13bd224ab3d9fde2b1e45a0eec9.jpg" alt="" />
-                    </div>
-                    <div className="signUp-right">
-                        <div className="signUp-logo">
+            <div className="login" >
+                <div className="login__container">
+
+                    <div className="login-left">
+                        <div className="login-logo">
                             <Link to='/'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="111" height="36" viewBox="0 0 111 36" fill="none">
                                     <path d="M14.7282 5.57671L17.9466 8.00815L15.9805 10.5097C17.3379 12.0457 17.8382 13.7984 17.8382 15.7295C17.8382 17.9092 17.0161 20.9843 14.1195 22.3068C17.0512 23.7727 17.7649 25.8823 17.7649 28.1353C17.7649 32.9981 14.0463 36 8.93505 36C3.82384 36 0 32.8898 0 28.1353H4.32413C4.32413 30.4233 6.43362 31.9242 8.93505 31.9242C11.4365 31.9242 13.4026 30.5667 13.4026 28.1353C13.4026 25.7038 11.1146 24.5949 8.93505 24.5949C3.4319 24.5949 0 21.2361 0 15.7295C0 10.2229 4.00229 6.79083 8.93823 6.79083C10.3339 6.79083 11.7615 6.96929 12.9788 7.79145L14.7282 5.57671ZM4.32413 15.7295C4.32413 18.8046 6.39857 20.6274 8.93505 20.6274C11.4365 20.6274 13.5109 18.7696 13.5109 15.7295C13.5109 12.6894 11.4397 10.7614 8.93823 10.7614C6.39856 10.7614 4.32413 12.6543 4.32413 15.7295Z" fill="#112211" />
@@ -89,50 +66,21 @@ function SignUp() {
                                 </svg>
                             </Link>
                         </div>
-                        <h1 className="signUp__title">Sign up</h1>
-                        <h3 className="signUp-description">Let’s get you all st up so you can access your personal account.</h3>
-                        <form className="signUp-form" onSubmit={handleSubmit(onSubmit)}>
-                            <div className="signUp-form__flex">
-                                {/* First name */}
+                        <h1 className='login__title'>Login</h1>
+                        <h3 className="login-description">Login to access your Golobe account</h3>
+                        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
 
-                                <TextField
-                                    {...register('firstname')}
-                                    className="signUp-form-input-short"
-                                    label="First Name"
-                                    type="text"
-                                />
-                                {/* Last name */}
-                                <TextField
-                                    {...register('lastname')}
-                                    className="signUp-form-input-short"
-                                    label="Last Name"
-                                    type="text"
-                                />
-                            </div>
-                            <div className="signUp-form__flex">
-                                {/* Email */}
-                                <TextField
-                                    {...register('email')}
-                                    required
-                                    label="Email"
-                                    className="signUp-form-input-short"
-                                    onChange={(e) => {
-                                        setEmail(e.target.value)
-                                        // console.log(email);
-                                    }}
-                                    type="email"
-                                />
-                                {/* Phone */}
-                                <TextField
-                                    {...register('phone')}
-                                    className="signUp-form-input-short"
-                                    label="Phone Number"
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    type="tel"
-                                />
-                            </div>
+                            {/* Email */}
+                            <TextField
+                                {...register('email')}
+                                required
+                                fullWidth
+                                label="Email"
+                                onChange={(e) => { setEmail(e.target.value) }}
+                                type="email"
+                            />
 
-
+                            {/* <Password  /> */}
                             <FormControl fullWidth variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
@@ -147,7 +95,6 @@ function SignUp() {
                                                 aria-label="toggle password visibility"
                                                 onClick={handleClickShowPassword}
                                                 onMouseDown={handleMouseDownPassword}
-                                                // onChange={(e) => {setPassword(e.target.value);}}
                                                 edge="end"
                                             >
                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -157,60 +104,36 @@ function SignUp() {
                                     label="Password"
                                 />
                             </FormControl>
-                            {/* <Password  /> */}
-
-                            <FormControl fullWidth variant="outlined">
-                                <InputLabel htmlFor="outlined-adornment-password-confirm">Confirm Password</InputLabel>
-                                <OutlinedInput
-                                    {...register('passwordConfirm')}
-                                    required
-                                    id="outlined-adornment-password-confirm"
-                                    type={showPassword ? 'text' : 'password'}
-                                    onChange={(e) => setPasswordConfirm(e.target.value)}
-                                    endAdornment={
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                aria-label="toggle password visibility"
-                                                onClick={handleClickShowPassword}
-                                                onMouseDown={handleMouseDownPassword}
-                                                edge="end"
-                                            >
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    }
-                                    label="Confirm Password"
-                                />
-                            </FormControl>
-                            {/* <PasswordConfirm { /> */}
-
-                            <div div className="signUp-form-agrement">
-                                <input type="checkbox" />
-                                <p>I agree to all the <span className="signUp-form-agrement-color">Terms</span> and <span className="signUp-form-agrement-color">Privacy Policies</span></p>
+                            <div className='login-form-remember-me'>
+                                <div className='login-form-remember-me-left'>
+                                    <input type="checkbox" /> 
+                                    <span>Remember me</span>
+                                </div>
+                                <span className="login-form-remember-me-right">Forgot password</span>
                             </div>
 
                             <button
                                 type="submit"
-                                className="signUp-form-submit"
-                            >Create accout</button>
+                                className="login-form-submit"
+                            >Login</button>
                         </form>
 
-                        <div className="signUp-new-account">
-                            Already have an account? <Link to='/login'><span className="signUp-form-agrement-color">Login</span></Link>
+                        <div className="login-new-account">
+                        Don’t have an account? <Link to='/signup' className="login-form-sighUp-color"><span >Sign up</span></Link>
                         </div>
-                        <div className="signUp-altentative">
-                            <div className="signUp-altentative-text">
-                                <span className="signUp-altentative-span"></span>
-                                <span className="signUp-altentative-span-text">Or Sign up with</span>
-                                <span className="signUp-altentative-span"></span>
+                        <div className="login-altentative">
+                            <div className="login-altentative-text">
+                                <span className="login-altentative-span"></span>
+                                <span className="login-altentative-span-text">Or login with</span>
+                                <span className="login-altentative-span"></span>
                             </div>
-                            <div className="signUp-altentative-apps">
-                                <Link to='/facebook' className="signUp-altentative-apps-icons">
+                            <div className="login-altentative-apps">
+                                <Link to='/facebook' className="login-altentative-apps-icons">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                                         <path d="M24.334 12.0733C24.334 5.40546 18.9614 0 12.334 0C5.70661 0 0.333984 5.40536 0.333984 12.0733C0.333984 18.0994 4.72223 23.0943 10.459 24V15.5633H7.41211V12.0733H10.459V9.41343C10.459 6.38755 12.2505 4.71615 14.9915 4.71615C16.3045 4.71615 17.6777 4.95195 17.6777 4.95195V7.92313H16.1646C14.6738 7.92313 14.209 8.85381 14.209 9.80864V12.0733H17.5371L17.0051 15.5633H14.209V24C19.9457 23.0943 24.334 18.0995 24.334 12.0733Z" fill="#1877F2" />
                                     </svg>
                                 </Link>
-                                <Link to='/google' className="signUp-altentative-apps-icons">
+                                <Link to='/google' className="login-altentative-apps-icons">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path d="M21.8055 10.0415H21V10H12V14H17.6515C16.827 16.3285 14.6115 18 12 18C8.6865 18 6 15.3135 6 12C6 8.6865 8.6865 6 12 6C13.5295 6 14.921 6.577 15.9805 7.5195L18.809 4.691C17.023 3.0265 14.634 2 12 2C6.4775 2 2 6.4775 2 12C2 17.5225 6.4775 22 12 22C17.5225 22 22 17.5225 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z" fill="#FFC107" />
                                         <path d="M3.15234 7.3455L6.43784 9.755C7.32684 7.554 9.47984 6 11.9993 6C13.5288 6 14.9203 6.577 15.9798 7.5195L18.8083 4.691C17.0223 3.0265 14.6333 2 11.9993 2C8.15834 2 4.82734 4.1685 3.15234 7.3455Z" fill="#FF3D00" />
@@ -218,7 +141,7 @@ function SignUp() {
                                         <path d="M21.8055 10.0415H21V10H12V14H17.6515C17.2571 15.1082 16.5467 16.0766 15.608 16.7855L15.6095 16.7845L18.7045 19.4035C18.4855 19.6025 22 17 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z" fill="#1976D2" />
                                     </svg>
                                 </Link>
-                                <Link to='/apple' className="signUp-altentative-apps-icons">
+                                <Link to='/apple' className="login-altentative-apps-icons">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                                         <path d="M18.1852 12.5555C18.1758 10.957 18.9 9.75234 20.3625 8.86406C19.5445 7.69219 18.307 7.04766 16.6758 6.92344C15.1313 6.80156 13.4414 7.82344 12.8227 7.82344C12.1687 7.82344 10.6734 6.96563 9.49688 6.96563C7.06875 7.00313 4.48828 8.90156 4.48828 12.7641C4.48828 13.9055 4.69687 15.0844 5.11406 16.2984C5.67187 17.8969 7.68281 21.8133 9.78047 21.75C10.8773 21.7242 11.6531 20.9719 13.0805 20.9719C14.4656 20.9719 15.1828 21.75 16.4062 21.75C18.5227 21.7195 20.3414 18.1594 20.8711 16.5563C18.0328 15.218 18.1852 12.6375 18.1852 12.5555ZM15.7219 5.40703C16.9102 3.99609 16.8023 2.71172 16.7672 2.25C15.7172 2.31094 14.5031 2.96484 13.8117 3.76875C13.05 4.63125 12.6023 5.69766 12.6984 6.9C13.8328 6.98672 14.8687 6.40313 15.7219 5.40703Z" fill="black" />
                                     </svg>
@@ -226,11 +149,15 @@ function SignUp() {
                             </div>
                         </div>
                     </div>
+                    <div className="login-right">
+                        <img src="./img/736762a1b63e564588a75ef07ab10d25.jpg" alt="" />
+                    </div>
                 </div>
             </div>
         </>
+
+
     );
 }
 
-export default SignUp;
-
+export default Login;

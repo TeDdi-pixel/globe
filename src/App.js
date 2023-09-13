@@ -1,6 +1,6 @@
 import './styles/style.scss';
-import AppRouter from './AppRouter/AppRouter';
-// import { createContext, useState } from 'react';
+import AppRouter from './Router/AppRouter';
+import { createContext, useState } from 'react';
 // import { data } from './fakeData';
 
 function App() {
