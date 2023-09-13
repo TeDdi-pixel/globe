@@ -472,7 +472,7 @@ body {
       transition: all ease 0.4s;
       background-color: rgb(141, 212, 189);
       // mix-blend-mode: luminosity;
-
+      
       &_active {
         transform: scaleY(1);
         opacity: 1;
@@ -576,7 +576,21 @@ body {
       .header-login {
         font-size: 23px;
         border-radius: 8px;
-
+        svg {
+          path {
+            transition: fill ease 0.4s;
+          }
+        }
+        &:hover {
+          padding: 24px 100px 24px 100px;
+          background-color: white;
+          color: darkgrey;
+          svg {
+            path {
+              fill: darkgray;
+            }
+          }
+        }
         &:focus {
           background-color: white;
           padding: 24px 100px 24px 100px;
@@ -588,7 +602,22 @@ body {
 
       .header-signUp {
         font-size: 23px;
-
+        color: white;
+        svg {
+          path {
+            transition: fill ease 0.4s;
+          }
+        }
+        &:hover {
+          padding: 24px 100px 24px 100px;
+          background-color: white;
+          color: darkgrey;
+          svg {
+            path {
+              fill: darkgray;
+            }
+          }
+        }
         &:focus {
           background-color: white;
           padding: 24px 100px 24px 100px;
@@ -802,7 +831,7 @@ body {
     font-weight: 700;
     color: #121;
     position: relative;
-
+    font-family: $font-family;
     &-underscore {
       content: "";
       opacity: 0;

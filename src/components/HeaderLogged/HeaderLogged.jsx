@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const HeaderLogged = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
+    const [isFullWidth, setIsFullWidth] = useState(false);
+
     const logOut = () => {
         onLogOut();
     };
 
+    const handleResize = () => {
+        setIsFullWidth(window.innerWidth <= 648);
+    };
+    useEffect(() => {
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+
+    }, []);
     return (
-        <header className={active ? 'header header_active':'header'}>
+        <header className={active && isFullWidth ? 'header header_active' : 'header'}>
             {/* <div className="header-background">
                 <img src="./img/Rectangle 31.jpg" alt="" />
             </div> */}
-            
+
             <nav className="header__nav">
                 <div className="header-left-side header-left-side_logged">
                     <Link to='/flights' className="header-find-flights header-find-flights_logged">
@@ -47,14 +63,14 @@ const HeaderLogged = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                     <button onClick={logOut} className='header-right-side__logOut'>LogOut</button>
 
                 </div>
-                <div className={(active ? 'header-burger header-burger_logged header-burger_active' : 'header-burger header-burger_logged')}
+                <div className={(active ? 'header-burger header-burger_logged header-burger_logged header-burger_active' : 'header-burger header-burger_logged')}
                     onClick={handleBurgerClick}
                 >
                     <span></span>
                 </div>
-                
+
             </nav>
-            <nav className={(active ? 'header-burger-menu header-burger-menu_active' : 'header-burger-menu')}>
+            <nav className={(active ? 'header-burger-menu  header-burger-menu_active' : 'header-burger-menu')}>
                 <Link to='/flights' className="header-find-flights">
                     <li>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">

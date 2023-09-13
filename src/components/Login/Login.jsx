@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import app from '../../firebase';
+import {app} from '../../firebase';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 const Login = () => {
@@ -33,8 +33,8 @@ const Login = () => {
 
             })
             .catch((error) => {
-                console.log(error.code);
-                console.log(error.message);
+                alert(error.code);
+                alert(error.message);
             });
     }
     useEffect(() => {

@@ -13,7 +13,6 @@ function SignUp() {
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [phone, setPhone] = useState('');
-    const [isFullWidth, setIsFullWidth] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const navigate = useNavigate();
@@ -41,17 +40,12 @@ function SignUp() {
                 console.log('user successfully added');
                 navigate('/flights');
             } catch (error) {
-                console.error('Registration error:', error);
+                alert(error);
             }
         }
     };
 
-    useEffect(() => {
-        // if (window.innerWidth <= 784) {
-        //     setIsFullWidth(false);
-        // } else {
-        // }
-    }, []);
+
     // useEffect(() => {
     // const handleResize = () => {
     //     setIsFullWidth(window.innerWidth >= 1438);

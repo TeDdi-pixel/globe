@@ -5,8 +5,7 @@ import { removeUser } from "../../store/slices/userSlice";
 
 
 function HeaderUnlogged({ active, handleBurgerClick }) {
-    // const { email, token, id } = useSelector((state) => state.user);
-    // console.log(email);
+
     const dispatch = useDispatch();
     return (
         <header className="header">
