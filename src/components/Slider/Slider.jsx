@@ -1,8 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import 'swiper/css';
-// import 'swiper/css/bundle';
-// import 'swiper/css/pagination';
 import { Rating } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -21,11 +19,8 @@ function Slider({ slides }) {
             <Swiper
             modules={[A11y]}
                 className='main-swiper'
-                // modules={[Pagination]}
                 spaceBetween={50}
                 slidesPerView={3}
-                // pagination={{ clickable: true }}
-                
             >
                 {slides.slider.map((slide, index) => (
                     <SwiperSlide key={slide.id} className='main-swiper-slide'>

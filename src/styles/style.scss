@@ -259,7 +259,7 @@ body {
         margin-left: 0;
         background-color: #8dd3bb;
         font-size: 23px;
-        color: white;
+        color: #cd4545;
         padding: 0;
         &:focus {
           padding: 24px 15% 24px 15%;
@@ -1306,6 +1306,7 @@ body {
       transition: all ease 0.4s;
       font-family: $font-family;
       font-size: 32px;
+      font-weight: 500;
     }
 
     &:hover {

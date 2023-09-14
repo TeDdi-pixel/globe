@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +6,6 @@ import Cookies from 'js-cookie';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {app} from '../../firebase';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 const Login = () => {
     
@@ -17,7 +16,6 @@ const Login = () => {
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
-    const [isFullWidth, setIsFullWidth] = useState(window.innerWidth >= 1149);
     const onSubmit = (data) => {
         const auth = getAuth(app);
         signInWithEmailAndPassword(auth, data.email, data.password)
@@ -29,6 +27,7 @@ const Login = () => {
                     email: user.email,
                 }
                 Cookies.set('user', JSON.stringify(USER));
+                alert('Next page is in beta');
                 navigate('/flights');
 
             })
@@ -37,18 +36,6 @@ const Login = () => {
                 alert(error.message);
             });
     }
-    useEffect(() => {
-        const handleResize = () => {
-            setIsFullWidth(window.innerWidth >= 1149);
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
     return (
         <>
             <div className="login" >

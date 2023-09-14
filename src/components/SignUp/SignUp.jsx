@@ -1,5 +1,5 @@
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -31,13 +31,14 @@ function SignUp() {
                     displayName: `${data.firstname} ${data.lastname}`,
                     phoneNumber: data.phone,
                 });
-                console.log(user);
+                // console.log(user);
                 const USER = {
                     userName: user.displayName,
                     email: user.email,
                 }
                 Cookies.set('user', JSON.stringify(USER));
-                console.log('user successfully added');
+                alert('Next page is in beta');
+                // console.log('user successfully added');
                 navigate('/flights');
             } catch (error) {
                 alert(error);
@@ -45,22 +46,6 @@ function SignUp() {
         }
     };
 
-
-    // useEffect(() => {
-    // const handleResize = () => {
-    //     setIsFullWidth(window.innerWidth >= 1438);
-    // };
-    // const handleResize2 = () => {
-    //     setIsFullWidth(window.innerWidth >= 1149);
-    // };
-
-    // window.addEventListener('resize', handleResize);
-    // handleResize();
-
-    // return () => {
-    //     window.removeEventListener('resize', handleResize);
-    // };
-    // }, []);
 
     return (
         <>
@@ -88,7 +73,6 @@ function SignUp() {
                         <form className="signUp-form" onSubmit={handleSubmit(onSubmit)}>
                             <div className="signUp-form__flex">
                                 {/* First name */}
-
                                 <TextField
                                     {...register('firstname')}
                                     className="signUp-form-input-short"
@@ -112,7 +96,6 @@ function SignUp() {
                                     className="signUp-form-input-short"
                                     onChange={(e) => {
                                         setEmail(e.target.value)
-                                        // console.log(email);
                                     }}
                                     type="email"
                                 />
@@ -125,8 +108,7 @@ function SignUp() {
                                     type="tel"
                                 />
                             </div>
-
-
+                            {/* <Password  /> */}
                             <FormControl fullWidth variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
@@ -141,7 +123,6 @@ function SignUp() {
                                                 aria-label="toggle password visibility"
                                                 onClick={handleClickShowPassword}
                                                 onMouseDown={handleMouseDownPassword}
-                                                // onChange={(e) => {setPassword(e.target.value);}}
                                                 edge="end"
                                             >
                                                 {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -151,8 +132,7 @@ function SignUp() {
                                     label="Password"
                                 />
                             </FormControl>
-                            {/* <Password  /> */}
-
+                            {/* <PasswordConfirm { /> */}
                             <FormControl fullWidth variant="outlined">
                                 <InputLabel htmlFor="outlined-adornment-password-confirm">Confirm Password</InputLabel>
                                 <OutlinedInput
@@ -176,7 +156,6 @@ function SignUp() {
                                     label="Confirm Password"
                                 />
                             </FormControl>
-                            {/* <PasswordConfirm { /> */}
 
                             <div div className="signUp-form-agrement">
                                 <input type="checkbox" />

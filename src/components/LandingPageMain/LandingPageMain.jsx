@@ -4,7 +4,6 @@ import Stays from "../Stays/Stays";
 
 import { Link } from "react-router-dom";
 import Slider from "../Slider/Slider";
-// import { DataContext } from "/App";
 const data = {
     places: [
         {
@@ -105,7 +104,6 @@ const data = {
 }
 
 function LandingPageMain({ active }) {
-    // const data = useContext(DataContext);
     const [flights, setFlights] = useState(true);
     const [stays, setStays] = useState(false);
     const [promocode, setPromocode] = useState(false);
@@ -252,7 +250,7 @@ function LandingPageMain({ active }) {
                 
                 <Slider slides={data} />
                 <div className="main-not-slider">
-                    <h2>Here could be a slider</h2>
+                    <h2>Swiper slider does not optimized for react</h2>
                 </div>
             </main>
         </>
