@@ -37,7 +37,7 @@ function SignUp() {
                     email: user.email,
                 }
                 Cookies.set('user', JSON.stringify(USER));
-                alert('Next page is in beta');
+                alert('Next page is in beta and may contain bugs');
                 // console.log('user successfully added');
                 navigate('/flights');
             } catch (error) {

@@ -27,7 +27,7 @@ const Login = () => {
                     email: user.email,
                 }
                 Cookies.set('user', JSON.stringify(USER));
-                alert('Next page is in beta');
+                alert('Next page is in beta and may contain bugs');
                 navigate('/flights');
 
             })
