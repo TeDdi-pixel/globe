@@ -1,40 +1,29 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { Link, useNavigate} from 'react-router-dom';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import {app} from '../../firebase';
+import { login } from '../../login/login';
+import { app } from '../../firebase';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import Cookies from 'js-cookie';
 
 const Login = () => {
-    
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit } = useForm();
-    const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
-    const onSubmit = (data) => {
-        const auth = getAuth(app);
-        signInWithEmailAndPassword(auth, data.email, data.password)
-            .then((userCredential) => {
-
-                const user = userCredential.user;
-                const USER = {
-                    userName: user.displayName,
-                    email: user.email,
-                }
-                Cookies.set('user', JSON.stringify(USER));
-                alert('Next page is in beta and may contain bugs');
-                navigate('/flights');
-
-            })
-            .catch((error) => {
-                alert(error.code);
-                alert(error.message);
-            });
+    const onSubmit = async (userData) => {
+        try {
+            await login(userData);
+            navigate('/flights');
+        }catch (error) {
+            console.log(error);
+        }
     }
     return (
         <>
@@ -139,7 +128,7 @@ const Login = () => {
                         </div>
                     </div>
                     <div className="login-right">
-                        <img src="./img/736762a1b63e564588a75ef07ab10d25.jpg" alt="" />
+                        <img src="./assets/img/736762a1b63e564588a75ef07ab10d25.jpg" alt="" />
                     </div>
                 </div>
             </div>

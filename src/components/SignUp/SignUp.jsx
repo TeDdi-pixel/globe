@@ -3,12 +3,12 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+// import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
+import { registration } from "../../registration/registration";
 
 function SignUp() {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -18,41 +18,22 @@ function SignUp() {
     const navigate = useNavigate();
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
     const { register, handleSubmit } = useForm()
-    const onSubmit = async (data) => {
-        if (password !== passwordConfirm) {
-            console.log('Your passwords do not match');
-        } else {
-            try {
-                const auth = getAuth();
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
 
-                await updateProfile(user, {
-                    displayName: `${data.firstname} ${data.lastname}`,
-                    phoneNumber: data.phone,
-                });
-                // console.log(user);
-                const USER = {
-                    userName: user.displayName,
-                    email: user.email,
-                }
-                Cookies.set('user', JSON.stringify(USER));
-                alert('Next page is in beta and may contain bugs');
-                // console.log('user successfully added');
-                navigate('/flights');
-            } catch (error) {
-                alert(error);
-            }
+    const onSubmit = async (userData) => {
+        try {
+            await registration(userData);
+            navigate('/flights');
+        } catch (error) {
+            console.error(error);
         }
     };
-
 
     return (
         <>
             <div className="signUp" >
                 <div className="signUp__container">
                     <div className="signUp-left">
-                        <img src="./img/502aa13bd224ab3d9fde2b1e45a0eec9.jpg" alt="" />
+                        <img src="./assets/img/502aa13bd224ab3d9fde2b1e45a0eec9.jpg" alt="" />
                     </div>
                     <div className="signUp-right">
                         <div className="signUp-logo">

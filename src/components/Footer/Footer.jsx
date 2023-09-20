@@ -22,7 +22,7 @@ const Footer = ({ style }) => {
 
     // Условия для стилей
     const formControlStyle = isNarrowScreen ? { display: 'none' } : {};
-    const buttonControlStyle = isButtonVisible ? { display: 'none' } : { display: 'block' };
+    const buttonControlStyle = isButtonVisible ? { display: 'none' } : { display: 'flex' };
 
     return (
         <footer style={style} className="footer">

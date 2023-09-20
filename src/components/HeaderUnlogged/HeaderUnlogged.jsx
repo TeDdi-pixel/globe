@@ -1,11 +1,25 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function HeaderUnlogged({ active, handleBurgerClick }) {
+    const [isFullWidth, setIsFullWidth] = useState(false);
+    const handleResize = () => {
+        setIsFullWidth(window.innerWidth <= 648);
+    };
+    useEffect(() => {
 
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+    }, []);
     return (
-        <header className="header">
+        <header className={active && isFullWidth ? 'header header_active' : 'header'}>
             <div className="header-background">
-                <img src="./img/Rectangle 31.jpg" alt="" />
+                <img src="./assets/img/Rectangle 31.jpg" alt="" />
             </div>
             <div className={(active ? 'header-burger-menu header-burger-menu_active' : 'header-burger-menu')}>
                 <Link className="header-find-flights">

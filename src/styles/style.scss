@@ -45,10 +45,17 @@ body {
   max-width: 1380px;
   width: 100%;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 150px;
   transition: margin-bottom ease 0.4s;
   &_active {
-    margin-bottom: 650px;
+    @media screen and (max-width: 648px) {
+      margin-bottom: 368px;
+    }
+    @media screen and (max-width: 595px) {
+          margin-bottom: 288px;
+    }
+
+    
   }
   &-background {
     position: absolute;
@@ -102,39 +109,7 @@ body {
       padding-right: 26px;
       background-color: #8dd3bb;
     }
-    &_logged{
-      li:first-child {
-        margin-right: 4px;
-        svg{
-          path{
-            fill: #121;
-          }
-        }
-      }
-      li:last-child {
-        color: #121;
-        transition: color ease 0.4s;
-      }
-      svg{
-        path{
-          transition: fill ease 0.4s;
-        }
-      }
-
-      &:hover{
-        li:first-child {
-          margin-right: 4px;
-          svg{
-            path{
-              fill: white;
-            }
-          }
-        }
-        li:last-child {
-          color: white;
-        }
-      }
-    }
+    
   }
 
   &-find-stays {
@@ -156,62 +131,14 @@ body {
       padding-right: 26px;
       background-color: #8dd3bb;
     }
-    &_logged{
-      li:first-child {
-        margin-right: 4px;
-        svg{
-          path{
-            fill: #121;
-          }
-        }
-      }
-      li:last-child {
-        color: #121;
-        transition: color ease 0.4s;
-      }
-      svg{
-        path{
-          transition: fill ease 0.4s;
-        }
-      }
-
-      &:hover{
-        li:first-child {
-          margin-right: 4px;
-          svg{
-            path{
-              fill: white;
-            }
-          }
-        }
-        li:last-child {
-          color: white;
-        }
-      }
-    }
+    
   }
 
   &-logo__wrapper {
     border-radius: 8px;
     transition: all ease 0.4s;
     cursor: pointer;
-    svg{
-      path{
-        transition: fill ease 0.4s;
-      }
-    }
-    &_logged{
-      margin-bottom: 15px;
-      &:hover {
-        padding: 26px 40px;
-        background-color: #346b5a;
-        svg{
-          path{
-            fill:white;
-          }
-        }
-      }
-    }
+    
     &:hover {
       padding: 26px 40px;
       background-color: #346b5a;
@@ -226,32 +153,35 @@ body {
 
     &-login__wrapper {
       transition: all ease 0.4s;
-      border-radius: 4px;
-      padding: 10px 0;
+      border-radius: 8px;
+      padding: 12px 0;
       cursor: pointer;
 
       &:hover {
-        padding-left: 26px;
-        padding-right: 26px;
+        padding: 12px 26px;
         background-color: #8dd3bb;
       }
     }
     &__logOut {
       cursor: pointer;
-      padding: 10px 26px;
+      padding-top: 15.5px;
+      padding-bottom: 15.5px;
       background-color: transparent;
       border-radius: 8px;
+      @include adaptive-font(14, 12);
       margin-left: 32px;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all ease 0.4s;
-      color: #cd4545;
+      background-color: transparent;
       font-family: $font-family;
       font-weight: 600;
+      color: white;
       &:hover{
-        background-color: #cd4545;
-        color: white;
+        background-color: #fe8c8c;
+        padding-left: 26px;
+        padding-right: 26px;
       }
       &_active {
         font-family: $font-family;
@@ -259,32 +189,42 @@ body {
         margin-left: 0;
         background-color: #8dd3bb;
         font-size: 23px;
-        color: #cd4545;
+        color: #fe8c8c;
         padding: 0;
         &:focus {
           padding: 24px 15% 24px 15%;
-          background: #cd4545;
+          background: white;
         }
         &:hover {
           padding: 24px 15% 24px 15%;
-          background-color: #cd4545;
+          background-color: white;
           // color: white;
         }
       }
     }
     &-logOut__text {
       color: white;
+      @include adaptive-font(14, 12);
       font-family: $font-family;
       font-weight: 600;
       max-width: 216px;
-      overflow: hidden;
-      border-radius: 8px;
+      // overflow: hidden;
       cursor: pointer;
-      padding-bottom: 1px;
-      &_logged{
-        color: #121;
+      transition: all ease 0.4s;
+      display: flex;
+      padding-top: 15.5px;
+      padding-bottom: 15.5px;
+      border-radius: 8px;
+
+      &:hover{
+        padding-left: 26px;
+        padding-right: 26px;
+        background-color: #8dd3bb;
+        color: white;
       }
+
       &_active {
+        padding-top: 0;
         padding-bottom: 1px;
         max-width: 550px;
         margin-bottom: 16px;
@@ -292,7 +232,7 @@ body {
         transition: all ease 0.4s;
         &:focus {
           padding: 24px 15% 24px 15%;
-          background: #cd4545;
+          background: #fe8c8c;
         }
         &:hover {
           padding: 24px 15% 24px 15%;
@@ -310,6 +250,7 @@ body {
     font-family: $font-family;
     font-weight: 600;
     transition: all ease 0.4s;
+
   }
 
   &-signUp__wrapper {
@@ -465,6 +406,7 @@ body {
       justify-content: center;
       width: 100%;
       height: 600px;
+      top: 0;
       position: absolute;
       transform: scaleY(0);
       transform-origin: 0, 0;
@@ -633,6 +575,7 @@ body {
       width: 28px;
       height: 24px;
       position: relative;
+      z-index: 11;
       // background-color: red;
       display: flex;
       align-items: center;
@@ -668,7 +611,7 @@ body {
           @include transition(0.4s);
           width: 100%;
           height: 2px;
-          background-color: #121;
+          background-color: white;
           display: block;
           @include transition(0.4s);
   
@@ -679,7 +622,7 @@ body {
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: #121;
+            background-color: white;
           }
   
           &::before {
@@ -697,10 +640,12 @@ body {
           transform: rotate(180deg);
 
           &::before {
+            background-color: #fe8c8c;
             transform: rotate(45deg);
           }
 
           &::after {
+            background-color: #fe8c8c;
             transform: rotate(-45deg);
           }
         }
@@ -723,15 +668,14 @@ body {
   transition: all ease 0.4s;
   height: auto;
 
-  &_active {
-    @media screen and (max-width: 648px) {
-      margin-top: 365px;
-    }
-
-    @media screen and (max-width: 595px) {
-      margin-top: 288px;
-    }
-  }
+  // &_active {
+  //   @media screen and (max-width: 648px) {
+  //     margin-top: 368px;
+  //   }
+  //   @media screen and (max-width: 595px) {
+  //     margin-top: 288px;
+  //   }
+  // }
 
   &-flights-stays {
     background-color: white;

@@ -243,13 +243,12 @@
 
         &-subscribe {
             transition: scale ease 0.4s;
-                &:hover{
-                    scale: 0.8;
-                }
+                
             &-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 border-radius: 4px;
-                padding-top: 25px;
-                text-align: center;
                 background: var(--Blackish-Green, #121);
                 color: white;
                 font-family: $font-family;
