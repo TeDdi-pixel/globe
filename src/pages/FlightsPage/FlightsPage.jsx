@@ -35,9 +35,7 @@ const FlightsPage = () => {
       };
     return (
         <div>
-            <div className='container'>
-                <HeaderLogged onLogOut={handleLogOut} active={active} handleBurgerClick={handleBurgerClick} userEmail={emailName}/>
-            </div>
+            <HeaderLogged onLogOut={handleLogOut} active={active} handleBurgerClick={handleBurgerClick} userEmail={emailName}/>
             <LandingPageMain />
             <Footer />
         </div>

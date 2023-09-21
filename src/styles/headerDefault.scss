@@ -1,0 +1,430 @@
+.header-default {
+    padding: 30px 30px 0 30px;
+    margin-bottom: 0;
+    transition: margin-bottom ease 0.4s;
+    &_active {
+        margin-bottom: 562px;
+    }
+    &-burger {
+        display: none;
+    }
+    &-burger-menu {
+        display: none;
+    }
+    &-logo__wrapper {
+        border-radius: 8px;
+        transition: all ease 0.4s;
+        cursor: pointer;
+
+        &:hover {
+            padding: 26px 40px;
+            background-color: #346b5a;
+        }
+    }
+    &-right-side {
+        list-style: none;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    
+        &-login__wrapper {
+          transition: all ease 0.4s;
+          border-radius: 8px;
+          padding: 12px 0;
+          cursor: pointer;
+    
+          &:hover {
+            padding: 12px 26px;
+            background-color: #8dd3bb;
+          }
+        }
+        &__logOut {
+          cursor: pointer;
+          padding-top: 15.5px;
+          padding-bottom: 15.5px;
+          background-color: transparent;
+          border-radius: 8px;
+          @include adaptive-font(14, 12);
+          margin-left: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all ease 0.4s;
+          background-color: transparent;
+          font-family: $font-family;
+          font-weight: 600;
+          color: white;
+          &:hover {
+            background-color: #fe8c8c;
+            padding-left: 26px;
+            padding-right: 26px;
+          }
+          &_active {
+            font-family: $font-family;
+            font-weight: 600;
+            margin-left: 0;
+            background-color: transparent;
+            font-size: 23px;
+            color: #fe8c8c;
+            padding: 0;
+            &:focus {
+              padding: 24px 15% 24px 15%;
+              background: white;
+            }
+            &:hover {
+              padding: 24px 15% 24px 15%;
+              background-color: white;
+              // color: white;
+            }
+          }
+        }
+        &-logOut__text {
+            color: white;
+            @include adaptive-font(14, 12);
+            font-family: $font-family;
+            font-weight: 600;
+            max-width: 216px;
+            // overflow: hidden;
+            cursor: pointer;
+            transition: all ease 0.4s;
+            display: flex;
+            padding-top: 15.5px;
+            padding-bottom: 15.5px;
+            border-radius: 8px;
+      
+            &:hover {
+              padding-left: 26px;
+              padding-right: 26px;
+              background-color: #8dd3bb;
+              color: white;
+            }
+      
+            &_active {
+              padding-top: 0;
+              padding-bottom: 1px;
+              max-width: 550px;
+              margin-bottom: 16px;
+              font-size: 23px;
+              transition: all ease 0.4s;
+              &:focus {
+                padding: 24px 15% 24px 15%;
+                background: #fe8c8c;
+              }
+              &:hover {
+                padding: 24px 15% 24px 15%;
+                background-color: white;
+                color: darkgray;
+              }
+            }
+        }
+    }
+    @media screen and (max-width: 648px) {
+        &-burger-menu {
+            display: block;
+            padding: 24px;
+            opacity: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 600px;
+            top: 0;
+            position: absolute;
+            transform: scaleY(0);
+            transform-origin: 0, 0;
+            border-radius: 24px;
+            transition: all ease 0.4s;
+            background-color: rgb(232, 217, 100);
+            z-index: -100;
+            // mix-blend-mode: lumi nosity;
+
+            &_active {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+
+            .header-find-flights {
+                margin-bottom: 16px;
+                margin-right: 0;
+                font-size: 23px;
+                border-radius: 8px;
+
+                svg {
+                    path {
+                        transition: fill ease 0.4s;
+                    }
+                }
+                &:hover {
+                    padding: 24px 15% 24px 15%;
+                    background-color: white;
+                    color: darkgrey;
+                    svg {
+                        path {
+                            fill: darkgray;
+                        }
+                    }
+                }
+                &:focus {
+                    background-color: white;
+                    padding: 24px 15% 24px 15%;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+                    width: auto;
+                    color: darkgrey;
+
+                    svg {
+                        path {
+                            fill: darkgray;
+                        }
+                    }
+                }
+            }
+            .header-find-stays {
+                margin-bottom: 16px;
+                font-size: 23px;
+                border-radius: 8px;
+
+                svg {
+                    path {
+                        transition: fill ease 0.4s;
+                    }
+                }
+                &:hover {
+                    padding: 24px 15% 24px 15%;
+                    background-color: white;
+                    color: darkgrey;
+                    svg {
+                        path {
+                            fill: darkgray;
+                        }
+                    }
+                }
+
+                &:focus {
+                    background-color: white;
+                    padding: 24px 15% 24px 15%;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+                    width: auto;
+                    color: darkgrey;
+
+                    svg {
+                        path {
+                            fill: darkgray;
+                        }
+                    }
+                }
+            }
+
+            .header-signUp__wrapper {
+                margin-left: 0;
+                margin-top: 16px;
+                transition: all ease 0.4s;
+                background-color: transparent;
+                padding: 0;
+
+                a {
+                    color: white;
+                }
+
+                &:focus {
+                    background-color: white;
+                    padding: 24px 15% 24px 15%;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+                    width: auto;
+
+                    a {
+                        color: darkgrey;
+                    }
+                }
+            }
+
+            .header-login {
+                font-size: 23px;
+                border-radius: 8px;
+                svg {
+                    path {
+                        transition: fill ease 0.4s;
+                    }
+                }
+                &:hover {
+                    padding: 24px 100px 24px 100px;
+                    background-color: white;
+                    color: darkgrey;
+                    svg {
+                        path {
+                            fill: darkgray;
+                        }
+                    }
+                }
+                &:focus {
+                    background-color: white;
+                    padding: 24px 100px 24px 100px;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+                    width: auto;
+                    color: darkgrey;
+                }
+            }
+            .header-signUp {
+                font-size: 23px;
+                color: white;
+                svg {
+                    path {
+                        transition: fill ease 0.4s;
+                    }
+                }
+                &:hover {
+                    padding: 24px 100px 24px 100px;
+                    background-color: white;
+                    color: darkgrey;
+                    svg {
+                        path {
+                            fill: darkgray;
+                        }
+                    }
+                }
+                &:focus {
+                    background-color: white;
+                    padding: 24px 100px 24px 100px;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+                    width: auto;
+                    color: darkgrey;
+                }
+            }
+        }
+        &-burger {
+            display: block;
+            width: 28px;
+            height: 24px;
+            position: relative;
+            z-index: 11;
+            // background-color: red;
+            display: flex;
+            align-items: center;
+
+            span {
+                @include transition(0.4s);
+                width: 100%;
+                height: 2px;
+                background-color: white;
+                display: block;
+                @include transition(0.4s);
+
+                &::before,
+                &::after {
+                    @include transition(0.4s);
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    background-color: white;
+                }
+
+                &::before {
+                    top: 0px;
+                }
+
+                &::after {
+                    bottom: 0px;
+                }
+            }
+            &_logged {
+                span {
+                    @include transition(0.4s);
+                    width: 100%;
+                    height: 2px;
+                    background-color: white;
+                    display: block;
+                    @include transition(0.4s);
+
+                    &::before,
+                    &::after {
+                        @include transition(0.4s);
+                        content: "";
+                        position: absolute;
+                        width: 100%;
+                        height: 2px;
+                        background-color: white;
+                    }
+
+                    &::before {
+                        top: 0px;
+                    }
+
+                    &::after {
+                        bottom: 0px;
+                    }
+                }
+            }
+            &_active {
+                span {
+                    background-color: transparent;
+                    transform: rotate(180deg);
+
+                    &::before {
+                        background-color: #fe8c8c;
+                        transform: rotate(45deg);
+                    }
+
+                    &::after {
+                        background-color: #fe8c8c;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+        &-burger {
+            display: block;
+            width: 28px;
+            height: 24px;
+            position: relative;
+            z-index: 11;
+            // background-color: red;
+            display: flex;
+            align-items: center;
+
+            span {
+                @include transition(0.4s);
+                width: 100%;
+                height: 2px;
+                background-color: white;
+                display: block;
+                @include transition(0.4s);
+
+                &::before,
+                &::after {
+                    @include transition(0.4s);
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    background-color: white;
+                }
+
+                &::before {
+                    top: 0px;
+                }
+
+                &::after {
+                    bottom: 0px;
+                }
+            }
+            &_active {
+                span {
+                    background-color: transparent;
+                    transform: rotate(180deg);
+
+                    &::before {
+                        background-color: #fe8c8c;
+                        transform: rotate(45deg);
+                    }
+
+                    &::after {
+                        background-color: #fe8c8c;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}

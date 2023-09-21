@@ -30,14 +30,14 @@ function LandingPage() {
 
     return (
         <>
-            <div className="container">
+            {/* <div className="container"> */}
                 {
                     isUserLoggedIn ? (<HeaderLogged onLogOut={handleLogOut} active={active} handleBurgerClick={handleBurgerClick}/>)
                     :
                     (<HeaderUnlogged active={active} handleBurgerClick={handleBurgerClick}/>)   
                 }
 
-            </div>
+            {/* </div> */}
             <LandingPageMain active={active} />
 
             <Footer />

@@ -5,46 +5,50 @@
 @import "./footer.scss";
 @import "./signUp.scss";
 @import "./login.scss";
+@import './personalAccMain.scss';
+@import './headerDefault.scss';
 
 #root {
   display: flex;
-  // justify-content: center;
+  // justify-content: space-between;
   flex-direction: column;
   // align-items: center;
+
 }
 
 body {
   overflow-x: hidden;
   background-color: #fafbfc;
-
+  background-color: #346b5a;
   -webkit-tap-highlight-color: transparent;
 }
 
-.container {
-  max-width: 1440px;
-  width: 100%;
-  padding: 30px 30px 0 30px;
-  display: flex;
-  justify-content: center;
-  // position: relative;
-  flex-direction: column;
-  margin: 0 auto;
+// .container {
+//   max-width: 1440px;
+//   width: 100%;
+//   padding: 30px 30px 0 30px;
+//   display: flex;
+//   justify-content: center;
+//   // position: relative;
+//   flex-direction: column;
+//   margin: 0 auto;
 
-  @media screen and (max-width: 767px) {
-    padding: 24px 24px 0 24px;
-  }
+//   @media screen and (max-width: 767px) {
+//     padding: 24px 24px 0 24px;
+//   }
 
-  @media screen and (max-width: 450px) {
-    padding: 12px 12px 0 12px;
-  }
-}
+//   @media screen and (max-width: 450px) {
+//     padding: 12px 12px 0 12px;
+//   }
+// }
 
 //HEADER
 
 .header {
-  max-width: 1380px;
-  width: 100%;
-  position: relative;
+  // max-width: 1440px;
+  // width: 100%;
+  // margin: 0 auto;
+  padding: 30px 30px 0 30px;
   margin-bottom: 150px;
   transition: margin-bottom ease 0.4s;
   &_active {
@@ -52,9 +56,21 @@ body {
       margin-bottom: 368px;
     }
     @media screen and (max-width: 595px) {
-          margin-bottom: 288px;
+      margin-bottom: 288px;
     }
-
+  }
+  &__container {
+    position: relative;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    // @media screen and (max-width: 600px) {
+    //   padding-right: 30px;
+    //   padding-left: 30px;
+    // }
+    // @media screen and (max-width: 450px) {
+    //   padding: 12px 12px 0 12px;
+    // }
     
   }
   &-background {
@@ -109,7 +125,6 @@ body {
       padding-right: 26px;
       background-color: #8dd3bb;
     }
-    
   }
 
   &-find-stays {
@@ -131,14 +146,13 @@ body {
       padding-right: 26px;
       background-color: #8dd3bb;
     }
-    
   }
 
   &-logo__wrapper {
     border-radius: 8px;
     transition: all ease 0.4s;
     cursor: pointer;
-    
+
     &:hover {
       padding: 26px 40px;
       background-color: #346b5a;
@@ -178,7 +192,7 @@ body {
       font-family: $font-family;
       font-weight: 600;
       color: white;
-      &:hover{
+      &:hover {
         background-color: #fe8c8c;
         padding-left: 26px;
         padding-right: 26px;
@@ -250,7 +264,6 @@ body {
     font-family: $font-family;
     font-weight: 600;
     transition: all ease 0.4s;
-
   }
 
   &-signUp__wrapper {
@@ -324,9 +337,7 @@ body {
   }
 
   @media screen and (max-width: 767px) {
-    .container {
-      padding: 24px 24px 0 24px;
-    }
+    padding: 24px 24px 0 24px;
 
     &__nav {
       padding: 24px 24px 0 24px;
@@ -373,15 +384,14 @@ body {
     }
   }
 
-  @media screen and (max-width: 648px) {
-    h1 {
-      font-size: 75px;
-    }
-  }
 
   @media screen and (max-width: 648px) {
     &-left-side {
       display: none;
+    }
+
+    h1 {
+      font-size: 75px;
     }
 
     &-right-side {
@@ -414,7 +424,7 @@ body {
       transition: all ease 0.4s;
       background-color: rgb(141, 212, 189);
       // mix-blend-mode: luminosity;
-      
+
       &_active {
         transform: scaleY(1);
         opacity: 1;
@@ -606,7 +616,7 @@ body {
           bottom: 0px;
         }
       }
-      &_logged{
+      &_logged {
         span {
           @include transition(0.4s);
           width: 100%;
@@ -614,7 +624,7 @@ body {
           background-color: white;
           display: block;
           @include transition(0.4s);
-  
+
           &::before,
           &::after {
             @include transition(0.4s);
@@ -624,11 +634,11 @@ body {
             height: 2px;
             background-color: white;
           }
-  
+
           &::before {
             top: 0px;
           }
-  
+
           &::after {
             bottom: 0px;
           }
@@ -653,7 +663,9 @@ body {
     }
   }
 
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 450px) {
+    padding-right: 40px;
+    padding-left: 40px;
   }
 }
 

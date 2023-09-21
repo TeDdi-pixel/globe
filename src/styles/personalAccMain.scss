@@ -1,0 +1,118 @@
+.personal-acc {
+    max-width: 1440px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    transition: margin-top ease 0.4s;
+    &_active{
+        margin-top: 562px;
+    }
+    &__container {
+        padding: 0 30px;
+        padding: 48px 30px 0 30px;
+    }
+    &__top-background {
+        margin: 0 auto;
+        max-width: 1232px;
+        position: relative;
+        img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+    }
+    &__new-cover {
+        overflow: hidden;
+        font-family: $font-family;
+        font-size: 14px;
+        font-weight: 500;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15.5px 16px;
+        border-radius: 4px;
+        background-color: var(--Mint-Green, #8dd3bb);
+        position: absolute;
+        right: 26px;
+        bottom: 26px;
+        width: 180px;
+        height: 48px;
+        transition: all ease 0.2s;
+        cursor: pointer;
+
+        span{
+            position: absolute;
+            transform: translateX(0);
+            transition: transform ease 0.2s,color ease 0.2s;;
+        }
+        input {
+            display: none;
+        }
+        &:hover {
+            background-color: #8ff0ce;
+            span{
+                transform: translateX(10px);
+                color: white;
+            }
+            div {
+                left: 16px;
+            }
+        }
+        &:focus {
+            background-color: #8ff0ce;
+            span{
+                transform: translateX(10px);
+                color: white;
+            }
+            div {
+                left: 16px;
+            }
+        }
+        div {
+            transition: all ease 0.2s;
+            position: absolute;
+            left: -20px;
+            transform: translate(0, 1px);
+        }
+    }
+
+    &__profile-data {
+        position: absolute;
+        
+        
+        right: 50%;
+
+        transform: translate(50%, -50%);
+    }
+    &__photo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 160px;
+        height: 160px;
+        border-radius: 160px;
+        border: 4px solid var(--Slamon, #ff8682);
+        background: lightgray -39.626px 0px / 187.747% 125.556% no-repeat;
+        box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+        img{
+            border-radius: 160px;
+            object-fit:cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        &__container {
+            padding: 24px 24px 0 24px;
+        }
+    }
+    @media screen and (max-width: 450px) {
+        &__container {
+            padding-right: 12px;
+            padding-left: 12px;
+        }
+    }
+}
