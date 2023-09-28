@@ -12,7 +12,7 @@ const login = async (userData) => {
             email: user.email,
         }
         Cookies.set('user', JSON.stringify(USER));
-        alert('Next page is in beta and may contain bugs');
+        // alert('Next page is in beta and may contain bugs');
         return true; 
     } catch (error) {
         alert(error.code);

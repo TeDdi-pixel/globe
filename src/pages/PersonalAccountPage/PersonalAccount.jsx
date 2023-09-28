@@ -13,16 +13,14 @@ const PersonalAccount = () => {
   const emailData = userCookie && JSON.parse(userCookie).email;
   const emailParts = emailData && emailData.split('@');
   const emailName = emailParts && emailParts[0];
-  console.log(emailName);
+  // console.log(emailName);
   // console.log(JSON.parse(user));
   const navigate = useNavigate();
   useEffect(() => {
     if (isUserLoggedIn) {
-      console.log('user is successfully authorized');
-
-
+      // console.log('user is successfully authorized');
     } else {
-      console.log('user is not authorized');
+      // console.log('user is not authorized');
       navigate('/');
     }
   }, [isUserLoggedIn, navigate]);

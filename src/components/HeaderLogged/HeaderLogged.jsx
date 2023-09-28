@@ -6,6 +6,7 @@ const HeaderLogged = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
 
     const logOut = () => {
         onLogOut();
+        localStorage.clear();
     };
 
     const handleResize = () => {
