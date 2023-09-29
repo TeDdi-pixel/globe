@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 
 const login = async (userData) => { 
     const auth = getAuth(app);
+
     try {
         const userCredential = await signInWithEmailAndPassword(auth, userData.email, userData.password);
         const user = userCredential.user;
