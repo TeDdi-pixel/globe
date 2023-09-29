@@ -1,9 +1,14 @@
 .header-default {
     padding: 30px 30px 0 30px;
     margin-bottom: 0;
-    transition: margin-bottom ease 0.4s;
+    transition: margin-bottom ease 0.4s,box-shadow ease 0.4s, background-color ease 0.4s;
+    background-color: white;
+    box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
+    padding-bottom: 25px;
     &_active {
         margin-bottom: 562px;
+        background-color: #FAFBFC;
+        box-shadow: none;
     }
     &__container {
         position: relative;
@@ -336,13 +341,14 @@
         }
     }
     @media screen and (max-width: 767px) {
-        padding: 24px 24px 0 24px;
-    }
+        padding: 24px 24px 24px 24px;
+    }   
     @media screen and (max-width: 648px) {
         &-right-side {
             display: none;
         }
         &-burger-menu {
+            
             display: block;
             padding: 24px;
             opacity: 0;
@@ -526,6 +532,7 @@
         }
 
         &-burger {
+            cursor: pointer;
             display: block;
             width: 28px;
             height: 24px;
