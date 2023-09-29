@@ -4,6 +4,10 @@ import Cookies from 'js-cookie';
 
 
 const registration  = async (userData) => {
+    if (!userData.firstname || !userData.lastname || !userData.phone) {
+        console.log('Name field is missing');
+        return;
+    }
     if (userData.password !== userData.passwordConfirm) {
         console.log('Your passwords do not match');
     } else {
@@ -11,19 +15,23 @@ const registration  = async (userData) => {
             const auth = getAuth();
             const userCredential = await createUserWithEmailAndPassword(auth, userData.email, userData.password);
             const user = userCredential.user;
-
-            await updateProfile(user, {
-                displayName: `${user.firstname} ${user.lastname}`,
-                phoneNumber: user.phone,
-            });
-            
+            console.log(user);
+            try {
+                await updateProfile(user, {
+                  displayName: userData.firstname + " " + userData.lastname,
+                  phoneNumber: userData.phone,
+                });
+              } catch (error) {
+                console.error(error);
+                alert(error.message);
+              }
             const updatedUser = {
                 userName: user.displayName,
                 email: user.email,
+                phoneNumber: user.phoneNumber
             }
             Cookies.set('user', JSON.stringify(updatedUser));
             // console.log('user successfully added');
-            
         } catch (error) {
             alert(error);
         }

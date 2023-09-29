@@ -1,13 +1,29 @@
+import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
     const [isFullWidth, setIsFullWidth] = useState(false);
+    const navigate = useNavigate();
+    const [profileImage, setProfileImage] = useState('');
+    const [userName, setUserName] = useState('');
     const handleResize = () => {
         setIsFullWidth(window.innerWidth <= 648);
     };
-    useEffect(() => {
 
+    useEffect(() => {
+        if (!Cookies.get('user'))
+            navigate('/flights');
+        const storedImage = localStorage.getItem('userImage');
+        if (storedImage) {
+            setProfileImage(storedImage);
+        }
+        const userData = JSON.parse(Cookies.get('user'));
+        console.log(userData);
+        const username = userData.userName;
+        if (username) {
+            setUserName(username);
+        }
         window.addEventListener('resize', handleResize);
         handleResize();
 
@@ -16,16 +32,16 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
         };
 
     }, []);
-    const styledColorFirst =  active ? {fill : 'white',transition: 'fill ease 0.4s'} : {fill : '#112211',transition: 'fill ease 0.4s'}; 
+    const styledColorFirst = active ? { fill: 'white', transition: 'fill ease 0.4s' } : { fill: '#112211', transition: 'fill ease 0.4s' };
     const logOut = () => {
         onLogOut();
         localStorage.clear();
     };
     return (
         <header className={active && isFullWidth ? 'header-default header-default_active' : 'header-default'}>
-            <nav className='header__container'>
-                <nav className="header__nav">
-                    <div className="header-left-side header-left-side_logged">
+            <nav className='header-default__container'>
+                <div className="header-default__nav">
+                    <div className="header-left-side header-default-left-side_logged">
                         <Link className="header-default-find-flights header-default-find-flights_logged">
                             <li>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -44,22 +60,56 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                         </Link>
                     </div>
                     <Link to='/' className="header-default-logo__wrapper header-default-logo__wrapper_logged">
-                        
-                            <svg xmlns="http://www.w3.org/2000/svg" width="111" height="36" viewBox="0 0 111 36" fill="none">
-                                <path style={styledColorFirst} d="M14.7282 5.57671L17.9466 8.00815L15.9805 10.5097C17.3379 12.0457 17.8382 13.7984 17.8382 15.7295C17.8382 17.9092 17.0161 20.9843 14.1195 22.3068C17.0512 23.7727 17.7649 25.8823 17.7649 28.1353C17.7649 32.9981 14.0463 36 8.93505 36C3.82384 36 0 32.8898 0 28.1353H4.32413C4.32413 30.4233 6.43362 31.9242 8.93505 31.9242C11.4365 31.9242 13.4026 30.5667 13.4026 28.1353C13.4026 25.7038 11.1146 24.5949 8.93505 24.5949C3.4319 24.5949 0 21.2361 0 15.7295C0 10.2229 4.00229 6.79083 8.93823 6.79083C10.3339 6.79083 11.7615 6.96929 12.9788 7.79145L14.7282 5.57671ZM4.32413 15.7295C4.32413 18.8046 6.39857 20.6274 8.93505 20.6274C11.4365 20.6274 13.5109 18.7696 13.5109 15.7295C13.5109 12.6894 11.4397 10.7614 8.93823 10.7614C6.39856 10.7614 4.32413 12.6543 4.32413 15.7295Z"  />
-                                <path style={styledColorFirst} d="M50.5663 0V24.99H46.2422V0H50.5663Z"  />
-                                <path style={styledColorFirst} d="M69.9987 16.1947C69.9987 21.2711 66.5317 25.382 60.8119 25.382C55.0921 25.382 51.6602 21.2711 51.6602 16.1947C51.6602 11.1534 55.1622 7.00752 60.7768 7.00752C66.3915 7.00752 69.9987 11.1534 69.9987 16.1947ZM56.0193 16.1947C56.0193 18.8747 57.6285 21.3795 60.8087 21.3795C63.9889 21.3795 65.5981 18.8779 65.5981 16.1947C65.5981 13.5498 63.7403 10.9749 60.8087 10.9749C57.6636 10.9749 56.0193 13.5498 56.0193 16.1947Z"  />
-                                <path style={styledColorFirst} d="M75.4503 0V9.76082C76.4859 7.93804 79.3824 6.93742 81.2402 6.93742C86.3865 6.93742 90.2135 10.0827 90.2135 16.1597C90.2135 21.9499 86.3163 25.382 81.135 25.382C78.9905 25.382 76.8109 24.6681 75.4503 22.5586L75.1635 24.99H71.0879V0H75.4503ZM75.7339 16.1597C75.7339 19.34 78.0919 21.3444 80.8451 21.3444C83.6333 21.3444 85.8511 19.2348 85.8511 16.1597C85.8511 12.9794 83.6333 11.0132 80.8451 11.0132C78.0951 11.01 75.7339 13.0845 75.7339 16.1597Z"  />
-                                <path style={styledColorFirst} d="M96.6992 19.2317C97.7125 21.1819 100.032 22.0136 102.922 20.962C104.433 20.4107 106.208 19.1201 106.794 17.804L110.357 19.4356C109.27 21.8862 106.734 23.7982 104.213 24.7159C98.5028 26.7937 93.8249 24.5024 91.8939 19.1934C90.0584 14.1553 92.1647 9.27963 97.5404 7.32301C103.082 5.30584 107.792 7.47278 109.633 14.5249L96.6992 19.2317ZM104.468 12.5619C103.416 10.5097 101.345 10.0476 98.9935 10.9017C96.7757 11.7079 95.3545 13.4446 95.5329 15.8123L104.468 12.5619Z" />
-                                <path fill='#8DD3BB' fill-rule="evenodd" clip-rule="evenodd" d="M39.7626 11.9898C38.3489 9.04025 35.4017 7.00752 31.4702 7.00752C25.8555 7.00752 22.3535 11.1534 22.3535 16.1947C22.3535 19.4132 23.733 22.2436 26.2006 23.8843C26.3412 23.779 26.4258 23.7107 26.4258 23.7107C27.6566 22.9077 28.8573 22.0623 30.0258 21.1765C27.8244 20.5287 26.7127 18.4222 26.7127 16.1947C26.7127 13.5498 28.3601 10.9749 31.5021 10.9749C34.269 10.9749 36.0793 13.2686 36.274 15.7501C37.4868 14.5464 38.6508 13.292 39.7626 11.9898ZM31.0601 25.3735C34.5418 22.9057 37.7611 20.0866 40.6652 16.963C40.3328 21.6795 36.9335 25.382 31.5052 25.382C31.3553 25.382 31.2069 25.3791 31.0601 25.3735Z"  />
-                                <path fill='#8DD3BB' d="M43.3169 4.53785C38.8622 2.89989 35.6597 6.42437 35.6597 6.42437L38.6965 8.18979C39.8341 7.53652 40.3407 8.17067 40.4714 8.51802C40.5638 8.76339 40.4395 9.03108 40.3407 9.17766L39.6014 10.1114C35.6119 14.9233 30.9213 19.1042 25.6858 22.5203C25.6858 22.5203 24.1053 23.795 23.2641 23.8141C22.5567 23.8301 22.2412 23.2341 22.8371 22.3801L21.3713 19.0723C21.3713 19.0723 17.557 21.5707 18.2963 25.9619C18.6085 27.8166 20.3516 29.1359 22.203 28.8013C23.1494 28.6324 24.3188 28.1703 25.7496 27.2239L28.3816 25.5031C33.6171 22.0806 38.3109 17.8869 42.2973 13.0686L43.2022 11.9756C44.5661 10.4237 45.1779 9.1458 45.385 8.13562C45.7037 6.59007 44.7891 5.07959 43.3169 4.53785Z"  />
-                            </svg>
-                        
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="111" height="37" viewBox="0 0 111 37" fill="none">
+                            <path d="M14.7282 6.07669L17.9466 8.50813L15.9805 11.0097C17.3379 12.5457 17.8382 14.2983 17.8382 16.2295C17.8382 18.4092 17.0161 21.4843 14.1195 22.8068C17.0512 24.2727 17.7649 26.3823 17.7649 28.6352C17.7649 33.4981 14.0463 36.5 8.93505 36.5C3.82384 36.5 0 33.3898 0 28.6352H4.32413C4.32413 30.9233 6.43362 32.4242 8.93505 32.4242C11.4365 32.4242 13.4026 31.0667 13.4026 28.6352C13.4026 26.2038 11.1146 25.0948 8.93505 25.0948C3.4319 25.0948 0 21.7361 0 16.2295C0 10.7229 4.00229 7.29082 8.93823 7.29082C10.3339 7.29082 11.7615 7.46927 12.9788 8.29144L14.7282 6.07669ZM4.32413 16.2295C4.32413 19.3046 6.39857 21.1274 8.93505 21.1274C11.4365 21.1274 13.5109 19.2696 13.5109 16.2295C13.5109 13.1894 11.4397 11.2614 8.93823 11.2614C6.39856 11.2614 4.32413 13.1543 4.32413 16.2295Z" fill="#112211" />
+                            <path d="M50.5663 0.5V25.49H46.2422V0.5H50.5663Z" fill="#112211" />
+                            <path d="M69.9987 16.6948C69.9987 21.7711 66.5317 25.882 60.8119 25.882C55.0921 25.882 51.6602 21.7711 51.6602 16.6948C51.6602 11.6534 55.1622 7.50754 60.7768 7.50754C66.3915 7.50754 69.9987 11.6534 69.9987 16.6948ZM56.0193 16.6948C56.0193 19.3748 57.6285 21.8795 60.8087 21.8795C63.9889 21.8795 65.5981 19.3779 65.5981 16.6948C65.5981 14.0498 63.7403 11.475 60.8087 11.475C57.6636 11.475 56.0193 14.0498 56.0193 16.6948Z" fill="#112211" />
+                            <path d="M75.4503 0.5V10.2608C76.4859 8.43804 79.3824 7.43742 81.2402 7.43742C86.3865 7.43742 90.2135 10.5827 90.2135 16.6597C90.2135 22.4499 86.3163 25.882 81.135 25.882C78.9905 25.882 76.8109 25.1681 75.4503 23.0586L75.1635 25.49H71.0879V0.5H75.4503ZM75.7339 16.6597C75.7339 19.84 78.0919 21.8444 80.8451 21.8444C83.6333 21.8444 85.8511 19.7348 85.8511 16.6597C85.8511 13.4794 83.6333 11.5132 80.8451 11.5132C78.0951 11.51 75.7339 13.5845 75.7339 16.6597Z" fill="#112211" />
+                            <path d="M96.6992 19.7317C97.7125 21.6819 100.032 22.5136 102.922 21.462C104.433 20.9107 106.208 19.6201 106.794 18.304L110.357 19.9356C109.27 22.3862 106.734 24.2982 104.213 25.2159C98.5028 27.2937 93.8249 25.0024 91.8939 19.6934C90.0584 14.6553 92.1647 9.77963 97.5404 7.82301C103.082 5.80584 107.792 7.97278 109.633 15.0249L96.6992 19.7317ZM104.468 13.0619C103.416 11.0097 101.345 10.5476 98.9935 11.4017C96.7757 12.2079 95.3545 13.9446 95.5329 16.3123L104.468 13.0619Z" fill="#112211" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M39.7626 12.4898C38.3489 9.54026 35.4017 7.50754 31.4702 7.50754C25.8555 7.50754 22.3535 11.6534 22.3535 16.6948C22.3535 19.9132 23.733 22.7436 26.2006 24.3843C26.3412 24.2791 26.4258 24.2108 26.4258 24.2108C27.6566 23.4077 28.8573 22.5624 30.0258 21.6765C27.8244 21.0287 26.7127 18.9223 26.7127 16.6948C26.7127 14.0498 28.3601 11.475 31.5021 11.475C34.269 11.475 36.0793 13.7686 36.274 16.2501C37.4868 15.0464 38.6507 13.792 39.7626 12.4898ZM31.0601 25.8736C34.5418 23.4057 37.7611 20.5866 40.6652 17.463C40.3328 22.1795 36.9335 25.882 31.5052 25.882C31.3553 25.882 31.2069 25.8791 31.0601 25.8736Z" fill="#8DD3BB" />
+                            <path d="M43.3169 5.03785C38.8622 3.39989 35.6597 6.92437 35.6597 6.92437L38.6965 8.68979C39.8341 8.03652 40.3407 8.67067 40.4714 9.01802C40.5638 9.26339 40.4395 9.53108 40.3407 9.67766L39.6014 10.6114C35.6119 15.4233 30.9213 19.6042 25.6858 23.0203C25.6858 23.0203 24.1053 24.295 23.2641 24.3141C22.5567 24.3301 22.2412 23.7341 22.8371 22.8801L21.3713 19.5723C21.3713 19.5723 17.557 22.0707 18.2963 26.4619C18.6085 28.3166 20.3516 29.6359 22.203 29.3013C23.1494 29.1324 24.3188 28.6703 25.7496 27.7239L28.3816 26.0031C33.6171 22.5806 38.3109 18.3869 42.2973 13.5686L43.2022 12.4756C44.5661 10.9237 45.1779 9.6458 45.385 8.63562C45.7037 7.09007 44.7891 5.57959 43.3169 5.03785Z" fill="#8DD3BB" />
+                        </svg>
+
 
                     </Link>
-                    <div className="header-default-right-side header-right-side_logged">
-                        <span className='header-default-right-side-logOut__text'>{userEmail}</span>
-                        <button onClick={logOut} className='header-default-right-side__logOut'>LogOut</button>
+                    <div className="header-default-right-side header-default-right-side_logged">
+                        {/* <span className='header-default-right-side-logOut__text'>{userEmail}</span> */}
+                        <div className='header-default__favorites'>
+                            <Link className='header-default__favorites_left'>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <path d="M12.0005 21.5C11.6994 21.4996 11.4054 21.4086 11.1568 21.2389C7.47286 18.7381 5.87771 17.0234 4.99786 15.9514C3.12286 13.6663 2.22521 11.3202 2.25052 8.77953C2.28005 5.86813 4.61583 3.5 7.4574 3.5C9.52365 3.5 10.9547 4.66391 11.7882 5.63328C11.8146 5.66368 11.8472 5.68805 11.8838 5.70476C11.9205 5.72146 11.9603 5.73011 12.0005 5.73011C12.0408 5.73011 12.0806 5.72146 12.1172 5.70476C12.1538 5.68805 12.1865 5.66368 12.2129 5.63328C13.0463 4.66297 14.4774 3.5 16.5436 3.5C19.3852 3.5 21.721 5.86812 21.7505 8.78C21.7758 11.3211 20.8772 13.6672 19.0032 15.9519C18.1233 17.0239 16.5282 18.7386 12.8443 21.2394C12.5955 21.4089 12.3016 21.4998 12.0005 21.5Z" fill="#112211" />
+                                    </svg>
+                                    <span>Favorites</span>
+                                </li>
+                                <span className='header-default__favorites_left__line-through'></span>
+                            </Link>
+
+
+                            <Link className='header-default__favorites_right'>
+                                <li>
+                                    {profileImage ?
+                                        <img src={profileImage} alt="" />
+                                        :
+                                        <svg
+
+                                            viewBox="0 0 24 24"
+                                            fill="#121"
+                                            height="100"
+                                            width="100"
+                                        >
+                                            <path d="M12 2A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0112 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 01-1.5-1.5A1.5 1.5 0 0112 8a1.5 1.5 0 011.5 1.5A1.5 1.5 0 0112 11z" />
+                                        </svg>}
+
+                                </li>
+                                <li>
+                                    {userName}
+                                </li>
+                            </Link>
+
+                        </div>
+                        {/* <button onClick={logOut} className='header-default-right-side__logOut'>LogOut</button> */}
 
                     </div>
                     <div className={(active ? 'header-default-burger header-default-burger_logged header-default-burger_logged header-default-burger_active' : 'header-default-burger header-default-burger_logged')}
@@ -68,8 +118,8 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                         <span></span>
                     </div>
 
-                </nav>
-                <nav className={(active ? 'header-default-burger-menu  header-default-burger-menu_active' : 'header-default-burger-menu')}>
+                </div>
+                <div className={(active ? 'header-default-burger-menu  header-default-burger-menu_active' : 'header-default-burger-menu')}>
                     <Link className="header-find-flights">
                         <li>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -87,9 +137,9 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                         </li>
                         <li>Find Stays</li>
                     </Link>
-                    <Link to='/personal_account'><span className='header-default-right-side-logOut__text header-default-right-side-logOut__text_active'>{userEmail}</span></Link>
+                    <Link to='/personal_account'><span className='header-right-side-logOut__text header-right-side-logOut__text_active'>{userEmail}</span></Link>
                     <div onClick={logOut} className={active ? 'header-default-right-side__logOut header-default-right-side__logOut_active' : 'header-default-right-side__logOut'}>LogOut</div>
-                </nav>
+                </div>
 
             </nav>
         </header>

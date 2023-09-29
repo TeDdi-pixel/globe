@@ -10,6 +10,8 @@ import { registration } from "../../registration/registration";
 
 function SignUp() {
     const [email, setEmail] = useState('');
+    const [firstName, setFirstName] =useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
     const [phone, setPhone] = useState('');
@@ -18,8 +20,9 @@ function SignUp() {
     const navigate = useNavigate();
     const handleMouseDownPassword = (event) => { event.preventDefault(); };
     const { register, handleSubmit } = useForm()
-
+    
     const onSubmit = async (userData) => {
+        console.log(userData.phone);
         try {
             await registration(userData);
             navigate('/flights');
@@ -56,16 +59,20 @@ function SignUp() {
                                 {/* First name */}
                                 <TextField
                                     {...register('firstname')}
+                                    required
                                     className="signUp-form-input-short"
                                     label="First Name"
                                     type="text"
+                                    onChange={(e) => {setFirstName(e.target.value)}}
                                 />
                                 {/* Last name */}
                                 <TextField
+                                    required
                                     {...register('lastname')}
                                     className="signUp-form-input-short"
                                     label="Last Name"
                                     type="text"
+                                    onChange={(e) => {setLastName(e.target.value)}}
                                 />
                             </div>
                             <div className="signUp-form__flex">
@@ -75,13 +82,12 @@ function SignUp() {
                                     required
                                     label="Email"
                                     className="signUp-form-input-short"
-                                    onChange={(e) => {
-                                        setEmail(e.target.value)
-                                    }}
+                                    onChange={(e) => {setEmail(e.target.value)}}
                                     type="email"
                                 />
                                 {/* Phone */}
                                 <TextField
+                                    required
                                     {...register('phone')}
                                     className="signUp-form-input-short"
                                     label="Phone Number"

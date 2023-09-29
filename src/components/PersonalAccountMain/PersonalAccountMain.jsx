@@ -1,24 +1,42 @@
 
+import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const PersonalAccountMain = () => {
     // const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [userName, setUserName] = useState('');
+    const userData = JSON.parse(Cookies.get('user'));
+    useEffect(() => {
+        setEmail(userData.email);
+        setUserName(userData.userName);
+    }, []);
+
     const [image, setImage] = useState(null);
     const handleFileInputChange = (event) => {
-        const reader = new FileReader();
-        const selectedFile = event.target.files[0];
-        reader.readAsDataURL(selectedFile);
+        try {
+            const reader = new FileReader();
+            const selectedFile = event.target.files[0];
+            reader.readAsDataURL(selectedFile);
 
-        if (selectedFile) {
-            reader.onload = () => {
-                const base64Image = reader.result;
-                localStorage.setItem('userImage', base64Image);
-                setImage(base64Image);
-            };
+            if (selectedFile) {
+                reader.onload = () => {
+                    const base64Image = reader.result;
+                    localStorage.setItem('userImage', base64Image);
+                    setImage(base64Image);
+                };
+            }
+        } catch (error) {
+            alert(error);
         }
+
     };
     useEffect(() => {
+        if (!Cookies.get('user'))
+            navigate('/flights');
         const storedImage = localStorage.getItem('userImage');
         if (storedImage) {
             setImage(storedImage);
@@ -32,7 +50,7 @@ const PersonalAccountMain = () => {
                     <div className='personal-acc__top-background'>
                         <img src="./assets/img/09d33d4d260d902f404ce31c509b1086.jpg" alt="" />
                         <form >
-                            <label for='file' className='personal-acc__new-cover'>
+                            <label htmlFor='file' className='personal-acc__new-cover'>
                                 <div style={{ display: 'flex', alignItems: "center" }}>
                                     <svg
                                         viewBox="0 0 512 512"
@@ -58,18 +76,39 @@ const PersonalAccountMain = () => {
                         <div className='personal-acc__photo'>
 
                             {image ?
-                                <img src={image} alt="" /> :
-                                <svg
+                                <div className='personal-acc__photo__wrapper'>
+                                    <img src={image} alt="" />
+                                    <label htmlFor="file" className='personal-acc__photo_change'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                            <path d="M17.3103 6.06L4.55422 18.8475L3.78125 20.7187L5.6525 19.9458L18.44 7.18968L17.3103 6.06ZM19.8627 3.50812L19.31 4.06031L20.4397 5.19L20.9923 4.63734C21.1374 4.49222 21.2188 4.29546 21.2188 4.09031C21.2188 3.88516 21.1374 3.6884 20.9923 3.54328L20.9572 3.50812C20.8853 3.43625 20.8 3.37923 20.7061 3.34034C20.6122 3.30144 20.5116 3.28142 20.4099 3.28142C20.3083 3.28142 20.2076 3.30144 20.1137 3.34034C20.0198 3.37923 19.9345 3.43625 19.8627 3.50812Z" stroke="black" stroke-width="2.0625" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </label>
+                                </div>
+                                :
+                                <div className='personal-acc__photo__wrapper'
                                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    height="100"
-                                    width="100"
                                 >
-                                    <path d="M12 2A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0112 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 01-1.5-1.5A1.5 1.5 0 0112 8a1.5 1.5 0 011.5 1.5A1.5 1.5 0 0112 11z" />
-                                </svg>
+                                    <svg
+
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                        height="100"
+                                        width="100"
+                                    >
+                                        <path d="M12 2A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0112 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 01-1.5-1.5A1.5 1.5 0 0112 8a1.5 1.5 0 011.5 1.5A1.5 1.5 0 0112 11z" />
+                                    </svg>
+                                    <label htmlFor="file" className='personal-acc__photo_change'>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                                            <path d="M17.3103 6.06L4.55422 18.8475L3.78125 20.7187L5.6525 19.9458L18.44 7.18968L17.3103 6.06ZM19.8627 3.50812L19.31 4.06031L20.4397 5.19L20.9923 4.63734C21.1374 4.49222 21.2188 4.29546 21.2188 4.09031C21.2188 3.88516 21.1374 3.6884 20.9923 3.54328L20.9572 3.50812C20.8853 3.43625 20.8 3.37923 20.7061 3.34034C20.6122 3.30144 20.5116 3.28142 20.4099 3.28142C20.3083 3.28142 20.2076 3.30144 20.1137 3.34034C20.0198 3.37923 19.9345 3.43625 19.8627 3.50812Z" stroke="black" stroke-width="2.0625" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </label>
+                                </div>
                             }
+
+
                         </div>
+                        <div className='personal-acc__name'>{userName}</div>
+                        <div className='personal-acc__email'>{email}</div>
                     </div>
                 </div>
             </main>
