@@ -40,7 +40,7 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
     return (
         <header className={active && isFullWidth ? 'header-default header-default_active' : 'header-default'}>
             <nav className='header-default__container'>
-                <div className="header-default__nav">
+                <div className={active ? 'header-default__nav header-default__nav_active' : 'header-default__nav'}>
                     <div className="header-left-side header-default-left-side_logged">
                         <Link className="header-default-find-flights header-default-find-flights_logged">
                             <li>
@@ -61,7 +61,7 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                     </div>
                     <Link to='/' className="header-default-logo__wrapper header-default-logo__wrapper_logged">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="111" height="37" viewBox="0 0 111 37" fill="none">
+                        <svg className={active && isFullWidth ? 'svg-logo svg-logo_active' : 'svg-logo'} xmlns="http://www.w3.org/2000/svg" width="111" height="37" viewBox="0 0 111 37" fill="none">
                             <path d="M14.7282 6.07669L17.9466 8.50813L15.9805 11.0097C17.3379 12.5457 17.8382 14.2983 17.8382 16.2295C17.8382 18.4092 17.0161 21.4843 14.1195 22.8068C17.0512 24.2727 17.7649 26.3823 17.7649 28.6352C17.7649 33.4981 14.0463 36.5 8.93505 36.5C3.82384 36.5 0 33.3898 0 28.6352H4.32413C4.32413 30.9233 6.43362 32.4242 8.93505 32.4242C11.4365 32.4242 13.4026 31.0667 13.4026 28.6352C13.4026 26.2038 11.1146 25.0948 8.93505 25.0948C3.4319 25.0948 0 21.7361 0 16.2295C0 10.7229 4.00229 7.29082 8.93823 7.29082C10.3339 7.29082 11.7615 7.46927 12.9788 8.29144L14.7282 6.07669ZM4.32413 16.2295C4.32413 19.3046 6.39857 21.1274 8.93505 21.1274C11.4365 21.1274 13.5109 19.2696 13.5109 16.2295C13.5109 13.1894 11.4397 11.2614 8.93823 11.2614C6.39856 11.2614 4.32413 13.1543 4.32413 16.2295Z" fill="#112211" />
                             <path d="M50.5663 0.5V25.49H46.2422V0.5H50.5663Z" fill="#112211" />
                             <path d="M69.9987 16.6948C69.9987 21.7711 66.5317 25.882 60.8119 25.882C55.0921 25.882 51.6602 21.7711 51.6602 16.6948C51.6602 11.6534 55.1622 7.50754 60.7768 7.50754C66.3915 7.50754 69.9987 11.6534 69.9987 16.6948ZM56.0193 16.6948C56.0193 19.3748 57.6285 21.8795 60.8087 21.8795C63.9889 21.8795 65.5981 19.3779 65.5981 16.6948C65.5981 14.0498 63.7403 11.475 60.8087 11.475C57.6636 11.475 56.0193 14.0498 56.0193 16.6948Z" fill="#112211" />
@@ -137,8 +137,16 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                         </li>
                         <li>Find Stays</li>
                     </Link>
-                    <Link to='/personal_account'><span className='header-right-side-logOut__text header-right-side-logOut__text_active'>{userEmail}</span></Link>
-                    <div onClick={logOut} className={active ? 'header-default-right-side__logOut header-default-right-side__logOut_active' : 'header-default-right-side__logOut'}>LogOut</div>
+                    {/* <Link to='/personal_account' className='header-default-right-side-logOut__text header-default-right-side-logOut__text_active'>{userEmail}</Link> */}
+                    <Link className={active ? 'header-default__favorites_left header-default__favorites_left_active' : 'header-default__favorites_left'}>
+                                <li>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                        <path d="M12.0005 21.5C11.6994 21.4996 11.4054 21.4086 11.1568 21.2389C7.47286 18.7381 5.87771 17.0234 4.99786 15.9514C3.12286 13.6663 2.22521 11.3202 2.25052 8.77953C2.28005 5.86813 4.61583 3.5 7.4574 3.5C9.52365 3.5 10.9547 4.66391 11.7882 5.63328C11.8146 5.66368 11.8472 5.68805 11.8838 5.70476C11.9205 5.72146 11.9603 5.73011 12.0005 5.73011C12.0408 5.73011 12.0806 5.72146 12.1172 5.70476C12.1538 5.68805 12.1865 5.66368 12.2129 5.63328C13.0463 4.66297 14.4774 3.5 16.5436 3.5C19.3852 3.5 21.721 5.86812 21.7505 8.78C21.7758 11.3211 20.8772 13.6672 19.0032 15.9519C18.1233 17.0239 16.5282 18.7386 12.8443 21.2394C12.5955 21.4089 12.3016 21.4998 12.0005 21.5Z" fill="#112211" />
+                                    </svg>
+                                    <span>Favorites</span>
+                                </li>
+                    </Link>
+                    {/* <div onClick={logOut} className={active ? 'header-default-right-side__logOut header-default-right-side__logOut_active' : 'header-default-right-side__logOut'}>LogOut</div> */}
                 </div>
 
             </nav>

@@ -13,12 +13,16 @@
     }
     &__nav {
         width: 100%;
-        // position: absolute;
+        position: relative;
+        z-index: 11;
         // top: 24px;
         // left: 32px;
-        padding: 24px 32px 0 32px;
         display: flex;
         justify-content: space-between;
+        transition: padding ease 0.4s;
+        &_active{
+            padding: 24px 32px 0 32px;
+        }
     }
     &-burger {
         display: none;
@@ -30,10 +34,30 @@
         border-radius: 8px;
         transition: all ease 0.4s;
         cursor: pointer;
-
+        svg {
+            path:not(:nth-child(6)):not(:nth-child(7)) {
+                transition: fill ease 0.4s;
+            }
+        }
         &:hover {
             padding: 26px 40px;
             background-color: #346b5a;
+            svg {
+                transition: fill ease 0.4s;
+                path:not(:nth-child(6)):not(:nth-child(7)) {
+                    fill: white;
+                }
+            }
+        }
+        .svg-logo {
+            &_active {
+                path:not(:nth-child(6)):not(:nth-child(7)) {
+                    fill: white;
+                }
+                path {
+                    fill: #fe8c8c;
+                }
+            }
         }
     }
     &-find-flights {
@@ -93,7 +117,7 @@
         max-width: 260px;
         width: 100%;
         gap: 16px;
-        
+
         &_left {
             display: flex;
             align-items: center;
@@ -106,22 +130,71 @@
                 font-size: 14px;
                 font-family: $font-family;
                 font-weight: 600;
-                color: #121;
-                svg{
+                span{
+                    color: #121;
+                }
+                svg {
                     
-                    path{
-                        transition: fill ease 0.150s,scale ease 0.2s;
-                        
+                    path {
+                        transition: fill ease 0.15s, scale ease 0.2s;
                     }
-                    &:hover{
-                        path{
+                    &:hover {
+                        path {
                             scale: 1.1;
-                            fill:#fe8c8c;
+                            fill: #fe8c8c;
                         }
                     }
                 }
             }
-            &__line-through{
+            &_active {
+                transition: padding ease 0.4s,border-radius ease 0.4s, background-color ease 0.4s;
+                li:first-child {
+                    gap: 3px;
+                    
+                    svg {
+                        path {
+                            transition: fill ease 0.4s,scale ease 0.2s;
+                            fill: white;
+                        }
+                    }
+                    span {
+                        transition: color ease 0.4s;
+                        color: white;
+                        font-size: 23px;
+                    }
+                }
+                &:hover{
+                    padding: 24px 15% 24px 15%;
+                    background-color: white;
+                    border-radius: 8px;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+                    li:first-child{
+                        span{
+                            color: darkgray;
+                        }
+                        svg {
+                            path {
+                                fill: #fe8c8c;
+                            }
+                        }
+                    }
+                }
+                &:focus {
+                        background-color: white;
+                    padding: 24px 15% 24px 15%;
+                    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+                    width: auto;
+                    color: darkgrey;
+    
+                    svg {
+                        path {
+                            fill: #fe8c8c;
+                        }
+                    }
+                }
+                
+            }
+            &__line-through {
                 position: relative;
                 width: 2px;
                 background-color: #121;
@@ -132,7 +205,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 4px;   
+            gap: 4px;
             // max-width: 120px;
             // width: 100%;
             // overflow: hidden;
@@ -144,7 +217,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                
+
                 img {
                     border-radius: 45px;
                     width: 100%;
@@ -152,11 +225,11 @@
                     object-fit: cover;
                 }
             }
-            li:last-child{
+            li:last-child {
                 max-width: 104px;
                 width: 100%;
-                color:#121;
-                white-space:nowrap;
+                color: #121;
+                white-space: nowrap;
                 overflow: hidden;
                 padding-bottom: 1px;
                 font-size: 14px;
@@ -182,49 +255,49 @@
                 background-color: #8dd3bb;
             }
         }
-        &__logOut {
-            display: none;
-            cursor: pointer;
-            padding-top: 15.5px;
-            padding-bottom: 15.5px;
-            background-color: transparent;
-            border-radius: 8px;
-            @include adaptive-font(14, 12);
-            margin-left: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all ease 0.4s;
-            background-color: transparent;
-            font-family: $font-family;
-            font-weight: 600;
-            color: #121;
-            &:hover {
-                background-color: #fe8c8c;
-                padding-left: 26px;
-                padding-right: 26px;
-            }
-            &_active {
-                font-family: $font-family;
-                font-weight: 600;
-                margin-left: 0;
-                background-color: transparent;
-                font-size: 23px;
-                color: #fe8c8c;
-                padding: 0;
-                &:focus {
-                    padding: 24px 15% 24px 15%;
-                    background: white;
-                }
-                &:hover {
-                    padding: 24px 15% 24px 15%;
-                    background-color: white;
-                    // color: white;
-                }
-            }
-        }
+        // &__logOut {
+        //     display: none;
+        //     cursor: pointer;
+        //     padding-top: 15.5px;
+        //     padding-bottom: 15.5px;
+        //     background-color: transparent;
+        //     border-radius: 8px;
+        //     @include adaptive-font(14, 12);
+        //     margin-left: 32px;
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: center;
+        //     transition: all ease 0.4s;
+        //     background-color: transparent;
+        //     font-family: $font-family;
+        //     font-weight: 600;
+        //     color: #121;
+        //     &:hover {
+        //         background-color: #fe8c8c;
+        //         padding-left: 26px;
+        //         padding-right: 26px;
+        //     }
+        //     &_active {
+        //         font-family: $font-family;
+        //         font-weight: 600;
+        //         margin-left: 0;
+        //         background-color: transparent;
+        //         font-size: 23px;
+        //         color: #fe8c8c;
+        //         padding: 0;
+        //         &:focus {
+        //             padding: 24px 15% 24px 15%;
+        //             background: white;
+        //         }
+        //         &:hover {
+        //             padding: 24px 15% 24px 15%;
+        //             background-color: white;
+        //             // color: white;
+        //         }
+        //     }
+        // }
         &-logOut__text {
-            color: #121;
+            color: white;
             @include adaptive-font(14, 12);
             font-family: $font-family;
             font-weight: 600;
@@ -287,7 +360,7 @@
             border-radius: 24px;
             transition: all ease 0.4s;
             background-color: rgb(232, 217, 100);
-            z-index: -100;
+            z-index: 10;
             // mix-blend-mode: lumi nosity;
 
             &_active {
@@ -302,6 +375,10 @@
             border-radius: 8px;
 
             svg {
+                transition: scale ease 0.2s;
+                &:hover{
+                    scale: 1.2;
+                }
                 path {
                     transition: fill ease 0.4s;
                 }
@@ -309,10 +386,11 @@
             &:hover {
                 padding: 24px 15% 24px 15%;
                 background-color: white;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
                 color: darkgrey;
                 svg {
                     path {
-                        fill: darkgray;
+                        fill: #fcc951;
                     }
                 }
             }
@@ -325,7 +403,7 @@
 
                 svg {
                     path {
-                        fill: darkgray;
+                        fill: #fcc951;
                     }
                 }
             }
@@ -336,17 +414,22 @@
             border-radius: 8px;
 
             svg {
+                transition: scale ease 0.2s;
+                &:hover{
+                    scale: 1.2;
+                }
                 path {
                     transition: fill ease 0.4s;
                 }
             }
             &:hover {
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
                 padding: 24px 15% 24px 15%;
                 background-color: white;
                 color: darkgrey;
                 svg {
                     path {
-                        fill: darkgray;
+                        fill: rgb(189, 135, 255);
                     }
                 }
             }
@@ -360,7 +443,7 @@
 
                 svg {
                     path {
-                        fill: darkgray;
+                        fill: rgb(163, 117, 218);
                     }
                 }
             }
@@ -448,21 +531,18 @@
             height: 24px;
             position: relative;
             z-index: 11;
-            // background-color: red;
             display: flex;
             align-items: center;
 
             span {
-                @include transition(0.4s);
                 width: 100%;
                 height: 2px;
                 background-color: #123;
                 display: block;
-                @include transition(0.4s);
-
+                transition: transform ease 0.4s;
                 &::before,
                 &::after {
-                    @include transition(0.4s);
+                    
                     content: "";
                     position: absolute;
                     width: 100%;
@@ -471,41 +551,15 @@
                 }
 
                 &::before {
+                    transition: transform ease 0.4s;
                     top: 0px;
                 }
 
                 &::after {
+                    transition: transform ease 0.4s;
                     bottom: 0px;
                 }
             }
-            // &_logged {
-            //     span {
-            //         @include transition(0.4s);
-            //         width: 100%;
-            //         height: 2px;
-            //         background-color: #121;
-            //         display: block;
-            //         @include transition(0.4s);
-
-            //         &::before,
-            //         &::after {
-            //             @include transition(0.4s);
-            //             content: "";
-            //             position: absolute;
-            //             width: 100%;
-            //             height: 2px;
-            //             background-color: #121;
-            //         }
-
-            //         &::before {
-            //             top: 0px;
-            //         }
-
-            //         &::after {
-            //             bottom: 0px;
-            //         }
-            //     }
-            // }
             &_active {
                 span {
                     background-color: transparent;
