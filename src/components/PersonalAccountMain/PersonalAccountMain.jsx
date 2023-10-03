@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Account from '../Account/Account';
 import History from '../History/History';
 import Payments from '../Payments/Payment';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 
 const PersonalAccountMain = () => {
@@ -12,16 +13,18 @@ const PersonalAccountMain = () => {
     const [account, setAccount] = useState(true);
     const [history, setHistory] = useState(false);
     const [payment, setPayment] = useState(false);
+    const [background, setBackground] = useState(null)
+    const [image, setImage] = useState(null);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
     const userData = JSON.parse(Cookies.get('user'));
+
     useEffect(() => {
         setEmail(userData.email);
         setUserName(userData.userName);
     }, []);
 
-    const [image, setImage] = useState(null);
     const handleFileInputChange = (event) => {
         try {
             const reader = new FileReader();
@@ -38,15 +41,35 @@ const PersonalAccountMain = () => {
         } catch (error) {
             alert(error);
         }
-
     };
+
+    const handleBackground = (event) => {
+        try {
+            const reader = new FileReader();
+            const selectedFile = event.target.files[0];
+            reader.readAsDataURL(selectedFile);
+
+            if (selectedFile) {
+                reader.onload = () => {
+                    const base64Image = reader.result;
+                    localStorage.setItem('userBackground', base64Image);
+                    setBackground(base64Image);
+                };
+            }
+        } catch (error) {
+            alert(error);
+        }
+    }
     useEffect(() => {
         if (!Cookies.get('user'))
             navigate('/flights');
         const storedImage = localStorage.getItem('userImage');
+        const storedBackgroundImage = localStorage.getItem('userBackground');
         if (storedImage) {
             setImage(storedImage);
         }
+        if(storedBackgroundImage){}
+            setBackground(storedBackgroundImage);
     }, []);
 
     return (
@@ -54,9 +77,12 @@ const PersonalAccountMain = () => {
             <main className='personal-acc'>
                 <div className="personal-acc__container">
                     <div className='personal-acc__top-background'>
-                        <img src="./assets/img/09d33d4d260d902f404ce31c509b1086.jpg" alt="" />
+                        {background ? <img src={background} alt="" />
+                            :
+                            <img src="./assets/img/09d33d4d260d902f404ce31c509b1086.jpg" alt="" />}
+                        {/* <img src="./assets/img/09d33d4d260d902f404ce31c509b1086.jpg" alt="" /> */}
                         <form >
-                            <label htmlFor='file' className='personal-acc__new-cover'>
+                            <label htmlFor='background' className='personal-acc__new-cover'>
                                 <div style={{ display: 'flex', alignItems: "center" }}>
                                     <svg
                                         viewBox="0 0 512 512"
@@ -70,9 +96,9 @@ const PersonalAccountMain = () => {
                                 <span>Upload new cover</span>
                                 <input
                                     type="file"
-                                    id='file'
+                                    id='background'
                                     accept="image/*"
-                                    onChange={handleFileInputChange}
+                                    onChange={handleBackground}
                                 />
                             </label>
                         </form>
@@ -82,31 +108,37 @@ const PersonalAccountMain = () => {
                         <div className='personal-acc__photo'>
 
                             {image ?
-                                <div className='personal-acc__photo__wrapper'>
+                                <form className='personal-acc__photo__wrapper'>
                                     <img src={image} alt="" />
-                                    <label htmlFor="file" className='personal-acc__photo_change'>
+                                    <label htmlFor="avatar" className='personal-acc__photo_change'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                                             <path d="M17.3103 6.06L4.55422 18.8475L3.78125 20.7187L5.6525 19.9458L18.44 7.18968L17.3103 6.06ZM19.8627 3.50812L19.31 4.06031L20.4397 5.19L20.9923 4.63734C21.1374 4.49222 21.2188 4.29546 21.2188 4.09031C21.2188 3.88516 21.1374 3.6884 20.9923 3.54328L20.9572 3.50812C20.8853 3.43625 20.8 3.37923 20.7061 3.34034C20.6122 3.30144 20.5116 3.28142 20.4099 3.28142C20.3083 3.28142 20.2076 3.30144 20.1137 3.34034C20.0198 3.37923 19.9345 3.43625 19.8627 3.50812Z" stroke="black" strokeWidth="2.0625" stroke-linecap="round" strokeLinejoin="round" />
                                         </svg>
+                                        <input
+                                            style={{width: '0'}}
+                                            type="file"
+                                            id='avatar'
+                                            accept="image/*"
+                                            onChange={handleFileInputChange}
+                                        />
                                     </label>
-                                </div>
+                                </form>
                                 :
                                 <div className='personal-acc__photo__wrapper'
                                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                                 >
-                                    <svg
-
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                        height="100"
-                                        width="100"
-                                    >
-                                        <path d="M12 2A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2M7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.5.88 4.93 1.78A7.893 7.893 0 0112 20c-1.86 0-3.57-.64-4.93-1.72m11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33A7.928 7.928 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.5-1.64 4.83M12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6m0 5a1.5 1.5 0 01-1.5-1.5A1.5 1.5 0 0112 8a1.5 1.5 0 011.5 1.5A1.5 1.5 0 0112 11z" />
-                                    </svg>
-                                    <label htmlFor="file" className='personal-acc__photo_change'>
+                                    <PermIdentityIcon  style={{width: '130px', height: '130px'}}/>
+                                    <label htmlFor="avatar" className='personal-acc__photo_change'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                                             <path d="M17.3103 6.06L4.55422 18.8475L3.78125 20.7187L5.6525 19.9458L18.44 7.18968L17.3103 6.06ZM19.8627 3.50812L19.31 4.06031L20.4397 5.19L20.9923 4.63734C21.1374 4.49222 21.2188 4.29546 21.2188 4.09031C21.2188 3.88516 21.1374 3.6884 20.9923 3.54328L20.9572 3.50812C20.8853 3.43625 20.8 3.37923 20.7061 3.34034C20.6122 3.30144 20.5116 3.28142 20.4099 3.28142C20.3083 3.28142 20.2076 3.30144 20.1137 3.34034C20.0198 3.37923 19.9345 3.43625 19.8627 3.50812Z" stroke="black" strokeWidth="2.0625" stroke-linecap="round" strokeLinejoin="round" />
                                         </svg>
+                                        <input
+                                            style={{width: '0'}}
+                                            type="file"
+                                            id='avatar'
+                                            accept="image/*"
+                                            onChange={handleFileInputChange}
+                                        />
                                     </label>
                                 </div>
                             }
@@ -139,12 +171,12 @@ const PersonalAccountMain = () => {
                                 <div className={payment ? "personal-acc__tab-underscore personal-acc__tab-underscore_active" : "personal-acc__tab-underscore"}></div>
                             </li>
                         </div>
-                        
+
                     </div>
                     <div className='personal-acc__tab-info-wrapper'>
-                            {account ? <Account /> : null}
-                            {history ? <History /> : null}
-                            {payment ? <Payments /> : null}
+                        {account ? <Account /> : null}
+                        {history ? <History /> : null}
+                        {payment ? <Payments /> : null}
                     </div>
                 </div>
             </main>

@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 
 const TabItem = ({ data, tabName, type }) => {
     const [inputType, setInputType] = useState(type);
-    const [isDisabled, setIsDisabled] = useState(inputType === 'text' || inputType === 'email')
     const { register, handleSubmit } = useForm();
     const onSubmit = (userData) =>{
     }
@@ -14,13 +13,8 @@ const TabItem = ({ data, tabName, type }) => {
                 <input
                     type={inputType}
                     className='personal-acc__account-input'
-                    disabled={isDisabled}
-                    value={inputType === 'password' ? '************' : data}
-                    onClick={() => {
-                        if(inputType === 'password')
-                            setInputType('text')
-                    }
-                }
+                    disabled
+                    value={data}
                 />
             </li>
             <li>
@@ -33,6 +27,7 @@ const TabItem = ({ data, tabName, type }) => {
                     <div className='personal-acc__change'>
                         Change
                     </div>
+                    
                 </button>
             </li>
         </form>

@@ -87,7 +87,6 @@ function SignUp() {
                                 />
                                 {/* Phone */}
                                 <TextField
-                                    required
                                     {...register('phone')}
                                     className="signUp-form-input-short"
                                     label="Phone Number"

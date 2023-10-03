@@ -23,7 +23,9 @@ const registration  = async (userData) => {
             try {
                 await updateProfile(user, {
                   displayName: userData.firstname + " " + userData.lastname,
+                  birthdate: new Date(""),
                 });
+                // console.log(user);
                 // await updatePhoneNumberAsync(user, userData.phone);
               } catch (error) {
                 console.error(error);

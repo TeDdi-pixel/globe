@@ -1,7 +1,6 @@
 .personal-acc {
     max-width: 1440px;
     width: 100%;
-    height: 100vh;
     margin: 0 auto;
     transition: margin-top ease 0.4s;
     &_active {
@@ -158,7 +157,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 203px;
+        margin-top: 151px;
         max-width: 1232px;
         width: 100%;
         list-style: none;
@@ -224,21 +223,22 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        &:not(:last-child){
+        &:not(:last-child) {
             margin-bottom: 32px;
         }
-        li:first-child{
+        li:first-child {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             flex-direction: column;
+            width: 100%;
         }
         li:last-child {
             button {
                 width: 140px;
                 overflow: hidden;
                 transition: all ease 0.2s;
-                svg{
+                svg {
                     transition: left ease 0.2s;
                     position: absolute;
                     left: -30px;
@@ -253,14 +253,14 @@
                 border-radius: 4px;
                 border: 1px solid var(--Mint-Green, #8dd3bb);
                 cursor: pointer;
-                &:hover{
+                &:hover {
                     color: white;
                     background-color: #8dd3bb;
                     padding-left: 48px;
                     border-color: transparent;
-                    svg{
+                    svg {
                         left: 32px;
-                        path{
+                        path {
                             fill: white;
                         }
                     }
@@ -271,7 +271,48 @@
     &__change {
         font-family: $font-family;
         font-weight: 500;
-
+        &-massage {
+            position: absolute;
+            font-size: 23px;
+            bottom: 145px;
+            left: 50%;
+            transform: translate(-50%);
+            z-index: 100;
+            background-color: #8ff0ce;
+            opacity: 0;
+            scale: 0.1;
+            transition: opacity ease 0.4s, scale ease 0.4s;
+            color: white;
+            padding: 20px 16px;
+            border-radius: 8px; 
+            box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            &_active{
+                opacity: 1;
+                scale: 1;
+            }
+        }
+        &-error{
+            position: absolute;
+            font-size: 23px;
+            bottom: 145px;
+            left: 50%;
+            transform: translate(-50%);
+            z-index: 100;
+            background-color: #ff8682;
+            opacity: 0;
+            scale: 0.1;
+            transition: opacity ease 0.4s, scale ease 0.4s;
+            color: white;
+            padding: 20px 16px;
+            border-radius: 8px; 
+            box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            &_active{
+                opacity: 1;
+                scale: 1;
+            }
+        }
     }
     &__info-label {
         font-family: $font-family;
@@ -281,30 +322,33 @@
         opacity: 0.75;
     }
     &__account-input {
-        cursor:  pointer;
+        width: 100%;
+        cursor: pointer;
         background-color: transparent;
         font-family: $font-family;
         font-size: 20px;
         font-weight: 600;
         margin-top: 8px;
-        &:disabled{
+        &:disabled {
             color: #121;
         }
     }
-    &__currently-wrapper{
+    .date {
+        width: 150px;
+    }
+    &__currently-wrapper {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 300px;
         width: 100%;
     }
-    &_currently{
+    &_currently {
         text-align: center;
         font-size: 32px;
         color: #d1c280;
         font-family: $font-family;
     }
-    
 
     @media screen and (max-width: 767px) {
         &__container {
@@ -321,7 +365,7 @@
         }
     }
     @media screen and (max-width: 495px) {
-        &__list{
+        &__list {
             li:last-child {
                 button {
                     transition: all ease 0.4s;
@@ -329,26 +373,26 @@
                     padding: 10px;
                     border-radius: 8px;
                     background-color: #8dd3bb;
-                    svg{
-                        position:initial;
-                        path{
+                    svg {
+                        position: initial;
+                        path {
                             fill: white;
                         }
                     }
-                    &:hover{
+                    &:hover {
                         border-color: #8dd3bb;
                         background-color: transparent;
                         padding: 10px;
-                        svg{
-                            path{
-                                fill:#121;
+                        svg {
+                            path {
+                                fill: #121;
                             }
                         }
                     }
                 }
             }
         }
-        &__change{
+        &__change {
             display: none;
         }
     }
@@ -359,9 +403,9 @@
         }
     }
     @media screen and (max-width: 385px) {
-        &__list{
+        &__list {
             flex-direction: column;
-            li:first-child{
+            li:first-child {
                 width: 100%;
             }
             li:last-child {
@@ -373,20 +417,20 @@
                     width: 100%;
                     border-radius: 4px;
                     background-color: transparent;
-                    svg{
-                        position:absolute;
-                        path{
+                    svg {
+                        position: absolute;
+                        path {
                             fill: white;
                         }
                     }
-                    &:hover{
+                    &:hover {
                         color: white;
                         background-color: #8dd3bb;
                         padding: 12px 24px;
                         border-color: transparent;
-                        svg{
-                            left: 100px;
-                            path{
+                        svg {
+                            left: 110px;
+                            path {
                                 fill: white;
                             }
                         }
@@ -394,7 +438,7 @@
                 }
             }
         }
-        &__change{
+        &__change {
             display: block;
         }
     }

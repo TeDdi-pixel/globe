@@ -1,3 +1,5 @@
+const storedImage = localStorage.getItem('userImage');
+
 export const data = {
     places: [
         {

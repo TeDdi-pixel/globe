@@ -1,15 +1,33 @@
 import Cookies from 'js-cookie';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
+import { getAuth, updateProfile } from "firebase/auth";
+import { app } from "./../../firebase";
 const TabItemDate = ({ data, tabName, type }) => {
     const { register, handleSubmit } = useForm();
+    const [dateError, setDateError] = useState('');
+    const [isDateUpdated, setIsDateUpdated] = useState(false);
+    const onSubmit = (userData) => {
+        const enteredDate = userData.date
+        try {
+            const currentUser = JSON.parse(Cookies.get('user'));
+            if (!isNaN(Number(enteredDate))) {
+                setDateError(true);
+                setTimeout(() => {
+                    setDateError(false);
+                }, 3000);
+                return;
+            }
+            currentUser.date = enteredDate;
+            Cookies.set('user', JSON.stringify(currentUser))
+            setIsDateUpdated(true);
 
-    const onSubmit = (userData) =>{
-        const currentUser = JSON.parse(Cookies.get('user'));
-        currentUser.date = userData.date;
-        Cookies.set('user',JSON.stringify(currentUser))
-        console.log(currentUser.date);
+            setTimeout(() => {
+                setIsDateUpdated(false);
+            }, 3000);
+        } catch (error) {
+            console.error("Произошла ошибка обновлении даты:", error);
+        }
     }
     return (
         <form className='personal-acc__list' onSubmit={handleSubmit(onSubmit)}>
@@ -17,7 +35,7 @@ const TabItemDate = ({ data, tabName, type }) => {
                 <label className='personal-acc__info-label'>{tabName}</label>
                 <input
                     {...register('date')}
-                    className='personal-acc__account-input'
+                    className='personal-acc__account-input date'
                     type={type}
                     defaultValue={data}
                 />
@@ -33,6 +51,13 @@ const TabItemDate = ({ data, tabName, type }) => {
                         Change
                     </div>
                 </button>
+                <div className={dateError ? 'personal-acc__change-error personal-acc__change-error_active' : "personal-acc__change-error"}>
+                    Вы ввели некорректную дату
+                </div>
+                <div className={isDateUpdated ? 'personal-acc__change-massage personal-acc__change-massage_active' : 'personal-acc__change-massage'}>
+                    Ваша дата успешно изменена!
+                </div>
+
             </li>
         </form>
     );
