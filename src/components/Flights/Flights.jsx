@@ -6,7 +6,7 @@ import { display } from '@mui/system';
 
 function Flights({ promocode }) {
     return (
-        <form className="main-flights" onSubmit={''}>
+        <form className="main-flights">
 
             <FormControl
                 variant="outlined"
@@ -14,7 +14,7 @@ function Flights({ promocode }) {
                 <InputLabel id='main-flights__select-label'>From - To</InputLabel>
                 <Select
 
-                    labelId="main-flights__select-tlabel"
+                    labelid="main-flights__select-tlabel"
                     id="demo-simple-select"
                     label="From - To"
                 >
@@ -32,7 +32,7 @@ function Flights({ promocode }) {
                 className='main-flights__form-control main-flights__form-control-trip'>
                 <InputLabel id='main-flights__select-label'>Trip</InputLabel>
                 <Select
-                    labelId="main-flights__select-label"
+                    labelid="main-flights__select-label"
                     id="demo-simple-select"
                     label="Trip"
                 >
@@ -60,7 +60,7 @@ function Flights({ promocode }) {
                 <OutlinedInput
 
 
-                    labelId="main-flights__select-label"
+                    labelid="main-flights__select-label"
                     id="demo-simple-select"
                     label="Passenger - Class"
                 />
@@ -76,7 +76,7 @@ function Flights({ promocode }) {
             >
                 <InputLabel id="add-promo-label">Add promo code</InputLabel>
                 <OutlinedInput
-                    labelId="add-promo-label"
+                    labelid="add-promo-label"
                     label="Add promo code"
                 />
             </FormControl>

@@ -13,9 +13,13 @@ const PersonalAccount = () => {
   const emailData = userCookie && JSON.parse(userCookie).email;
   const emailParts = emailData && emailData.split('@');
   const emailName = emailParts && emailParts[0];
+  const [isFullWidth, setIsFullWidth] = useState(false);
   // console.log(emailName);
   // console.log(JSON.parse(user));
   const navigate = useNavigate();
+  const handleResize = () => {
+    setIsFullWidth(window.innerWidth <= 385);
+};
   useEffect(() => {
     if (isUserLoggedIn) {
       // console.log('user is successfully authorized');
@@ -23,6 +27,12 @@ const PersonalAccount = () => {
       // console.log('user is not authorized');
       navigate('/');
     }
+    window.addEventListener('resize', handleResize);
+        handleResize();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
   }, [isUserLoggedIn, navigate]);
   const handleBurgerClick = () => {
     setActive((prev) => !prev);
@@ -35,7 +45,7 @@ const PersonalAccount = () => {
     <>
       <HeaderDefault onLogOut={handleLogOut} active={active} handleBurgerClick={handleBurgerClick} userEmail={emailName} />
       <PersonalAccountMain active={active}/>
-      <Footer />
+      <Footer style={isFullWidth? {marginTop : '834px'} : {marginTop : '593px'} }/>
     </>
   );
 }

@@ -144,7 +144,7 @@ function SignUp() {
                                 />
                             </FormControl>
 
-                            <div div className="signUp-form-agrement">
+                            <div className="signUp-form-agrement">
                                 <input type="checkbox" />
                                 <p>I agree to all the <span className="signUp-form-agrement-color">Terms</span> and <span className="signUp-form-agrement-color">Privacy Policies</span></p>
                             </div>

@@ -2,10 +2,16 @@
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Account from '../Account/Account';
+import History from '../History/History';
+import Payments from '../Payments/Payment';
 
 
 const PersonalAccountMain = () => {
     // const { register, handleSubmit } = useForm();
+    const [account, setAccount] = useState(true);
+    const [history, setHistory] = useState(false);
+    const [payment, setPayment] = useState(false);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
@@ -80,7 +86,7 @@ const PersonalAccountMain = () => {
                                     <img src={image} alt="" />
                                     <label htmlFor="file" className='personal-acc__photo_change'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                                            <path d="M17.3103 6.06L4.55422 18.8475L3.78125 20.7187L5.6525 19.9458L18.44 7.18968L17.3103 6.06ZM19.8627 3.50812L19.31 4.06031L20.4397 5.19L20.9923 4.63734C21.1374 4.49222 21.2188 4.29546 21.2188 4.09031C21.2188 3.88516 21.1374 3.6884 20.9923 3.54328L20.9572 3.50812C20.8853 3.43625 20.8 3.37923 20.7061 3.34034C20.6122 3.30144 20.5116 3.28142 20.4099 3.28142C20.3083 3.28142 20.2076 3.30144 20.1137 3.34034C20.0198 3.37923 19.9345 3.43625 19.8627 3.50812Z" stroke="black" stroke-width="2.0625" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M17.3103 6.06L4.55422 18.8475L3.78125 20.7187L5.6525 19.9458L18.44 7.18968L17.3103 6.06ZM19.8627 3.50812L19.31 4.06031L20.4397 5.19L20.9923 4.63734C21.1374 4.49222 21.2188 4.29546 21.2188 4.09031C21.2188 3.88516 21.1374 3.6884 20.9923 3.54328L20.9572 3.50812C20.8853 3.43625 20.8 3.37923 20.7061 3.34034C20.6122 3.30144 20.5116 3.28142 20.4099 3.28142C20.3083 3.28142 20.2076 3.30144 20.1137 3.34034C20.0198 3.37923 19.9345 3.43625 19.8627 3.50812Z" stroke="black" strokeWidth="2.0625" stroke-linecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </label>
                                 </div>
@@ -99,7 +105,7 @@ const PersonalAccountMain = () => {
                                     </svg>
                                     <label htmlFor="file" className='personal-acc__photo_change'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-                                            <path d="M17.3103 6.06L4.55422 18.8475L3.78125 20.7187L5.6525 19.9458L18.44 7.18968L17.3103 6.06ZM19.8627 3.50812L19.31 4.06031L20.4397 5.19L20.9923 4.63734C21.1374 4.49222 21.2188 4.29546 21.2188 4.09031C21.2188 3.88516 21.1374 3.6884 20.9923 3.54328L20.9572 3.50812C20.8853 3.43625 20.8 3.37923 20.7061 3.34034C20.6122 3.30144 20.5116 3.28142 20.4099 3.28142C20.3083 3.28142 20.2076 3.30144 20.1137 3.34034C20.0198 3.37923 19.9345 3.43625 19.8627 3.50812Z" stroke="black" stroke-width="2.0625" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M17.3103 6.06L4.55422 18.8475L3.78125 20.7187L5.6525 19.9458L18.44 7.18968L17.3103 6.06ZM19.8627 3.50812L19.31 4.06031L20.4397 5.19L20.9923 4.63734C21.1374 4.49222 21.2188 4.29546 21.2188 4.09031C21.2188 3.88516 21.1374 3.6884 20.9923 3.54328L20.9572 3.50812C20.8853 3.43625 20.8 3.37923 20.7061 3.34034C20.6122 3.30144 20.5116 3.28142 20.4099 3.28142C20.3083 3.28142 20.2076 3.30144 20.1137 3.34034C20.0198 3.37923 19.9345 3.43625 19.8627 3.50812Z" stroke="black" strokeWidth="2.0625" stroke-linecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </label>
                                 </div>
@@ -109,6 +115,36 @@ const PersonalAccountMain = () => {
                         </div>
                         <div className='personal-acc__name'>{userName}</div>
                         <div className='personal-acc__email'>{email}</div>
+                    </div>
+                    <div className='personal-acc__tabs-container'>
+                        <div className='personal-acc__tabs'>
+                            <li className="personal-acc__tab"
+                                onClick={() => { setAccount(true); setHistory(false); setPayment(false) }}
+                            >
+                                Account
+                                <div className={account ? "personal-acc__tab-underscore personal-acc__tab-underscore_active" : "personal-acc__tab-underscore"}></div>
+                            </li>
+                            <span className="personal-acc__spread"></span>
+                            <li className="personal-acc__tab"
+                                onClick={() => { setAccount(false); setHistory(true); setPayment(false) }}
+                            >
+                                History
+                                <div className={history ? "personal-acc__tab-underscore personal-acc__tab-underscore_active" : "personal-acc__tab-underscore"}></div>
+                            </li>
+                            <span className="personal-acc__spread"></span>
+                            <li className="personal-acc__tab"
+                                onClick={() => { setAccount(false); setHistory(false); setPayment(true) }}
+                            >
+                                Payment methods
+                                <div className={payment ? "personal-acc__tab-underscore personal-acc__tab-underscore_active" : "personal-acc__tab-underscore"}></div>
+                            </li>
+                        </div>
+                        
+                    </div>
+                    <div className='personal-acc__tab-info-wrapper'>
+                            {account ? <Account /> : null}
+                            {history ? <History /> : null}
+                            {payment ? <Payments /> : null}
                     </div>
                 </div>
             </main>

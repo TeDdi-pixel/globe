@@ -11,6 +11,9 @@ const login = async (userData) => {
         const USER = {
             userName: user.displayName,
             email: user.email,
+            password : userData.password,
+            date: '',
+            address : '',
         }
         Cookies.set('user', JSON.stringify(USER));
         // alert('Next page is in beta and may contain bugs');

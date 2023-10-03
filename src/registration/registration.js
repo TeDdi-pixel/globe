@@ -34,6 +34,8 @@ const registration  = async (userData) => {
                 userName: user.displayName,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
+                date: '',
+                address: ''
             }
             Cookies.set('user', JSON.stringify(updatedUser));
             // console.log('user successfully added');

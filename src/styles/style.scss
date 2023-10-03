@@ -722,7 +722,10 @@ body {
         font-weight: 500;
       }
     }
-
+    .promocode__block{
+      display: flex;
+      width: 100%;
+    }
     &-add-promo {
       // width: 250px;
       // display: none;
