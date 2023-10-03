@@ -5,19 +5,16 @@ import { Link, useNavigate } from 'react-router-dom';
 const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
     const [isFullWidth, setIsFullWidth] = useState(false);
     const navigate = useNavigate();
-    const [profileImage, setProfileImage] = useState('');
+    const [profileImage, setProfileImage] = useState(localStorage.getItem('userImage'));
     const [userName, setUserName] = useState('');
     const handleResize = () => {
         setIsFullWidth(window.innerWidth <= 648);
     };
+    
 
     useEffect(() => {
         if (!Cookies.get('user'))
             navigate('/flights');
-        const storedImage = localStorage.getItem('userImage');
-        if (storedImage) {
-            setProfileImage(storedImage);
-        }
         const userData = JSON.parse(Cookies.get('user'));
         const username = userData.userName;
         if (username) {
