@@ -274,7 +274,7 @@
         &-massage {
             position: absolute;
             font-size: 23px;
-            bottom: 145px;
+            bottom: 45px;
             left: 50%;
             transform: translate(-50%);
             z-index: 100;
@@ -295,13 +295,13 @@
         &-error{
             position: absolute;
             font-size: 23px;
-            bottom: 145px;
+            bottom: 45px;
             left: 50%;
             transform: translate(-50%);
             z-index: 100;
             background-color: #ff8682;
-            opacity: 0;
-            scale: 0.1;
+            opacity: 1;
+            scale:1;
             transition: opacity ease 0.4s, scale ease 0.4s;
             color: white;
             padding: 20px 16px;
