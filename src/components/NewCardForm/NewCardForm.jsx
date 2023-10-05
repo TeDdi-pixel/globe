@@ -6,11 +6,8 @@ import { DataContext } from '../Context/Context';
 
 const NewCardForm = ({ showForm, hideForm }) => {
     const [cardNumber, setCardNumber] = useState('');
-    const [disabled, setDisabled] = useState(false);
     const [cvv, setCvv] = useState();
-    const [focus, setFocus] = useState(false);
-    const [month, setMonth] = useState('');
-    const [year, setYear] = useState('');
+    const [expire, setExpire] = useState('');
     const [country, setCountry] = useState('');
     const [cardName, setCardName] = useState('');
     const data = useContext(DataContext);
@@ -24,13 +21,10 @@ const NewCardForm = ({ showForm, hideForm }) => {
             // Если введено больше 16 цифр, обрежьте до 16
             formattedNumber = numberOnly.substring(0, 16);
         }
-
         // Вставить пробелы после каждых 4 цифр
         formattedNumber = formattedNumber.match(/.{1,4}/g);
-
         // Объедините массив с пробелами, чтобы получить строку с пробелами
         formattedNumber = formattedNumber ? formattedNumber.join(' ') : '';
-
         setCardNumber(formattedNumber);
     }
     const handleExpire = (e) => {
@@ -41,16 +35,16 @@ const NewCardForm = ({ showForm, hideForm }) => {
 
         // Если длина значения больше 4, обрежьте его до 4 символов (2 цифры + '/' + 2 цифры)
         if (numericValue.length > 4) {
-            setMonth(`${numericValue.slice(0, 2)}/${numericValue.slice(2, 4)}`);
+            setExpire(`${numericValue.slice(0, 2)}/${numericValue.slice(2, 4)}`);
         } else if (numericValue.length > 2) {
             // Если длина значения больше 2 и нет '/', добавьте '/' после второй цифры
             if (!numericValue.includes('/')) {
-                setMonth(`${numericValue.slice(0, 2)}/${numericValue.slice(2)}`);
+                setExpire(`${numericValue.slice(0, 2)}/${numericValue.slice(2)}`);
             } else {
-                setMonth(numericValue);
+                setExpire(numericValue);
             }
         } else {
-            setMonth(numericValue);
+            setExpire(numericValue);
         }
     }
     const handleCvc = (e) => {
@@ -103,7 +97,7 @@ const NewCardForm = ({ showForm, hideForm }) => {
                             <OutlinedInput
                                 required
                                 placeholder={'MM/YY'}
-                                value={month}
+                                value={expire}
                                 onChange={handleExpire}
                                 id="expireDate"
                                 type='text'

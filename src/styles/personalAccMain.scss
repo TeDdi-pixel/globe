@@ -424,7 +424,7 @@
             gap: 24px;
             h2 {
                 margin-top: 24px;
-                font-size: 40px;
+                @include adaptive-font(40,32);
                 font-family: $font-family;
                 font-weight: 500;
                 margin-bottom: 24px;
@@ -460,11 +460,12 @@
                 font-family: $font-family;
                 font-size: 14px;
                 font-weight: 600;
-                transition: background-color ease 0.2s, ease 0.2s, color ease 0.2s;
+                transition: background-color ease 0.2s, ease 0.2s, color ease 0.2s, scale ease 0.2s;
                 &:hover {
                     border-color: #8ff0ce;
                     background-color: #8ff0ce;
                     color: white;
+                    scale: 0.9;
                 }
             }
             &-agreement {
@@ -491,6 +492,19 @@
     @media screen and (max-width: 767px) {
         &__container {
             padding: 24px 24px 0 24px;
+        }
+        &__payments{
+            
+            &-form-background{
+                padding: 24px;
+            }
+            &-form{
+                &-exit{
+                    top: 48px;
+                    right: 48px;
+                }
+                padding: 48px;
+            }
         }
     }
     @media screen and (max-width: 648px) {
@@ -538,6 +552,22 @@
         &__container {
             padding-right: 12px;
             padding-left: 12px;
+        }
+        &__payments{
+            &-form-background{
+                padding: 12px;
+            }
+            &-form{
+                padding: 24px;
+                gap: 16px;
+                &-exit{
+                    top: 24px;
+                    right: 24px;
+                }
+                &-half-input{
+                    gap: 16px;
+                }
+            }
         }
     }
     @media screen and (max-width: 385px) {
