@@ -272,9 +272,9 @@
         font-family: $font-family;
         font-weight: 500;
         &-massage {
-            position: absolute;
+            position: fixed;
             @include adaptive-font(23, 15);
-            bottom: 145px;
+            top: 20%;
             left: 50%;
             transform: translate(-50%);
             z-index: 100;
@@ -293,9 +293,9 @@
             }
         }
         &-error {
-            position: absolute;
+            position: fixed;
             @include adaptive-font(23, 15);
-            bottom: 145px;
+            top: 20%;
             left: 50%;
             transform: translate(-50%);
             z-index: 100;
