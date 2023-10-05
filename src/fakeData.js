@@ -95,5 +95,67 @@ export const data = {
             img: './assets/img/7f44409c34363230b50babb01b3efc89.jpg'
         }
 
+    ],
+    country: [
+        {
+            "name": 'United States'
+        },
+        {
+            "name": 'Canada'
+        },
+        {
+            "name": 'United Kingdom'
+        },
+        {
+            "name": 'Germany'
+        },
+        {
+            "name": 'France'
+        },
+        {
+            "name": 'Australia'
+        },
+        {
+            "name": 'Spain'
+        },
+        {
+            "name": 'Italy'
+        },
+        {
+            "name": 'Japan'
+        },
+        {
+            "name": 'China'
+        },
+        {
+            "name": 'India'
+        },
+        {
+            "name": 'Brazil'
+        },
+        {
+            "name": 'Russia'
+        },
+        {
+            "name": 'South Africa'
+        },
+        {
+            "name": 'Mexico'
+        },
+        {
+            "name": 'Argentina'
+        },
+        {
+            "name": 'South Korea'
+        },
+        {
+            "name": 'Netherlands'
+        },
+        {
+            "name": 'Sweden'
+        },
+        {
+            "name": 'Norway'
+        }
     ]
 }
