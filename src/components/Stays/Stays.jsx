@@ -79,9 +79,9 @@ function Stays({ promocode }) {
                     id="demo-simple-select"
                     label="Room class"
                 >
-                    <MenuItem value='Lahore - Karachi'>Lux</MenuItem>
-                    <MenuItem value='Lahore - Karachi'>Business</MenuItem>
-                    <MenuItem value='Lahore - Karachi'>Something else</MenuItem>
+                    <MenuItem value='Lux'>Lux</MenuItem>
+                    <MenuItem value='Business'>Business</MenuItem>
+                    <MenuItem value='Something else'>Something else</MenuItem>
                 </Select>
             </FormControl>
 

@@ -365,10 +365,83 @@
             background: var(--Neutrals, #fff);
             box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
             padding: 24px;
+            flex-wrap: wrap;
+            // justify-content: space-evenly;
         }
         &-card {
+            background-color: #8dd3bb;
+            cursor: pointer;
+            max-width: 378px;
+            width: 100%;
+            height: 212px;
+            border-radius: 16px;
+            // min-width: 378px;
+            display: flex;
+            // align-items: flex-start;
+            justify-content: space-between;
+            // flex-direction: column;
+            flex-wrap: wrap;
+            // gap: 10px;
+            padding: 16px;
+            &-number__wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                font-family: $font-family;
+                font-size: 32px;
+                font-weight: 600;
+                li:first-child {
+                    display: flex;
+                    justify-content: space-between;
+                }
+                li:last-child {
+                    display: flex;
+                    list-style: none;
+                    justify-content: space-between;
+                }
+            }
+            &-number {
+                display: flex;
+                flex-direction: column;
+            }
+            &-number-trash {
+                transition: all ease 0.2s;
+                svg {
+                    transition: scale ease 0.2s;
+                    path{
+                        transition: fill ease 0.2s;
+                    }
+                    &:hover {
+                        scale: 1.2;
+                        path {
+                            fill: #ff8682;
+                        }
+                    }
+                }
+            }
+            &-valid-date {
+                font-size: 12px;
+                font-weight: 500;
+            }
+            &-date__wrapper {
+                display: flex;
+                flex-direction: column;
+            }
+            &-date {
+                font-size: 20px;
+            }
+            &-stars {
+                font-size: 24px;
+                font-family: $font-family;
+                font-weight: 600;
+            }
+        }
+        &-new-card {
+            // min-width: 378px;
             background-color: transparent;
             cursor: pointer;
+
             max-width: 378px;
             width: 100%;
             height: 212px;
@@ -379,6 +452,7 @@
             justify-content: center;
             flex-direction: column;
             gap: 10px;
+
             span {
                 font-family: $font-family;
                 font-size: 12px;
@@ -424,7 +498,7 @@
             gap: 24px;
             h2 {
                 margin-top: 24px;
-                @include adaptive-font(40,32);
+                @include adaptive-font(40, 32);
                 font-family: $font-family;
                 font-weight: 500;
                 margin-bottom: 24px;
@@ -493,13 +567,12 @@
         &__container {
             padding: 24px 24px 0 24px;
         }
-        &__payments{
-            
-            &-form-background{
+        &__payments {
+            &-form-background {
                 padding: 24px;
             }
-            &-form{
-                &-exit{
+            &-form {
+                &-exit {
                     top: 48px;
                     right: 48px;
                 }
@@ -553,18 +626,18 @@
             padding-right: 12px;
             padding-left: 12px;
         }
-        &__payments{
-            &-form-background{
+        &__payments {
+            &-form-background {
                 padding: 12px;
             }
-            &-form{
+            &-form {
                 padding: 24px;
                 gap: 16px;
-                &-exit{
+                &-exit {
                     top: 24px;
                     right: 24px;
                 }
-                &-half-input{
+                &-half-input {
                     gap: 16px;
                 }
             }
@@ -613,6 +686,14 @@
     @media screen and (max-width: 370px) {
         &__tabs {
             gap: 15px;
+        }
+        &__payments {
+            &-card {
+                height: 155px;
+            }
+            &-new-card {
+                height: 155px;
+            }
         }
     }
     @media screen and (max-width: 334px) {

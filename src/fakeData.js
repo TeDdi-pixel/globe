@@ -134,9 +134,6 @@ export const data = {
             "name": 'Brazil'
         },
         {
-            "name": 'Russia'
-        },
-        {
             "name": 'South Africa'
         },
         {
