@@ -7,7 +7,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from 'react-router-dom';
 // import Cookies from 'js-cookie';
 import { registration } from "../../registration/registration";
-
+import {signInWithGoogle} from '../../registration/signInWithGoogle';
 function SignUp() {
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] =useState('');
@@ -169,7 +169,9 @@ function SignUp() {
                                         <path d="M24.334 12.0733C24.334 5.40546 18.9614 0 12.334 0C5.70661 0 0.333984 5.40536 0.333984 12.0733C0.333984 18.0994 4.72223 23.0943 10.459 24V15.5633H7.41211V12.0733H10.459V9.41343C10.459 6.38755 12.2505 4.71615 14.9915 4.71615C16.3045 4.71615 17.6777 4.95195 17.6777 4.95195V7.92313H16.1646C14.6738 7.92313 14.209 8.85381 14.209 9.80864V12.0733H17.5371L17.0051 15.5633H14.209V24C19.9457 23.0943 24.334 18.0995 24.334 12.0733Z" fill="#1877F2" />
                                     </svg>
                                 </Link>
-                                <Link to='/google' className="signUp-altentative-apps-icons">
+                                <Link className="signUp-altentative-apps-icons" 
+                                    onClick={signInWithGoogle}
+                                >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path d="M21.8055 10.0415H21V10H12V14H17.6515C16.827 16.3285 14.6115 18 12 18C8.6865 18 6 15.3135 6 12C6 8.6865 8.6865 6 12 6C13.5295 6 14.921 6.577 15.9805 7.5195L18.809 4.691C17.023 3.0265 14.634 2 12 2C6.4775 2 2 6.4775 2 12C2 17.5225 6.4775 22 12 22C17.5225 22 22 17.5225 22 12C22 11.3295 21.931 10.675 21.8055 10.0415Z" fill="#FFC107" />
                                         <path d="M3.15234 7.3455L6.43784 9.755C7.32684 7.554 9.47984 6 11.9993 6C13.5288 6 14.9203 6.577 15.9798 7.5195L18.8083 4.691C17.0223 3.0265 14.6333 2 11.9993 2C8.15834 2 4.82734 4.1685 3.15234 7.3455Z" fill="#FF3D00" />

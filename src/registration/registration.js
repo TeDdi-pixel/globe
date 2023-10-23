@@ -1,5 +1,5 @@
 // import { app } from '../../firebase';
-import { getAuth, createUserWithEmailAndPassword, updateProfile, updatePhoneNumber   } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile, updatePhoneNumber} from "firebase/auth";
 import Cookies from 'js-cookie';
 import {updatePhoneNumberAsync} from './updatePhoneNumber'
 
