@@ -1,5 +1,6 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "./../firebase";
+import Cookies from "js-cookie";
 
 const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
@@ -10,7 +11,16 @@ const signInWithGoogle = async () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
+        const updatedUser = {
+            userName: user.displayName,
+            email: user.email,
+            phoneNumber: user.phoneNumber,
+            date: '',
+            address: ''
+        }
+        Cookies.set('user', JSON.stringify(updatedUser));
         console.log('User registered successfully');
+        
     } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
