@@ -16,6 +16,9 @@ const signInWithGoogle = async () => {
             const errorMessage = error.message;
             const email = error.customData.email;
             const credential = GoogleAuthProvider.credentialFromError(error);
+            if(errorMessage){
+                alert('Firebase: Error auth/unauthorized-domain');
+            }
             console.log('errorCode:' + errorCode);
             console.log('errorMessage:' + errorMessage);
             console.log('errorEmail:' + email);
