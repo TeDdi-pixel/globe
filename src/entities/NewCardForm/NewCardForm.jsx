@@ -1,10 +1,11 @@
-import { Checkbox, FormControl, InputLabel, MenuItem, NativeSelect, OutlinedInput, Select } from '@mui/material';
-import React, { useContext, useEffect, useState } from 'react';
+import { Checkbox, FormControl, InputLabel, MenuItem, OutlinedInput, Select } from '@mui/material';
+import React, { useContext, useState } from 'react';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { InfoOutlined } from '@mui/icons-material';
-import { DataContext } from '../Context/Context';
+
 import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
+import { DataContext } from '../../components/Context/Context';
 
 const NewCardForm = ({ showForm, hideForm }) => {
     const { register, handleSubmit } = useForm();
@@ -22,25 +23,20 @@ const NewCardForm = ({ showForm, hideForm }) => {
         let formattedNumber = numberOnly;
 
         if (numberOnly.length > 16) {
-            // Если введено больше 16 цифр, обрежьте до 16
             formattedNumber = numberOnly.substring(0, 16);
         }
-        // Вставить пробелы после каждых 4 цифр
         formattedNumber = formattedNumber.match(/.{1,4}/g);
-        // Объедините массив с пробелами, чтобы получить строку с пробелами
         formattedNumber = formattedNumber ? formattedNumber.join(' ') : '';
         setCardNumber(formattedNumber);
     }
     const handleExpire = (e) => {
         const value = e.target.value;
 
-        // Удалите все нечисловые символы из введенного значения
         const numericValue = value.replace(/\D/g, '');
 
         if (numericValue.length > 4) {
             setExpire(`${numericValue.slice(0, 2)}/${numericValue.slice(2, 4)}`);
         } else if (numericValue.length > 2) {
-            // Если длина значения больше 2 и нет '/', добавьте '/' после второй цифры
             if (!numericValue.includes('/')) {
                 setExpire(`${numericValue.slice(0, 2)}/${numericValue.slice(2)}`);
             } else {

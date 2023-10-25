@@ -1,21 +1,18 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { InputLabel, FormControl, OutlinedInput, InputAdornment, IconButton } from "@mui/material";
-import { useState } from "react";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import React, { useState } from 'react';
 
-function Password() {
-    // const [password, setPassword] = useState(null)
+const PasswordInput = ({ htmlFor, name, label, id, register }) => {
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
-
+    const handleMouseDownPassword = (event) => { event.preventDefault(); };
     return (
         <FormControl fullWidth variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+            <InputLabel htmlFor={htmlFor}>{label}</InputLabel>
             <OutlinedInput
+                {...register(name)}
                 required
-                id="outlined-adornment-password"
+                id={id}
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
                     <InputAdornment position="end">
@@ -23,17 +20,16 @@ function Password() {
                             aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
                             onMouseDown={handleMouseDownPassword}
-                            // onChange={(e) => {setPassword(e.target.value);}}
                             edge="end"
                         >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                     </InputAdornment>
                 }
-                label="Password"
+                label={label}
             />
         </FormControl>
     );
 }
 
-export default Password;
+export default PasswordInput;

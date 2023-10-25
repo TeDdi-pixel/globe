@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import NewCardForm from '../NewCardForm/NewCardForm';
+
 import Cookies from 'js-cookie';
-import CardDeleting from '../UI/CardDeleting';
+import CardDeleting from '../../shared/CardDeleting';
+import NewCardForm from '../../entities/NewCardForm/NewCardForm';
+
 
 const Payments = () => {
     const [showForm, setShowForm] = useState(false);

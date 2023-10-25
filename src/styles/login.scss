@@ -46,6 +46,10 @@
 
     &-logo {
         margin-bottom: 64px;
+        img{
+            max-width: 110px;
+            width: 100%;
+        }
     }
 
     &-form {

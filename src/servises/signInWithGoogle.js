@@ -1,5 +1,5 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { app } from "./../firebase";
+import { app } from "./firebase";
 import Cookies from "js-cookie";
 
 const signInWithGoogle = async () => {

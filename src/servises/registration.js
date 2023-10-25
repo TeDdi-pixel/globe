@@ -1,8 +1,6 @@
 // import { app } from '../../firebase';
-import { getAuth, createUserWithEmailAndPassword, updateProfile, updatePhoneNumber} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 import Cookies from 'js-cookie';
-import {updatePhoneNumberAsync} from './updatePhoneNumber'
-
   
 const registration  = async (userData) => {
     
@@ -28,7 +26,7 @@ const registration  = async (userData) => {
                 // console.log(user);
                 // await updatePhoneNumberAsync(user, userData.phone);
               } catch (error) {
-                console.error(error);
+                alert(error);
                 alert(error.message);
               }
               

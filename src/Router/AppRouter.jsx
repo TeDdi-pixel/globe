@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "../pages/LandingPage/LandingPage";
-import SignUp from "../components/SignUp/SignUp";
-import Login from "../components/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
+import Login from "../pages/Login/Login";
 import FlightsPage from "../pages/FlightsPage/FlightsPage";
 import PersonalAccount from "../pages/PersonalAccountPage/PersonalAccount";
 

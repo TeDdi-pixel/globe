@@ -1,7 +1,7 @@
 import React from 'react';
-import TabItem from '../UI/TabItem';
+import TabItem from '../../shared/TabItem';
 import Cookies from 'js-cookie';
-import TabItemDate from '../UI/TabItemDate';
+import TabItemDate from '../../shared/TabItemDate';
 
 const Account = () => {
     const user = JSON.parse(Cookies.get('user'));
