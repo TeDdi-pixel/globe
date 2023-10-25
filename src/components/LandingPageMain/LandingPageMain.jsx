@@ -4,7 +4,7 @@ import Stays from "../Stays/Stays";
 
 import { Link } from "react-router-dom";
 import Slider from "../Slider/Slider";
-import { DataContext } from "../Context/Context";
+import { DataContext } from "../../Context/Context";
 
 
 function LandingPageMain({ active }) {

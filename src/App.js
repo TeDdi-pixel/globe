@@ -1,6 +1,6 @@
 import './assets/styles/style.scss';
+import Context from './Context/Context';
 import AppRouter from './Router/AppRouter';
-import Context from './components/Context/Context';
 
 function App() {
 

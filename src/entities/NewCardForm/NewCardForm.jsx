@@ -5,7 +5,7 @@ import { InfoOutlined } from '@mui/icons-material';
 
 import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
-import { DataContext } from '../../components/Context/Context';
+import { DataContext } from '../../Context/Context';
 
 const NewCardForm = ({ showForm, hideForm }) => {
     const { register, handleSubmit } = useForm();
