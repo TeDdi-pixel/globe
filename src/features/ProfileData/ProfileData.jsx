@@ -67,7 +67,7 @@ const ProfileData = () => {
                                 >
                                     <LuUserCircle stroke='#121' strokeWidth="1.3px" style={{width: '130px',height:'130px'}}/>
                                     <label htmlFor="avatar" className='personal-acc__photo_change'>
-                                        <IoPencilOutline />
+                                        <IoPencilOutline style={{width:'24px',height:'24px'}}/>
                                         <input
                                             style={{ width: '0' }}
                                             type="file"
