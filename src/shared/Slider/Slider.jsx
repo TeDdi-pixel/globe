@@ -16,7 +16,9 @@ function Slider({ slides }) {
 
     const handleResize = () => {
         const newWidth = window.innerWidth;
-        if (newWidth <= 770) {
+        if (newWidth <= 370) {
+            setSlidesPerView(1.2);
+        }else if (newWidth <= 770) {
             setSlidesPerView(1.3);
         } else if (newWidth <= 1050) {
             setSlidesPerView(2.3);
