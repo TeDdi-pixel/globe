@@ -3,7 +3,7 @@ import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, } from '@mui/
 import { DateRangePicker, LocalizationProvider, SingleInputDateRangeField } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-function Stays({ promocode }) {
+function StaysForm({ promocode }) {
     return (
         <div className="main-stays">
 
@@ -102,4 +102,4 @@ function Stays({ promocode }) {
     );
 }
 
-export default Stays;
+export default StaysForm;

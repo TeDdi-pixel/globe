@@ -1,8 +1,8 @@
 import React from 'react';
-import PasswordInput from '../../shared/PasswordInput';
 import { useForm } from 'react-hook-form';
 import { login } from '../../servises/login';
-import TextFieldInput from '../../shared/TextFieldInput';
+import TextFieldInput from '../../shared/ui/TextFieldInput';
+import PasswordInput from '../../shared/ui/PasswordInput';
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {

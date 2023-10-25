@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Cookies from 'js-cookie';
-import CardDeleting from '../../shared/CardDeleting';
+import CardDeleting from '../../shared/ui/CardDeleting';
 import NewCardForm from '../../entities/NewCardForm/NewCardForm';
 
 

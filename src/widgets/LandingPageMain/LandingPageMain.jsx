@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import Flights from "../Flights/Flights";
-import Stays from "../Stays/Stays";
+import Flights from "../../entities/FlightsForm/FlightsForm";
+import Stays from "../../entities/StaysForm/StaysForm";
 
 import { Link } from "react-router-dom";
-import Slider from "../Slider/Slider";
+import Slider from "../../shared/Slider/Slider";
 import { DataContext } from "../../Context/Context";
 
 

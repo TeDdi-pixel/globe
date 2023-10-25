@@ -1,12 +1,10 @@
 import React from 'react';
-import TabItem from '../../shared/TabItem';
+import TabItem from '../../shared/ui/TabItem';
 import Cookies from 'js-cookie';
-import TabItemDate from '../../shared/TabItemDate';
+import TabItemDate from '../../shared/ui/TabItemDate';
 
 const Account = () => {
     const user = JSON.parse(Cookies.get('user'));
-    // console.log(user);
-    
     return (
         <div className='personal-acc__account'>
             <h1>Account</h1>

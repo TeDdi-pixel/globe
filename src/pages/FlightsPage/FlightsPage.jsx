@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Footer from '../../components/Footer/Footer';
-import LandingPageMain from '../../components/LandingPageMain/LandingPageMain';
-import HeaderLogged from '../../components/HeaderLogged/HeaderLogged';
+import Footer from '../../widgets/Footer/Footer';
+import LandingPageMain from '../../widgets/LandingPageMain/LandingPageMain';
+import HeaderLogged from '../../widgets/HeaderLogged/HeaderLogged';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,11 +34,11 @@ const FlightsPage = () => {
         setIsUserLoggedIn(prev => !prev);
       };
     return (
-        <div>
+        <>
             <HeaderLogged onLogOut={handleLogOut} active={active} handleBurgerClick={handleBurgerClick} userEmail={emailName}/>
             <LandingPageMain />
             <Footer />
-        </div>
+        </>
     );
 }
 

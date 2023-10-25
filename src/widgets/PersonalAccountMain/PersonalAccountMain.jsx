@@ -2,9 +2,9 @@
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Account from '../Account/Account';
-import History from '../History/History';
-import Payments from '../Payments/Payment';
+import Account from '../../features/Account/Account';
+import History from '../../features/History/History';
+import Payments from '../../features/Payments/Payment';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 

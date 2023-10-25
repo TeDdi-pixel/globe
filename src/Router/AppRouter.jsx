@@ -1,21 +1,25 @@
 import { Route, Routes } from "react-router-dom";
 import LandingPage from "../pages/LandingPage/LandingPage";
 import FlightsPage from "../pages/FlightsPage/FlightsPage";
-import PersonalAccount from "../pages/PersonalAccountPage/PersonalAccount";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
+import PersonalAccountPage from "../pages/PersonalAccountPage/PersonalAccountPage";
+
+const routes = [
+    { path: '/', element: <LandingPage /> },
+    { path: '/signup', element: <SignUpPage /> },
+    { path: '/login', element: <LoginPage /> },
+    { path: '/flights', element: <FlightsPage /> },
+    { path: '/personal_account', element: <PersonalAccountPage /> },
+]
 
 function AppRouter() {
     return (
-        <>
             <Routes>
-                <Route path='/' element={<LandingPage />}></Route>
-                <Route path='/signup' element={<SignUpPage />}></Route>
-                <Route path='/login' element={<LoginPage />}></Route>
-                <Route path='/flights' element={<FlightsPage />}></Route>
-                <Route path='/personal_account' element={<PersonalAccount />}></Route>
+                {routes.map((route, index) => 
+                    <Route key={index} path={route.path} element={route.element}/>
+                )}
             </Routes>
-        </>
     );
 }
 

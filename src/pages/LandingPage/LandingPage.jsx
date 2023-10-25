@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import HeaderUnlogged from "../../components/HeaderUnlogged/HeaderUnlogged";
-import LandingPageMain from "../../components/LandingPageMain/LandingPageMain";
-import Footer from "../../components/Footer/Footer";
+import HeaderUnlogged from "../../widgets/HeaderUnlogged/HeaderUnlogged";
+import LandingPageMain from "../../widgets/LandingPageMain/LandingPageMain";
+import Footer from "../../widgets/Footer/Footer";
 import { Link, useNavigate } from "react-router-dom";
-import HeaderLogged from "../../components/HeaderLogged/HeaderLogged";
+import HeaderLogged from "../../widgets/HeaderLogged/HeaderLogged";
 import Cookies from "js-cookie";
 
 function LandingPage() {

@@ -4,7 +4,7 @@ import { DateRangePicker, LocalizationProvider, SingleInputDateRangeField } from
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { display } from '@mui/system';
 
-function Flights({ promocode }) {
+function FlightsForm({ promocode }) {
     return (
         <form className="main-flights">
 
@@ -84,4 +84,4 @@ function Flights({ promocode }) {
     );
 }
 
-export default Flights;
+export default FlightsForm;

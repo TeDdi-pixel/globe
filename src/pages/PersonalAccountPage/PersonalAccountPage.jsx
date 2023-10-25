@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../widgets/Footer/Footer';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import HeaderDefault from '../../components/HeaderDefault/HeaderDefault';
-import PersonalAccountMain from '../../components/PersonalAccountMain/PersonalAccountMain';
+import HeaderDefault from '../../widgets/HeaderDefault/HeaderDefault';
+import PersonalAccountMain from '../../widgets/PersonalAccountMain/PersonalAccountMain';
 
-const PersonalAccount = () => {
+const PersonalAccountPage = () => {
   const [active, setActive] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(!!Cookies.get('user'));
 
@@ -33,4 +33,4 @@ const PersonalAccount = () => {
   );
 }
 
-export default PersonalAccount;
+export default PersonalAccountPage;

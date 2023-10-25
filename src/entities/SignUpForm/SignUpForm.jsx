@@ -1,9 +1,9 @@
 import React from 'react';
-import PasswordInput from "../../shared/PasswordInput";
 import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { registration } from "../../servises/registration";
-import TextFieldInput from '../../shared/TextFieldInput';
+import TextFieldInput from '../../shared/ui/TextFieldInput';
+import PasswordInput from "../../shared/ui/PasswordInput";
 
 const SignUpForm = () => {
     const navigate = useNavigate();

@@ -20,7 +20,6 @@ const Footer = ({ style }) => {
 
     const isNarrowScreen = windowWidth <= 471;
 
-    // Условия для стилей
     const formControlStyle = isNarrowScreen ? { display: 'none' } : {};
     const buttonControlStyle = isButtonVisible ? { display: 'none' } : { display: 'flex' };
 

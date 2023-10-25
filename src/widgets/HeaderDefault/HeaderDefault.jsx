@@ -66,7 +66,6 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
 
                     </Link>
                     <div className="header-default-right-side header-default-right-side_logged">
-                        {/* <span className='header-default-right-side-logOut__text'>{userEmail}</span> */}
                         <div className='header-default__favorites'>
                             <Link className='header-default__favorites_left'>
                                 <li>
@@ -102,7 +101,6 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                             </Link>
 
                         </div>
-                        {/* <button onClick={logOut} className='header-default-right-side__logOut'>LogOut</button> */}
 
                     </div>
                     <div className={(active ? 'header-default-burger header-default-burger_logged header-default-burger_logged header-default-burger_active' : 'header-default-burger header-default-burger_logged')}
@@ -130,7 +128,6 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                         </li>
                         <li>Find Stays</li>
                     </Link>
-                    {/* <Link to='/personal_account' className='header-default-right-side-logOut__text header-default-right-side-logOut__text_active'>{userEmail}</Link> */}
                     <Link className={active ? 'header-default__favorites_left header-default__favorites_left_active' : 'header-default__favorites_left'}>
                                 <li>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
@@ -139,7 +136,6 @@ const HeaderDefault = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
                                 </li>
                                 <li>Favorites</li>
                     </Link>
-                    {/* <div onClick={logOut} className={active ? 'header-default-right-side__logOut header-default-right-side__logOut_active' : 'header-default-right-side__logOut'}>LogOut</div> */}
                 </div>
 
             </nav>
