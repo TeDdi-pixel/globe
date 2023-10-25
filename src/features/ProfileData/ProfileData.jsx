@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import { LuUserCircle } from 'react-icons/lu';
