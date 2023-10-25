@@ -2,7 +2,6 @@ import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select, OutlinedInput, } from '@mui/material';
 import { DateRangePicker, LocalizationProvider, SingleInputDateRangeField } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { display } from '@mui/system';
 
 function FlightsForm({ promocode }) {
     return (

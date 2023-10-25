@@ -1,13 +1,13 @@
 .header-default {
     padding: 30px 30px 0 30px;
     margin-bottom: 0;
-    transition: margin-bottom ease 0.4s,box-shadow ease 0.4s, background-color ease 0.4s;
+    transition: margin-bottom ease 0.4s, box-shadow ease 0.4s, background-color ease 0.4s;
     background-color: white;
     box-shadow: 0px 4px 16px 0px rgba(17, 34, 17, 0.05);
     padding-bottom: 25px;
     &_active {
         margin-bottom: 562px;
-        background-color: #FAFBFC;
+        background-color: #fafbfc;
         box-shadow: none;
     }
     &__container {
@@ -25,7 +25,7 @@
         display: flex;
         justify-content: space-between;
         transition: padding ease 0.4s;
-        &_active{
+        &_active {
             padding: 24px 32px 0 32px;
         }
     }
@@ -103,10 +103,12 @@
 
         li:first-child {
             margin-right: 4px;
-            svg {
-                path {
-                    fill: #121;
-                }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 24px;
+                height: 24px;
             }
         }
 
@@ -142,7 +144,7 @@
                     margin-right: 3px;
                     path {
                         fill: #121;
-                        transition: fill ease 1s,scale ease 0.2s;
+                        transition: fill ease 1s, scale ease 0.2s;
                     }
                     &:hover {
                         path {
@@ -152,20 +154,18 @@
                     }
                 }
             }
-            li:last-child{
-
+            li:last-child {
                 color: #121;
                 transition: color ease 0.4s;
-                
             }
             &_active {
-                transition: padding ease 0.4s,border-radius ease 0.4s, background-color ease 0.4s;
+                transition: padding ease 0.4s, border-radius ease 0.4s, background-color ease 0.4s;
                 li:first-child {
                     gap: 3px;
-                    
+
                     svg {
                         path {
-                            transition: fill ease 0.4s,scale ease 0.2s;
+                            transition: fill ease 0.4s, scale ease 0.2s;
                             fill: white;
                         }
                     }
@@ -175,40 +175,37 @@
                         font-size: 23px;
                     }
                 }
-                &:hover{
+                &:hover {
                     padding: 24px 15% 24px 15%;
                     background-color: white;
                     border-radius: 8px;
                     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-                    li:first-child{
-                        
-                            
+                    li:first-child {
                         svg {
                             path {
                                 fill: #fe8c8c;
                             }
                         }
                     }
-                    li:last-child{
+                    li:last-child {
                         color: darkgray;
                     }
                 }
                 &:focus {
-                        background-color: white;
+                    background-color: white;
                     padding: 24px 15% 24px 15%;
                     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
                     width: auto;
                     color: darkgrey;
-    
+
                     svg {
                         path {
                             fill: #fe8c8c;
                         }
                     }
                 }
-                
             }
-            li:last-child{
+            li:last-child {
                 color: white;
                 font-size: 23px;
                 font-family: $font-family;
@@ -236,10 +233,18 @@
                 max-height: 45px;
                 width: 100%;
                 height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                svg{
+                    width: 45px;
+                    height: 45px;
+                }
                 img {
                     border-radius: 45px;
                     width: 100%;
                     height: 100%;
+                    
                     object-fit: cover;
                 }
             }
@@ -314,13 +319,12 @@
     }
     @media screen and (max-width: 767px) {
         padding: 24px 24px 24px 24px;
-    }   
+    }
     @media screen and (max-width: 648px) {
         &-right-side {
             display: none;
         }
         &-burger-menu {
-            
             display: block;
             padding: 24px;
             opacity: 0;
@@ -352,7 +356,7 @@
 
             svg {
                 transition: scale ease 0.2s;
-                &:hover{
+                &:hover {
                     scale: 1.2;
                 }
                 path {
@@ -391,7 +395,7 @@
 
             svg {
                 transition: scale ease 0.2s;
-                &:hover{
+                &:hover {
                     scale: 1.2;
                 }
                 path {
@@ -519,7 +523,6 @@
                 transition: transform ease 0.4s;
                 &::before,
                 &::after {
-                    
                     content: "";
                     position: absolute;
                     width: 100%;
