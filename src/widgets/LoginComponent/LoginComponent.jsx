@@ -3,7 +3,7 @@ import logo from './../../assets/img/Group 1.svg';
 import { Link } from 'react-router-dom';
 import LoginForm from '../../entities/LoginForm/LoginForm';
 import RegAlternetives from '../../entities/RegAlternetives/RegAlternetives';
-const Login = () => {
+const LoginComponent = () => {
     
     return (
         <>
@@ -37,4 +37,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default LoginComponent;

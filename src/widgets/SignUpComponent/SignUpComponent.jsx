@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import SignUpForm from "../../entities/SignUpForm/SignUpForm";
 import RegAlternetives from "../../entities/RegAlternetives/RegAlternetives";
 import logo from './../../assets/img/Group 1.svg';
-function SignUp() {
+function SignUpComponent() {
     return (
         <>
             <div className="signUp" >
@@ -32,5 +32,5 @@ function SignUp() {
     );
 }
 
-export default SignUp;
+export default SignUpComponent;
 

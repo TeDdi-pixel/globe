@@ -1,4 +1,4 @@
-import './styles/style.scss';
+import './assets/styles/style.scss';
 import AppRouter from './Router/AppRouter';
 import Context from './components/Context/Context';
 
