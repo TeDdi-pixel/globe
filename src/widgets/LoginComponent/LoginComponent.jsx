@@ -27,7 +27,7 @@ const LoginComponent = () => {
                         <RegAlternetives />
                     </div>
                     <div className="login-right">
-                        <img src="./assets/img/736762a1b63e564588a75ef07ab10d25.jpg" alt="" />
+                        <img src="./assets/img/Airplane.webp" alt="airplane" />
                     </div>
                 </div>
             </div>

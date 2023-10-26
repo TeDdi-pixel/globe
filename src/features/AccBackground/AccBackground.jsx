@@ -27,9 +27,9 @@ const AccBackground = () => {
     }, []);
     return (
         <div className='personal-acc__top-background'>
-            {background ? <img src={background} alt="" />
+            {background ? <img src={background} alt="ProfileBackground" />
                 :
-                <img src="./assets/img/09d33d4d260d902f404ce31c509b1086.jpg" alt="" />}
+                <img src="./assets/img/ProfileBackground.webp" alt="ProfileBackground" />}
             <form >
                 <label htmlFor='background' className='personal-acc__new-cover'>
                     <div style={{ display: 'flex', alignItems: "center" }}>

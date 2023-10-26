@@ -8,7 +8,7 @@ function SignUpComponent() {
             <div className="signUp" >
                 <div className="signUp__container">
                     <div className="signUp-left">
-                        <img src="./assets/img/502aa13bd224ab3d9fde2b1e45a0eec9.jpg" alt="" />
+                        <img src="./assets/img/Hotel.webp" alt="Hotel" />
                     </div>
                     <div className="signUp-right">
                         <div className="signUp-logo">

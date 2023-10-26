@@ -76,7 +76,10 @@ function Slider({ slides }) {
                             </li>
                         </Link>
                         <div className='main-swiper-img__wrapper'>
-                            <img src={slide.img} alt="" />
+                            <img src={slide.img}
+                            alt={slide.alt}
+                            srcset={slide.srcset}
+                    />
                         </div>
                     </SwiperSlide>
                 ))}
