@@ -3,19 +3,24 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {LuUserCircle} from 'react-icons/lu'
 const RightSide = () => {
-    const [profileImage, setProfileImage] = useState(localStorage.getItem('userImage'));
+    const userData = JSON.parse(Cookies.get('user'));
+    const [profileImage, setProfileImage] = useState(userData.userPhoto || localStorage.getItem('userImage'));
     const [userName, setUserName] = useState('');
     const navigate = useNavigate();
+    const localStorageProfileImage = localStorage.getItem('userImage');
 
     useEffect(() => {
         if (!Cookies.get('user'))
             navigate('/flights');
-        const userData = JSON.parse(Cookies.get('user'));
         const username = userData.userName;
         if (username) {
             setUserName(username);
         }
-    }, [])
+        if (localStorageProfileImage) {
+            setProfileImage(localStorageProfileImage);
+        }
+    }, [localStorageProfileImage])
+
     return (
         <div className="header-default-right-side header-default-right-side_logged">
             <div className='header-default__favorites'>

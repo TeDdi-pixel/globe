@@ -5,10 +5,11 @@ import { LuUserCircle } from 'react-icons/lu';
 import {IoPencilOutline} from 'react-icons/io5';
 
 const ProfileData = () => {
-    const [image, setImage] = useState(null);
+    const userData = JSON.parse(Cookies.get('user'));
+    const [image, setImage] = useState(userData.userPhoto || null);
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
-    const userData = JSON.parse(Cookies.get('user'));
+    // const userPhoto = userData.userPhoto;
     const navigate = useNavigate();
 
     const handleFileInputChange = (event) => {
@@ -38,7 +39,6 @@ const ProfileData = () => {
         if (storedImage) {
             setImage(storedImage);
         }
-        
     }, []);
     return (
         <div className='personal-acc__profile-data'>

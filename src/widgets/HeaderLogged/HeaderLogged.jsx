@@ -5,7 +5,7 @@ import BurgerMenu from '../../shared/headerLogged/BurgerMenu';
 
 const HeaderLogged = ({ active, handleBurgerClick, onLogOut, userEmail }) => {
     const [isFullWidth, setIsFullWidth] = useState(false);
-
+    console.log(userEmail);
     const logOut = () => {
         onLogOut();
         localStorage.clear();
