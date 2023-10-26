@@ -23,7 +23,11 @@ function HeaderUnlogged({ active, handleBurgerClick }) {
         <header className={active && isFullWidth ? 'header header_active' : 'header'}>
             <nav className="header__container">
                 <div className="header-background">
-                    <img src="./assets/img/Rectangle 31.jpg" alt="" />
+                    <img src="./assets/img/HeaderBackground.webp"
+                        alt="HeaderBackground"
+                        srcset="./assets/img/HeaderBackgroundSmall.webp 768w,
+                                ./assets/img/HeaderBackground.webp 1440w"
+                    />
                 </div>
                 <BurgerMenu active={active} />
                 <nav className="header__nav">
