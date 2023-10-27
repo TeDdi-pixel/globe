@@ -20,7 +20,7 @@ const MainPlan = () => {
                 {
                     data.places.map(item => {
                         return (
-                            <Link key={item.id} to='/place' className="main-plan-trip-place">
+                            <Link key={item.id} to='/' className="main-plan-trip-place">
                                 <img src={item.img} alt="" />
                                 <div className="main-plan-trip-place-options">
                                     <li>{item.title}</li>
