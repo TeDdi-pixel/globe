@@ -28,7 +28,7 @@ function AppRouter() {
                                 width: "150px",
                                 height: "auto",
                                 margin: '0 auto',
-                                transform: 'translateY(40vh)'
+                                transform: 'translateY(35vh)'
                             }} />}
                     >{route.element}
                     </Suspense>} />
