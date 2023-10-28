@@ -1,9 +1,12 @@
+import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import LandingPage from "../pages/LandingPage/LandingPage";
-import FlightsPage from "../pages/FlightsPage/FlightsPage";
-import LoginPage from "../pages/LoginPage/LoginPage";
-import SignUpPage from "../pages/SignUpPage/SignUpPage";
-import PersonalAccountPage from "../pages/PersonalAccountPage/PersonalAccountPage";
+import spinner from '../assets/img/Interwind-1s-200px.svg';
+
+const LandingPage = lazy(() => import('../pages/LandingPage/LandingPage'));
+const FlightsPage = lazy(() => import('../pages/FlightsPage/FlightsPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const SignUpPage = lazy(() => import('../pages/SignUpPage/SignUpPage'));
+const PersonalAccountPage = lazy(() => import('../pages/PersonalAccountPage/PersonalAccountPage'));
 
 const routes = [
     { path: '/', element: <LandingPage /> },
@@ -15,11 +18,22 @@ const routes = [
 
 function AppRouter() {
     return (
-            <Routes>
-                {routes.map((route, index) => 
-                    <Route key={index} path={route.path} element={route.element}/>
-                )}
-            </Routes>
+        <Routes>
+            {routes.map((route, index) =>
+                <Route key={index} path={route.path} element={
+                    <Suspense fallback={
+                        <img src={spinner}
+                            alt="spinner"
+                            style={{
+                                width: "150px",
+                                height: "auto",
+                                margin: '0 auto',
+                                transform: 'translateY(40vh)'
+                            }} />}
+                    >{route.element}
+                    </Suspense>} />
+            )}
+        </Routes>
     );
 }
 

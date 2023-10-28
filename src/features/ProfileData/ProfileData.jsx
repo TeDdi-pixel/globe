@@ -9,7 +9,7 @@ const ProfileData = () => {
     const [image, setImage] = useState(userData.userPhoto || null);
     const [email, setEmail] = useState('');
     const [userName, setUserName] = useState('');
-    // const userPhoto = userData.userPhoto;
+    
     const navigate = useNavigate();
 
     const handleFileInputChange = (event) => {
