@@ -1,7 +1,7 @@
-import FlightsStays from "../../features/FlightsStays/FlightsStays";
+import FlightsStays from "../FlightsStays/FlightsStays";
 import FlightsHotels from "../../features/FlightsHotels/FlightsHotels";
 import Reviews from "../../features/Reviews/Reviews";
-import MainPlan from "../../features/MainPlan/MainPlan";
+import MainPlan from "../../entities/MainPlan/MainPlaces";
 
 function LandingPageMain({ active }) {
     return (
@@ -18,3 +18,4 @@ function LandingPageMain({ active }) {
 }
 
 export default LandingPageMain;
+

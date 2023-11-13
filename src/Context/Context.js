@@ -6,7 +6,7 @@ export const DataContext = createContext()
 const Context = ({children}) => {
     const [newData, setNewData] = useState(data)
     return (
-        <DataContext.Provider value={newData}>
+        <DataContext.Provider value={{fakeData: newData}}>
             {children}
         </DataContext.Provider>
     );

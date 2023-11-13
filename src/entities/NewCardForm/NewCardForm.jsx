@@ -16,6 +16,7 @@ const NewCardForm = ({ showForm, hideForm }) => {
     const [country, setCountry] = useState('');
     const [cardName, setCardName] = useState('');
     const data = useContext(DataContext);
+    const fakeData = data.fakeData;
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     const handleChangeCardNumber = (e) => {
         const { value } = e.target;
@@ -58,7 +59,7 @@ const NewCardForm = ({ showForm, hideForm }) => {
     const handleCountry = (e) => {
         setCountry(e.target.value);
     }
-    const countries = data.country.map((item, index) => {
+    const countries = fakeData.country.map((item, index) => {
         return (
             <MenuItem key={index} value={item.name}>{item.name}</MenuItem>
         )
