@@ -10,7 +10,6 @@ const signInWithGoogle = async () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user);
         const updatedUser = {
             userName: user.displayName,
             email: user.email,
@@ -20,8 +19,6 @@ const signInWithGoogle = async () => {
             userPhoto: user.photoURL,
         }
         Cookies.set('user', JSON.stringify(updatedUser));
-        console.log('User registered successfully');
-        console.log(user.photoURL);
         
     } catch (error) {
             const errorCode = error.code;
